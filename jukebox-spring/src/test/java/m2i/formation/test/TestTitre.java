@@ -1,4 +1,4 @@
-package m2i.formation;
+package m2i.formation.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

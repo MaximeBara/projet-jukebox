@@ -1,4 +1,4 @@
-package m2i.formation;
+package m2i.formation.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
