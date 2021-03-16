@@ -14,17 +14,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "JUKEBOX")
 public class Jukebox {
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
 	@Column(name = "nom", length = 20)
+	@JsonView(IViews.IViewBasic.class)
 	private String nom;
 	@Column(name = "code", length = 20)
+	@JsonView(IViews.IViewBasic.class)
 	private String code;
 	@Column(name = "typeEnchere", length = 10)
+	@JsonView(IViews.IViewBasic.class)
 	private TypeEnchere typeEnchere;
 
 	@OneToMany(mappedBy = "jukebox", fetch = FetchType.LAZY)

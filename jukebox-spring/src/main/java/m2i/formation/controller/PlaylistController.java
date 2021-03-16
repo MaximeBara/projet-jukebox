@@ -17,66 +17,66 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import m2i.formation.dao.IJukeboxDao;
+import m2i.formation.dao.IPlaylistDao;
 import m2i.formation.model.IViews;
-import m2i.formation.model.Jukebox;
+import m2i.formation.model.Playlist;
 
 @RestController
-@RequestMapping("/api/jukebox")
-public class JukeboxController {
+@RequestMapping("/api/titre")
+public class PlaylistController {
 
 	@Autowired
-	private IJukeboxDao jukeboxDao;
+	private IPlaylistDao playlistDao;
 
 	@GetMapping("")
-	@JsonView(IViews.IViewJukebox.class)
-	public List<Jukebox> list() {
-		List<Jukebox> jukeboxes = jukeboxDao.findAll();
+	@JsonView(IViews.IViewPlaylist.class)
+	public List<Playlist> list() {
+		List<Playlist> playlists = playlistDao.findAll();
 
-		return jukeboxes;
+		return playlists;
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(IViews.IViewJukebox.class)
-	public Jukebox find(@PathVariable Long id) {
-		Optional<Jukebox> optJukebox = jukeboxDao.findById(id);
+	@JsonView(IViews.IViewPlaylist.class)
+	public Playlist find(@PathVariable Long id) {
+		Optional<Playlist> optPlaylist = playlistDao.findById(id);
 
-		if (optJukebox.isPresent()) {
-			return optJukebox.get();
+		if (optPlaylist.isPresent()) {
+			return optPlaylist.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(IViews.IViewJukebox.class)
-	public Jukebox create(@RequestBody Jukebox jukebox) {
-		jukebox = jukeboxDao.save(jukebox);
+	@JsonView(IViews.IViewPlaylist.class)
+	public Playlist create(@RequestBody Playlist playlist) {
+		playlist = playlistDao.save(playlist);
 
-		return jukebox;
+		return playlist;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(IViews.IViewJukebox.class)
-	public Jukebox update(@RequestBody Jukebox jukebox, @PathVariable Long id) {
-		if (!jukeboxDao.existsById(id) || !id.equals(jukebox.getId())) {
+	@JsonView(IViews.IViewPlaylist.class)
+	public Playlist update(@RequestBody Playlist playlist, @PathVariable Long id) {
+		if (!playlistDao.existsById(id) || !id.equals(playlist.getId())) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		jukebox = jukeboxDao.save(jukebox);
+		playlist = playlistDao.save(playlist);
 
-		return jukebox;
+		return playlist;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!jukeboxDao.existsById(id)) {
+		if (!playlistDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		jukeboxDao.deleteById(id);
+		playlistDao.deleteById(id);
 
-		if (jukeboxDao.existsById(id)) {
+		if (playlistDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
 		}
 	}

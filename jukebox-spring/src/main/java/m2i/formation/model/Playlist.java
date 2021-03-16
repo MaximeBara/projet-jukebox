@@ -18,15 +18,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "PLAYLIST")
 public class Playlist {
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
 	@Column(name = "nom", length = 20)
+	@JsonView(IViews.IViewBasic.class)
 	private String nom;
 	@Temporal(TemporalType.DATE)
+	@JsonView(IViews.IViewBasic.class)
 	@Column(name = "dateCreation")
 	private Date dateCreation;
 

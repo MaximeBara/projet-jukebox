@@ -12,17 +12,23 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "TITRE")
 public class Titre {
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
 	@Column(name = "nom", length = 20)
+	@JsonView(IViews.IViewBasic.class)
 	private String nom;
 	@Column(name = "artiste", length = 20)
+	@JsonView(IViews.IViewBasic.class)
 	private String artiste;
 	@Column(name = "lien", length = 255)
+	@JsonView(IViews.IViewBasic.class)
 	private String lien;
 
 	@ManyToMany(fetch = FetchType.LAZY)
