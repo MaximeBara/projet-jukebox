@@ -1,6 +1,7 @@
 package m2i.formation.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -48,5 +49,9 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 	
 	@Query("select j from Jukebox j where j.administrateur = :administrateur")
 	public Jukebox findByAdministrateur(@Param("administrateur") Administrateur administrateur);
+	
+	
+	@Query("select distinct j from Jukebox j left join fetch j.playlist where j.id = :id")
+	public Optional<Jukebox> findByIdWithPlaylist(@Param("id") Long id);
 	
 }

@@ -47,6 +47,18 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/{id}/withPlaylist")
+	@JsonView(IViews.IViewJukebox.class)
+	public Jukebox findWithPlaylist(@PathVariable Long id) {
+		Optional<Jukebox> optJukebox = jukeboxDao.findByIdWithPlaylist(id);
+
+		if (optJukebox.isPresent()) {
+			return optJukebox.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@PostMapping("")
 	@JsonView(IViews.IViewJukebox.class)

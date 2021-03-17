@@ -22,7 +22,7 @@ import m2i.formation.model.IViews;
 import m2i.formation.model.Playlist;
 
 @RestController
-@RequestMapping("/api/titre")
+@RequestMapping("/api/playlist")
 public class PlaylistController {
 
 	@Autowired
