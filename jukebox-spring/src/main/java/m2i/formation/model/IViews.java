@@ -6,6 +6,9 @@ public interface IViews {
 
 	public static interface IViewJukebox extends IViewBasic {
 	}
+	
+	public static interface IViewJukeboxWithPlaylist extends IViewJukebox {
+	}
 
 	public static interface IViewPlaylist extends IViewBasic {
 	}

@@ -46,6 +46,7 @@ public class Jukebox {
 
 	@ManyToOne()
 	@JoinColumn(name = "playlist_id")
+	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	private Playlist playlist;
 
 	@OneToMany(mappedBy = "jukebox", fetch = FetchType.LAZY)

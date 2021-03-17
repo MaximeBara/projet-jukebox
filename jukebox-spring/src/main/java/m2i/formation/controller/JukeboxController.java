@@ -49,7 +49,7 @@ public class JukeboxController {
 	}
 	
 	@GetMapping("/{id}/withPlaylist")
-	@JsonView(IViews.IViewJukebox.class)
+	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	public Jukebox findWithPlaylist(@PathVariable Long id) {
 		Optional<Jukebox> optJukebox = jukeboxDao.findByIdWithPlaylist(id);
 
