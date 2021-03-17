@@ -41,6 +41,7 @@ public class Playlist {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "PLAYLIST_TITRE", joinColumns = @JoinColumn(name = "playlist_id"), inverseJoinColumns = @JoinColumn(name = "titre_id"))
+	@JsonView(IViews.IViewPlaylistWithTitre.class)
 	private List<Titre> titres = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)

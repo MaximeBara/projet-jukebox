@@ -21,37 +21,47 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 
 	@Query("select m from Membre m left join m.jukeboxFavoris j where j.id = :id")
 	public List<Membre> findAllFansById(@Param("id") Long id);
-	
+
 	@Query("select j.administrateur from Jukebox j where j.id = :id")
 	public Administrateur findAdministrateurById(@Param("id") Long id);
-	
+
 	@Query("select j.playlist from Jukebox j where j.id = :id")
 	public Playlist findPlaylistById(@Param("id") Long id);
-	
+
 	/**
 	 * Retourne le jukebox sur lequel est connecté un utilisateur
+	 * 
 	 * @param utilisateur
 	 * @return Le jukebox
 	 */
 	@Query("select j from Utilisateur u left join u.jukebox j where u = :utilisateur")
 	public Jukebox findByUtilisateur(@Param("utilisateur") Utilisateur utilisateur);
-	
+
 	/**
 	 * Retourne les jukebox qu'un membre a ajouté à ses favoris.
+	 * 
 	 * @param membre
 	 * @return Une liste de jukebox
 	 */
 	@Query("select j from Membre m left join m.jukeboxFavoris j where m = :membre")
 	public List<Jukebox> findAllByMembre(@Param("membre") Membre membre);
-	
+
 	@Query("select j from Enchere e left join e.jukebox j where e = :enchere")
 	public Jukebox findByEnchere(@Param("enchere") Enchere enchere);
-	
+
 	@Query("select j from Jukebox j where j.administrateur = :administrateur")
 	public Jukebox findByAdministrateur(@Param("administrateur") Administrateur administrateur);
-	
-	
+
 	@Query("select distinct j from Jukebox j left join fetch j.playlist where j.id = :id")
 	public Optional<Jukebox> findByIdWithPlaylist(@Param("id") Long id);
-	
+
+	@Query("select distinct j from Jukebox j left join fetch j.playlist p left join fetch p.titres where j.id = :id")
+	public Optional<Jukebox> findByIdWithPlaylistAndTitre(@Param("id") Long id);
+
+	@Query("select distinct j from Jukebox j left join fetch j.playlist")
+	public List<Jukebox> findAllWithPlaylist();
+
+	@Query("select distinct j from Jukebox j left join fetch j.playlist p left join fetch p.titres")
+	public List<Jukebox> findAllWithPlaylistAndTitre();
+
 }

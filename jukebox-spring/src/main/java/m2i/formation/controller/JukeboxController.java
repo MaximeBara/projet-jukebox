@@ -35,6 +35,22 @@ public class JukeboxController {
 
 		return jukeboxes;
 	}
+	
+	@GetMapping("allWithPlaylist")
+	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
+	public List<Jukebox> findAllWithPlaylist() {
+		List<Jukebox> jukeboxes = jukeboxDao.findAllWithPlaylist();
+
+		return jukeboxes;
+	}
+	
+	@GetMapping("allWithPlaylistAndTitre")
+	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
+	public List<Jukebox> findAllWithPlaylistAndTitre() {
+		List<Jukebox> jukeboxes = jukeboxDao.findAllWithPlaylistAndTitre();
+
+		return jukeboxes;
+	}
 
 	@GetMapping("/{id}")
 	@JsonView(IViews.IViewJukebox.class)
@@ -52,6 +68,18 @@ public class JukeboxController {
 	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	public Jukebox findWithPlaylist(@PathVariable Long id) {
 		Optional<Jukebox> optJukebox = jukeboxDao.findByIdWithPlaylist(id);
+
+		if (optJukebox.isPresent()) {
+			return optJukebox.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/{id}/withPlaylistAndTitre")
+	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
+	public Jukebox findWithPlaylistAndTitre(@PathVariable Long id) {
+		Optional<Jukebox> optJukebox = jukeboxDao.findByIdWithPlaylistAndTitre(id);
 
 		if (optJukebox.isPresent()) {
 			return optJukebox.get();

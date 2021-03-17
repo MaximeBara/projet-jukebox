@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import m2i.formation.dao.IEnchereDao;
 import m2i.formation.dao.IJukeboxDao;
 import m2i.formation.dao.IPlaylistDao;
+import m2i.formation.dao.ITitreDao;
 import m2i.formation.dao.IUtilisateurDao;
 import m2i.formation.model.Administrateur;
 import m2i.formation.model.EnchereGratuite;
@@ -20,6 +21,7 @@ import m2i.formation.model.Invite;
 import m2i.formation.model.Jukebox;
 import m2i.formation.model.Membre;
 import m2i.formation.model.Playlist;
+import m2i.formation.model.Titre;
 import m2i.formation.model.TypeEnchere;
 
 @SpringBootTest
@@ -30,6 +32,8 @@ public class TestJukebox {
 	IUtilisateurDao utilisateurDao;
 	@Autowired
 	IPlaylistDao playlistDao;
+	@Autowired
+	ITitreDao titreDao;
 	@Autowired
 	IEnchereDao enchereDao;
 
@@ -64,6 +68,7 @@ public class TestJukebox {
 
 		Jukebox jukebox = new Jukebox("AdminTest", "19448", TypeEnchere.MIXTE);
 		jukebox.setAdministrateur(admin);
+
 		jukeboxDao.save(jukebox);
 
 		Administrateur newAdmin = jukeboxDao.findAdministrateurById(jukebox.getId());
@@ -79,6 +84,14 @@ public class TestJukebox {
 		Playlist playlist = new Playlist("La playlist", sdf.parse("01/03/2021"));
 		playlistDao.save(playlist);
 		jukebox.setPlaylist(playlist);
+		jukeboxDao.save(jukebox);
+
+		Titre titre = new Titre("Le titre", "L'artiste", "youtube.fr/test");
+
+		titreDao.save(titre);
+
+		playlist.getTitres().add(titre);
+		playlistDao.save(playlist);
 		jukeboxDao.save(jukebox);
 
 		Playlist newPlaylist = jukeboxDao.findPlaylistById(jukebox.getId());

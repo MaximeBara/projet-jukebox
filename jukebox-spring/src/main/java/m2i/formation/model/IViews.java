@@ -9,10 +9,16 @@ public interface IViews {
 	
 	public static interface IViewJukeboxWithPlaylist extends IViewJukebox {
 	}
+	
+	public static interface IViewJukeboxWithPlaylistAndTitre extends IViewJukeboxWithPlaylist, IViewPlaylistWithTitre{
+	}
 
 	public static interface IViewPlaylist extends IViewBasic {
 	}
-
+	
+	public static interface IViewPlaylistWithTitre extends IViewPlaylist {
+	}
+	
 	public static interface IViewTitre extends IViewBasic {
 	}
 }
