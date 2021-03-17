@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,7 +147,7 @@ public class TestJukebox {
 
 		utilisateurDao.save(membre);
 
-		assertEquals(2, jukeboxDao.findAllByMembre(membre).size());
+		assertEquals(2, jukeboxDao.findAllByMembre(membre.getId()).size());
 	}
 
 	@Test
@@ -155,12 +157,12 @@ public class TestJukebox {
 		EnchereGratuite enchere = new EnchereGratuite(LocalDateTime.now(), 100);
 		enchere.setJukebox(jukeboxDisco);
 		enchereDao.save(enchere);
-		Jukebox newJukebox = jukeboxDao.findByEnchere(enchere);
+		Optional<Jukebox> newJukebox = jukeboxDao.findByEnchere(enchere.getId());
 
-		assertEquals(jukeboxDisco.getId(), newJukebox.getId());
-		assertEquals(jukeboxDisco.getNom(), newJukebox.getNom());
-		assertEquals(jukeboxDisco.getCode(), newJukebox.getCode());
-		assertEquals(jukeboxDisco.getTypeEnchere(), newJukebox.getTypeEnchere());
+		assertEquals(jukeboxDisco.getId(), newJukebox.orElseThrow().getId());
+		assertEquals(jukeboxDisco.getNom(), newJukebox.orElseThrow().getNom());
+		assertEquals(jukeboxDisco.getCode(), newJukebox.orElseThrow().getCode());
+		assertEquals(jukeboxDisco.getTypeEnchere(), newJukebox.orElseThrow().getTypeEnchere());
 	}
 
 	@Test
@@ -173,11 +175,9 @@ public class TestJukebox {
 		utilisateurDao.save(admin);
 		jukeboxDao.save(jukeboxDisco);
 
-		Jukebox newJukebox = jukeboxDao.findByAdministrateur(admin);
+		List<Jukebox> newJukebox = jukeboxDao.findAllByAdministrateur(admin.getId());
 
-		assertEquals(jukeboxDisco.getId(), newJukebox.getId());
-		assertEquals(jukeboxDisco.getNom(), newJukebox.getNom());
-		assertEquals(jukeboxDisco.getCode(), newJukebox.getCode());
-		assertEquals(jukeboxDisco.getTypeEnchere(), newJukebox.getTypeEnchere());
+		assertEquals(1, newJukebox.size());
+
 	}
 }

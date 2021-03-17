@@ -64,6 +64,34 @@ public class JukeboxController {
 		}
 	}
 	
+	@GetMapping("/{id}/allByAdministrateur")
+	@JsonView(IViews.IViewJukebox.class)
+	public List<Jukebox> findAllByAdministrateur(@PathVariable Long id) {
+		List<Jukebox> jukeboxes = jukeboxDao.findAllByAdministrateur(id);
+
+		return jukeboxes;
+	}
+	
+	@GetMapping("/{id}/allByMembre")
+	@JsonView(IViews.IViewJukebox.class)
+	public List<Jukebox> findAllByMembre(@PathVariable Long id) {
+		List<Jukebox> jukeboxes = jukeboxDao.findAllByMembre(id);
+
+		return jukeboxes;
+	}
+	
+	@GetMapping("/{id}/allByEnchere")
+	@JsonView(IViews.IViewJukebox.class)
+	public Jukebox findByEnchere(@PathVariable Long id) {
+		Optional<Jukebox> optJukebox = jukeboxDao.findByEnchere(id);
+
+		if (optJukebox.isPresent()) {
+			return optJukebox.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@GetMapping("/{id}/withPlaylist")
 	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	public Jukebox findWithPlaylist(@PathVariable Long id) {

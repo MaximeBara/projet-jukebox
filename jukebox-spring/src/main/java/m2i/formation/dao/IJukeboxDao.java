@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import m2i.formation.model.Administrateur;
-import m2i.formation.model.Enchere;
 import m2i.formation.model.Jukebox;
 import m2i.formation.model.Membre;
 import m2i.formation.model.Playlist;
@@ -43,15 +42,17 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 	 * @param membre
 	 * @return Une liste de jukebox
 	 */
-	@Query("select j from Membre m left join m.jukeboxFavoris j where m = :membre")
-	public List<Jukebox> findAllByMembre(@Param("membre") Membre membre);
+	@Query("select j from Membre m left join m.jukeboxFavoris j where m.id = :id")
+	public List<Jukebox> findAllByMembre(@Param("id") Long id);
 
-	@Query("select j from Enchere e left join e.jukebox j where e = :enchere")
-	public Jukebox findByEnchere(@Param("enchere") Enchere enchere);
+	@Query("select j from Enchere e left join e.jukebox j where e.id = :id")
+	public Optional<Jukebox> findByEnchere(@Param("id") Long id);
 
-	@Query("select j from Jukebox j where j.administrateur = :administrateur")
-	public Jukebox findByAdministrateur(@Param("administrateur") Administrateur administrateur);
+	@Query("select j from Jukebox j where j.administrateur.id = :id")
+	public List<Jukebox> findAllByAdministrateur(@Param("id") Long id);
 
+	
+	
 	@Query("select distinct j from Jukebox j left join fetch j.playlist where j.id = :id")
 	public Optional<Jukebox> findByIdWithPlaylist(@Param("id") Long id);
 
