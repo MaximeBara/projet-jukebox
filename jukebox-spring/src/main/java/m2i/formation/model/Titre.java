@@ -93,8 +93,7 @@ public class Titre {
 
 	@Override
 	public String toString() {
-		return "Titre [id=" + id + ", nom=" + nom + ", artiste=" + artiste + ", lien=" + lien + ", playlists="
-				+ playlists + "]";
+		return "Titre [id=" + id + ", nom=" + nom + ", artiste=" + artiste + ", lien=" + lien + "]";
 	}
 
 }

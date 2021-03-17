@@ -11,6 +11,7 @@ import m2i.formation.model.Administrateur;
 import m2i.formation.model.Jukebox;
 import m2i.formation.model.Membre;
 import m2i.formation.model.Playlist;
+import m2i.formation.model.Titre;
 import m2i.formation.model.Utilisateur;
 
 public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
@@ -64,5 +65,11 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 
 	@Query("select distinct j from Jukebox j left join fetch j.playlist p left join fetch p.titres")
 	public List<Jukebox> findAllWithPlaylistAndTitre();
+	
+	@Query("select t from Enchere e join e.titre t "
+			+ "where e.jukebox.id = :id "
+			+ "GROUP BY e.titre.id "
+			+ "ORDER BY sum(e.valeur) DESC")
+	public List<Titre>findAllTitreOrderByEnchere(@Param("id") Long id);
 
 }
