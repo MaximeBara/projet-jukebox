@@ -6,7 +6,7 @@ public interface IViews {
 
 	public static interface IViewJukebox extends IViewBasic {
 	}
-	
+
 	public static interface IViewJukeboxWithPlaylist extends IViewJukebox {
 	}
 	
@@ -20,5 +20,17 @@ public interface IViews {
 	}
 	
 	public static interface IViewTitre extends IViewBasic {
+	}
+
+	public static interface IViewEnchere extends IViewBasic {
+	}
+
+	public static interface IViewEnchereWithMembre extends IViewEnchere {
+	}
+
+	public static interface IViewEnchereWithJukebox extends IViewEnchere {
+	}
+
+	public static interface IViewEnchereWithTitre extends IViewEnchere {
 	}
 }

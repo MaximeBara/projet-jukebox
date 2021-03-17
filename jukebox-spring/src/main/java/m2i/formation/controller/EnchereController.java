@@ -1,0 +1,97 @@
+package m2i.formation.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import m2i.formation.dao.IEnchereDao;
+import m2i.formation.model.Enchere;
+import m2i.formation.model.IViews;
+
+@RestController
+@RequestMapping("/api/enchere")
+public class EnchereController {
+
+	@Autowired
+	private IEnchereDao enchereDao;
+
+	@GetMapping("")
+	@JsonView(IViews.IViewEnchere.class)
+	public List<Enchere> list() {
+		List<Enchere> encheres = enchereDao.findAll();
+
+		return encheres;
+	}
+
+	@GetMapping("/{id}/detail")
+	@JsonView(IViews.IViewEnchereWithMembre.class)
+	public Optional<Enchere> detail(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findByIdWithMembre(id);
+
+		if (optEnchere.isPresent()) {
+			return optEnchere;
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("/{id}")
+	@JsonView(IViews.IViewEnchere.class)
+	public Enchere find(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findById(id);
+
+		if (optEnchere.isPresent()) {
+			return optEnchere.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PostMapping("")
+	@JsonView(IViews.IViewEnchere.class)
+	public Enchere create(@RequestBody Enchere enchere) {
+		enchere = enchereDao.save(enchere);
+
+		return enchere;
+	}
+
+	@PutMapping("/{id}")
+	@JsonView(IViews.IViewEnchere.class)
+	public Enchere update(@RequestBody Enchere enchere, @PathVariable Long id) {
+		if (!enchereDao.existsById(id) || !id.equals(enchere.getId())) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+
+		enchere = enchereDao.save(enchere);
+
+		return enchere;
+	}
+
+	@DeleteMapping("/{id}")
+	@JsonView(IViews.IViewEnchere.class)
+	public void delete(@PathVariable Long id) {
+		if (!enchereDao.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+
+		enchereDao.deleteById(id);
+
+		if (enchereDao.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
+		}
+	}
+
+}

@@ -1,6 +1,7 @@
 package m2i.formation.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +31,8 @@ public interface IEnchereDao extends JpaRepository<Enchere, Long> {
 
 	@Query("SELECT e from Enchere e JOIN e.titre t JOIN e.jukebox j WHERE t = :leTitre AND j = :leJukebox AND e.terminee = false")
 	List<Enchere> findAllEnchereNotTermineeByTitreAndJukebox(@Param("leTitre") Titre titre, @Param("leJukebox") Jukebox jukebox);
+	
+	@Query("select distinct e from Enchere e left join fetch e.membre where e.id = :id")
+	public Optional<Enchere> findByIdWithMembre(@Param("id") Long id);
 
 }

@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "ENCHERE")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,22 +24,29 @@ public abstract class Enchere {
 
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
-	@Column(name = "dateTime")
+	@Column(name = "date_time")
 	@Convert(converter = LocalDateTimeConverter.class)
+	@JsonView(IViews.IViewBasic.class)
 	private LocalDateTime dateTime;
 	@Column(name = "valeur")
+	@JsonView(IViews.IViewBasic.class)
 	private int valeur;
 	@Column(name = "terminee")
+	@JsonView(IViews.IViewBasic.class)
 	private boolean terminee;
 	@ManyToOne
 	@JoinColumn(name = "membre_id")
+	@JsonView(IViews.IViewEnchereWithMembre.class)
 	private Membre membre;
 	@ManyToOne
 	@JoinColumn(name = "jukebox_id")
+	@JsonView(IViews.IViewEnchereWithJukebox.class)
 	private Jukebox jukebox;
 	@ManyToOne
 	@JoinColumn(name = "titre_id")
+	@JsonView(IViews.IViewEnchereWithTitre.class)
 	private Titre titre;
 
 	public Enchere() {
@@ -104,7 +113,7 @@ public abstract class Enchere {
 	public void setTitre(Titre titre) {
 		this.titre = titre;
 	}
-	
+
 	public boolean isTerminee() {
 		return terminee;
 	}
