@@ -36,6 +36,22 @@ public class PlaylistController {
 		return playlists;
 	}
 
+	@GetMapping("/{id}/allByMembre")
+	@JsonView(IViews.IViewPlaylist.class)
+	public List<Playlist> findAllByMembre(@PathVariable Long id) {
+		List<Playlist> playlists = playlistDao.findAllByMembre(id);
+
+		return playlists;
+	}
+
+	@GetMapping("/{id}/allByTitre")
+	@JsonView(IViews.IViewPlaylist.class)
+	public List<Playlist> findAllByTitre(@PathVariable Long id) {
+		List<Playlist> playlists = playlistDao.findAllByTitre(id);
+
+		return playlists;
+	}
+
 	@GetMapping("/{id}")
 	@JsonView(IViews.IViewPlaylist.class)
 	public Playlist find(@PathVariable Long id) {
