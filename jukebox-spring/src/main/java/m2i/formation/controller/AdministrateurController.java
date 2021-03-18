@@ -22,7 +22,7 @@ import m2i.formation.model.Administrateur;
 import m2i.formation.model.IViews;
 
 @RestController
-@RequestMapping("/api/invite")
+@RequestMapping("/api/administrateur")
 public class AdministrateurController {
 
 	
