@@ -10,10 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "MEMBRE")
 public class Membre extends Utilisateur {
 
 	@Column(length= 15)

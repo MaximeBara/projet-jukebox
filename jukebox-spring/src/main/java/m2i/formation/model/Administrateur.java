@@ -6,10 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "ADMINISTRATEUR")
 public class Administrateur extends Membre {
 
 	@OneToMany(mappedBy = "administrateur", fetch = FetchType.LAZY)

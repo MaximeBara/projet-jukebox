@@ -19,67 +19,67 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import m2i.formation.dao.IUtilisateurDao;
 import m2i.formation.model.IViews;
+import m2i.formation.model.Invite;
 import m2i.formation.model.Membre;
 
 @RestController
-@RequestMapping("/api/membre")
-public class MembreController {
-	
+@RequestMapping("/api/invite")
+public class InviteController {
+
 	@Autowired
-	private IUtilisateurDao membreDao;
+	private IUtilisateurDao inviteDao;
 
 	@GetMapping("")
-	@JsonView(IViews.IViewMembre.class)
-	public List<Membre> list() {
-		List<Membre> membres = membreDao.findMembre();
+	@JsonView(IViews.IViewInvite.class)
+	public List<Invite> list() {
+		List<Invite> invites = inviteDao.findAllInvite();
 
-		return membres;
+		return invites;
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(IViews.IViewMembre.class)
-	public Membre find(@PathVariable Long id) {
-		Optional<Membre> membreOpt = membreDao.findMembreId(id);
+	@JsonView(IViews.IViewInvite.class)
+	public Invite find(@PathVariable Long id) {
+		Optional<Invite> inviteOpt = inviteDao.findInviteId(id);
 
-		if (membreOpt.isPresent()) {
-			return membreOpt.get();
+		if (inviteOpt.isPresent()) {
+			return inviteOpt.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(IViews.IViewMembre.class)
-	public Membre create(@RequestBody Membre membre) {
-		membre = membreDao.save(membre);
+	@JsonView(IViews.IViewInvite.class)
+	public Invite create(@RequestBody Invite invite) {
+		invite = inviteDao.save(invite);
 
-		return membre;
+		return invite;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(IViews.IViewMembre.class)
-	public Membre update(@RequestBody Membre membre, @PathVariable Long id) {
-		if (!membreDao.existsById(id) || !id.equals(membre.getId())) {
+	@JsonView(IViews.IViewInvite.class)
+	public Invite update(@RequestBody Invite invite, @PathVariable Long id) {
+		if (!inviteDao.existsById(id) || !id.equals(invite.getId())) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		membre = membreDao.save(membre);
+		invite = inviteDao.save(invite);
 
-		return membre;
+		return invite;
 	}
 
 	@DeleteMapping("/{id}")
-	@JsonView(IViews.IViewMembre.class)
+	@JsonView(IViews.IViewInvite.class)
 	public void delete(@PathVariable Long id) {
-		if (!membreDao.existsById(id)) {
+		if (!inviteDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		membreDao.deleteById(id);
+		inviteDao.deleteById(id);
 
-		if (membreDao.existsById(id)) {
+		if (inviteDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
 		}
 	}
-
 }
