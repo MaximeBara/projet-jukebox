@@ -36,22 +36,58 @@ public class EnchereController {
 		return encheres;
 	}
 
-	@GetMapping("/{id}/detail")
-	@JsonView(IViews.IViewEnchereWithMembre.class)
-	public Optional<Enchere> detail(@PathVariable Long id) {
-		Optional<Enchere> optEnchere = enchereDao.findByIdWithMembre(id);
+	@GetMapping("/{id}")
+	@JsonView(IViews.IViewEnchere.class)
+	public Enchere find(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findById(id);
 
 		if (optEnchere.isPresent()) {
-			return optEnchere;
+			return optEnchere.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@GetMapping("/{id}")
-	@JsonView(IViews.IViewEnchere.class)
-	public Enchere find(@PathVariable Long id) {
-		Optional<Enchere> optEnchere = enchereDao.findById(id);
+	@GetMapping("/{id}/withMembre")
+	@JsonView(IViews.IViewEnchereWithMembre.class)
+	public Enchere findWithMembre(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findByIdWithMembre(id);
+
+		if (optEnchere.isPresent()) {
+			return optEnchere.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/{id}/withJukebox")
+	@JsonView(IViews.IViewEnchereWithJukebox.class)
+	public Enchere findWithJukebox(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findByIdWithJukebox(id);
+
+		if (optEnchere.isPresent()) {
+			return optEnchere.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/{id}/withTitre")
+	@JsonView(IViews.IViewEnchereWithTitre.class)
+	public Enchere findWithTitre(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findByIdWithTitre(id);
+
+		if (optEnchere.isPresent()) {
+			return optEnchere.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/{id}/withMembreJukeboxAndTitre")
+	@JsonView(IViews.IViewEnchereWithMembreJukeboxAndTitre.class)
+	public Enchere findWithMembreJukeboxAndTitre(@PathVariable Long id) {
+		Optional<Enchere> optEnchere = enchereDao.findByIdWithTitre(id);
 
 		if (optEnchere.isPresent()) {
 			return optEnchere.get();
