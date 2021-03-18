@@ -91,8 +91,8 @@ public class Membre extends Utilisateur {
 		return jukeboxFavoris;
 	}
 
-	public void setJukeboxFavoris(Jukebox jukeboxFavoris) {
-		this.jukeboxFavoris.add(jukeboxFavoris);
+	public void setJukeboxFavoris(List <Jukebox> jukeboxFavoris) {
+		this.jukeboxFavoris= jukeboxFavoris;
 	}
 
 }

@@ -33,4 +33,16 @@ public interface IViews {
 
 	public static interface IViewEnchereWithTitre extends IViewEnchere {
 	}
+	
+	public static interface IViewUtilisateur extends IViewBasic {
+	}
+	
+	public static interface IViewMembre extends IViewUtilisateur {
+	}
+	
+	public static interface IViewAdministrateur extends IViewMembre {
+	}
+	
+	public static interface IViewInvite extends IViewUtilisateur {
+	}
 }
