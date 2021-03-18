@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -36,15 +37,15 @@ public abstract class Enchere {
 	@Column(name = "terminee")
 	@JsonView(IViews.IViewBasic.class)
 	private boolean terminee;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "membre_id")
 	@JsonView(IViews.IViewEnchereWithMembre.class)
 	private Membre membre;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "jukebox_id")
 	@JsonView(IViews.IViewEnchereWithJukebox.class)
 	private Jukebox jukebox;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "titre_id")
 	@JsonView(IViews.IViewEnchereWithTitre.class)
 	private Titre titre;

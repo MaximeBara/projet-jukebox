@@ -9,16 +9,16 @@ public interface IViews {
 
 	public static interface IViewJukeboxWithPlaylist extends IViewJukebox {
 	}
-	
-	public static interface IViewJukeboxWithPlaylistAndTitre extends IViewJukeboxWithPlaylist, IViewPlaylistWithTitre{
+
+	public static interface IViewJukeboxWithPlaylistAndTitre extends IViewJukeboxWithPlaylist, IViewPlaylistWithTitre {
 	}
 
 	public static interface IViewPlaylist extends IViewBasic {
 	}
-	
+
 	public static interface IViewPlaylistWithTitre extends IViewPlaylist {
 	}
-	
+
 	public static interface IViewTitre extends IViewBasic {
 	}
 
@@ -33,16 +33,20 @@ public interface IViews {
 
 	public static interface IViewEnchereWithTitre extends IViewEnchere {
 	}
-	
+
 	public static interface IViewUtilisateur extends IViewBasic {
 	}
-	
+
 	public static interface IViewMembre extends IViewUtilisateur {
 	}
-	
+
 	public static interface IViewAdministrateur extends IViewMembre {
 	}
-	
+
 	public static interface IViewInvite extends IViewUtilisateur {
+	}
+
+	public static interface IViewEnchereWithMembreJukeboxAndTitre
+			extends IViewEnchereWithMembre, IViewEnchereWithJukebox, IViewEnchereWithTitre {
 	}
 }

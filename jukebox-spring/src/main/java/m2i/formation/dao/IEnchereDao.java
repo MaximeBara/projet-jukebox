@@ -32,7 +32,16 @@ public interface IEnchereDao extends JpaRepository<Enchere, Long> {
 	@Query("SELECT e from Enchere e JOIN e.titre t JOIN e.jukebox j WHERE t = :leTitre AND j = :leJukebox AND e.terminee = false")
 	List<Enchere> findAllEnchereNotTermineeByTitreAndJukebox(@Param("leTitre") Titre titre, @Param("leJukebox") Jukebox jukebox);
 	
-	@Query("select distinct e from Enchere e left join fetch e.membre where e.id = :id")
+	@Query("select e from Enchere e left join fetch e.membre where e.id = :id")
 	public Optional<Enchere> findByIdWithMembre(@Param("id") Long id);
+	
+	@Query("select e from Enchere e left join fetch e.jukebox where e.id = :id")
+	public Optional<Enchere> findByIdWithJukebox(@Param("id") Long id);
+	
+	@Query("select e from Enchere e left join fetch e.titre where e.id = :id")
+	public Optional<Enchere> findByIdWithTitre(@Param("id") Long id);
+	
+	@Query("select e from Enchere e left join fetch e.membre left join fetch e.jukebox left join fetch e.titre where e.id = :id")
+	public Optional<Enchere> findByIdWithMembreJukeboxAndTitre(@Param("id") Long id);
 
 }

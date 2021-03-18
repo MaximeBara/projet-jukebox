@@ -14,27 +14,28 @@ public abstract class Utilisateur {
 
 	@Id
 	@GeneratedValue
-	private Long id ;
-	@Column(length= 15)
-	private String pseudo ;
+	private Long id;
+	@Column(length = 15)
+	private String pseudo;
 	@ManyToOne
-	@JoinColumn(name="jukebox_id")
+	@JoinColumn(name = "jukebox_id")
 	private Jukebox jukebox;
-	public Utilisateur(){
+
+	public Utilisateur() {
 		super();
 	}
-	
-	public Utilisateur(String pseudo){
+
+	public Utilisateur(String pseudo) {
 		super();
 		this.pseudo = pseudo;
 	}
 
-	public Utilisateur(Long id, String pseudo){
+	public Utilisateur(Long id, String pseudo) {
 		super();
 		this.id = id;
 		this.pseudo = pseudo;
 	}
-	
+
 	public Jukebox getJukebox() {
 		return jukebox;
 	}
@@ -61,9 +62,8 @@ public abstract class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", pseudo=" + pseudo + ", getClass()=" + getClass() 
-		+ ", toString()=" + super.toString() + "]";
+		return "Utilisateur [id=" + id + ", pseudo=" + pseudo + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
 	}
-	
-	
+
 }
