@@ -39,6 +39,5 @@ public class Administrateur extends Membre {
 	public void setJukeboxes(List<Jukebox> jukeboxes) {
 		this.jukeboxes = jukeboxes;
 	}
-	
-	
+
 }

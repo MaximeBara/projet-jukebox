@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 @Entity
 public class Invite extends Utilisateur {
 
-	
 	public Invite() {
 		super();
 	}
@@ -24,5 +23,4 @@ public class Invite extends Utilisateur {
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
-	
 }

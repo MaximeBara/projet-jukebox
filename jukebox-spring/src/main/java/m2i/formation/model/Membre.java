@@ -14,21 +14,20 @@ import javax.persistence.OneToMany;
 @Entity
 public class Membre extends Utilisateur {
 
-	@Column(length= 15)
+	@Column(length = 15)
 	private String motDePasse;
-	
+
 	private int point;
-	
+
 	@OneToMany(mappedBy = "membre", fetch = FetchType.LAZY)
 	private List<Enchere> encheres = new ArrayList<Enchere>();
-	
+
 	@OneToMany(mappedBy = "createur", fetch = FetchType.LAZY)
 	private List<Playlist> playlists = new ArrayList<Playlist>();
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "FAVORIS", joinColumns = @JoinColumn(name = "membre_id"), inverseJoinColumns = @JoinColumn(name = "jukebox_id"))
 	private List<Jukebox> jukeboxFavoris = new ArrayList<Jukebox>();
-
 
 	public Membre() {
 		super();
@@ -89,8 +88,8 @@ public class Membre extends Utilisateur {
 		return jukeboxFavoris;
 	}
 
-	public void setJukeboxFavoris(List <Jukebox> jukeboxFavoris) {
-		this.jukeboxFavoris= jukeboxFavoris;
+	public void setJukeboxFavoris(List<Jukebox> jukeboxFavoris) {
+		this.jukeboxFavoris = jukeboxFavoris;
 	}
 
 }

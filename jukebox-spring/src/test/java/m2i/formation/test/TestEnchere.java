@@ -194,9 +194,9 @@ public class TestEnchere {
 		enchereDao.save(ep2);
 		enchereDao.save(ep3);
 
-		assertEquals(3, enchereDao.findAllEnchereByMembre(m1).size());
-		assertEquals(2, enchereDao.findAllEnchereByMembre(m2).size());
-		assertEquals(0, enchereDao.findAllEnchereByMembre(m3).size());
+		assertEquals(3, enchereDao.findAllEnchereByMembre(m1.getId()).size());
+		assertEquals(2, enchereDao.findAllEnchereByMembre(m2.getId()).size());
+		assertEquals(0, enchereDao.findAllEnchereByMembre(m3.getId()).size());
 	}
 
 	@Test
@@ -322,11 +322,11 @@ public class TestEnchere {
 		enchereDao.save(ep2);
 		enchereDao.save(ep3);
 
-		assertEquals(2, enchereDao.findAllEnchereTermineeByMembre(m1).size());
+		assertEquals(2, enchereDao.findAllEnchereTermineeByMembre(m1.getId()).size());
 
-		assertEquals(1, enchereDao.findAllEnchereTermineeByMembre(m2).size());
+		assertEquals(1, enchereDao.findAllEnchereTermineeByMembre(m2.getId()).size());
 
-		assertEquals(0, enchereDao.findAllEnchereTermineeByMembre(m3).size());
+		assertEquals(0, enchereDao.findAllEnchereTermineeByMembre(m3.getId()).size());
 
 	}
 
@@ -386,11 +386,11 @@ public class TestEnchere {
 		enchereDao.save(ep2);
 		enchereDao.save(ep3);
 
-		assertEquals(1, enchereDao.findAllEnchereNotTermineeByMembre(m1).size());
+		assertEquals(1, enchereDao.findAllEnchereNotTermineeByMembre(m1.getId()).size());
 
-		assertEquals(2, enchereDao.findAllEnchereNotTermineeByMembre(m2).size());
+		assertEquals(2, enchereDao.findAllEnchereNotTermineeByMembre(m2.getId()).size());
 
-		assertEquals(0, enchereDao.findAllEnchereNotTermineeByMembre(m3).size());
+		assertEquals(0, enchereDao.findAllEnchereNotTermineeByMembre(m3.getId()).size());
 	}
 
 }

@@ -95,6 +95,18 @@ public class EnchereController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/non-terminee-by-jukebox-and-titre-with-membre/{idJukebox}/{idTitre}")
+	@JsonView(IViews.IViewEnchereWithMembreJukeboxAndTitre.class)
+	public List<Enchere> findAllEnchereNonTermineeByTitreWithMembre(@PathVariable Long idJukebox, @PathVariable Long idTitre){
+		Optional<List<Enchere>> optEncheres = enchereDao.findAllEnchereNonTermineeByJukeboxAndTitreWithMembre(idJukebox, idTitre);
+
+		if (optEncheres.isPresent()) {
+			return optEncheres.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@PostMapping("")
 	@JsonView(IViews.IViewEnchere.class)
