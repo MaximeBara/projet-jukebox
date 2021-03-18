@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import m2i.formation.model.Administrateur;
 import m2i.formation.model.Invite;
 import m2i.formation.model.Membre;
 import m2i.formation.model.Utilisateur;
@@ -32,7 +33,10 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	List<Invite> findAllInvite();
 
 	@Query("select admin from Administrateur admin")
-	List<Invite> findAllAdmin();
+	List<Administrateur> findAllAdmin();
+	
+	@Query("select user from Utilisateur user where user.id = :id")
+	 Optional <Administrateur> findAdminId(@Param("id") long id);
 
 	/*@Query("select m from Membre m left join m.encheres e where e.valeur > 0 ")
 	List<Membre> findAllMembresByValeur(@Param("valeur") int valeur); */
