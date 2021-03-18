@@ -21,10 +21,10 @@ public class Titre {
 	@GeneratedValue
 	@JsonView(IViews.IViewBasic.class)
 	private Long id;
-	@Column(name = "nom", length = 20)
+	@Column(name = "nom", length = 100)
 	@JsonView(IViews.IViewBasic.class)
 	private String nom;
-	@Column(name = "artiste", length = 20)
+	@Column(name = "artiste", length = 100)
 	@JsonView(IViews.IViewBasic.class)
 	private String artiste;
 	@Column(name = "lien", length = 255)
