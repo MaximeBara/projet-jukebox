@@ -1,6 +1,7 @@
 package m2i.formation.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +17,7 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	List<Utilisateur> findAllUtilisateur();
 
 	@Query("select user from Utilisateur user where user.id = :id")
-	Membre findByID(@Param("id") long id);
+	 Optional <Membre> findByID(@Param("id") long id);
 	
 	/*@Query("select jukeboxfav from Membre jukeboxfav left join jukeboxfav.Favoris s where jukeboxfav.id = :id")
 	Membre findByFavoris(@Param("id") long id);*/
