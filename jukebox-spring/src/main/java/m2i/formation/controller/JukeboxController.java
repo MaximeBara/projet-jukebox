@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import m2i.formation.dao.IJukeboxDao;
 import m2i.formation.model.IViews;
 import m2i.formation.model.Jukebox;
+import m2i.formation.model.Titre;
 
 @RestController
 @RequestMapping("/api/jukebox")
@@ -35,7 +36,7 @@ public class JukeboxController {
 
 		return jukeboxes;
 	}
-	
+
 	@GetMapping("allWithPlaylist")
 	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	public List<Jukebox> findAllWithPlaylist() {
@@ -43,7 +44,7 @@ public class JukeboxController {
 
 		return jukeboxes;
 	}
-	
+
 	@GetMapping("allWithPlaylistAndTitre")
 	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
 	public List<Jukebox> findAllWithPlaylistAndTitre() {
@@ -63,7 +64,7 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/allByAdministrateur")
 	@JsonView(IViews.IViewJukebox.class)
 	public List<Jukebox> findAllByAdministrateur(@PathVariable Long id) {
@@ -71,7 +72,7 @@ public class JukeboxController {
 
 		return jukeboxes;
 	}
-	
+
 	@GetMapping("/{id}/allByMembre")
 	@JsonView(IViews.IViewJukebox.class)
 	public List<Jukebox> findAllByMembre(@PathVariable Long id) {
@@ -79,7 +80,7 @@ public class JukeboxController {
 
 		return jukeboxes;
 	}
-	
+
 	@GetMapping("/{id}/allByEnchere")
 	@JsonView(IViews.IViewJukebox.class)
 	public Jukebox findByEnchere(@PathVariable Long id) {
@@ -91,7 +92,7 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/withPlaylist")
 	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	public Jukebox findWithPlaylist(@PathVariable Long id) {
@@ -103,7 +104,7 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/withPlaylistAndTitre")
 	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
 	public Jukebox findWithPlaylistAndTitre(@PathVariable Long id) {
@@ -114,6 +115,31 @@ public class JukeboxController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@GetMapping("/{id}/allTitreOrderByEnchere")
+	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
+	public List<Titre> findAllTitreOrderByEnchere(@PathVariable Long id) {
+		List<Titre> titres = jukeboxDao.findAllTitreOrderByEnchere(id);
+
+		return titres;
+	}
+
+	@GetMapping("/{id}/allTitreWithoutEnchere")
+	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
+	public List<Titre> findAllTitreWithoutEnchere(@PathVariable Long id) {
+		List<Titre> titres = jukeboxDao.findAllTitreWithoutEnchere(id);
+
+		return titres;
+	}
+
+	@GetMapping("/{id}/allTitre")
+	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
+	public List<Titre> findAllTitre(@PathVariable Long id) {
+		List<Titre> titres = jukeboxDao.findAllTitreOrderByEnchere(id);
+		titres.addAll(jukeboxDao.findAllTitreWithoutEnchere(id));
+
+		return titres;
 	}
 
 	@PostMapping("")
@@ -148,5 +174,5 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
 		}
 	}
-	
+
 }

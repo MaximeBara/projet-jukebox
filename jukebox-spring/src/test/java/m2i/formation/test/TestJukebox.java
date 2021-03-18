@@ -60,7 +60,7 @@ public class TestJukebox {
 		jukeboxDao.save(jukeboxDisco);
 		int before = jukeboxDao.findAllFansById(jukeboxDisco.getId()).size();
 		Membre membre = new Membre("membre", 0, "***");
-		membre.setJukeboxFavoris(jukeboxDisco);
+		membre.getJukeboxFavoris().add(jukeboxDisco);
 		utilisateurDao.save(membre);
 		assertEquals(before + 1, jukeboxDao.findAllFansById(jukeboxDisco.getId()).size());
 	}
@@ -230,5 +230,60 @@ public class TestJukebox {
 		assertEquals(titre1.getId(), titres.get(1).getId());
 		assertEquals(titre3.getId(), titres.get(2).getId());
 		
+	}
+	
+	@Test
+	public void testFindAllTitreWithoutEnchere() throws ParseException {
+		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "18974984", TypeEnchere.GRATUITE);
+		jukeboxDao.save(jukebox);
+		
+		
+		
+		Playlist playlist = new Playlist("La playlist", sdf.parse("01/03/2021"));
+		playlistDao.save(playlist);
+		jukebox.setPlaylist(playlist);
+		jukeboxDao.save(jukebox);
+
+		Titre titre1 = new Titre("Le titre 1", "L'artiste1", "youtube.fr/test1");
+		Titre titre2 = new Titre("Le titre 2", "L'artiste2", "youtube.fr/test2");
+		Titre titre3 = new Titre("Le titre 3", "L'artiste3", "youtube.fr/test3");
+		Titre titre4 = new Titre("Le titre 4", "L'artiste4", "youtube.fr/test4");
+		Titre titre5 = new Titre("Le titre 5", "L'artiste5", "youtube.fr/test5");
+
+		titreDao.save(titre1);
+		titreDao.save(titre2);
+		titreDao.save(titre3);
+		titreDao.save(titre4);
+		titreDao.save(titre5);
+
+		playlist.getTitres().add(titre1);
+		playlist.getTitres().add(titre2);
+		playlist.getTitres().add(titre3);
+		playlist.getTitres().add(titre4);
+		playlist.getTitres().add(titre5);
+		
+		Enchere enchere1 = new EncherePayante(LocalDateTime.now(), 300);
+		Enchere enchere2 = new EncherePayante(LocalDateTime.now(), 50);
+		Enchere enchere3 = new EncherePayante(LocalDateTime.now(), 200);
+		Enchere enchere4 = new EncherePayante(LocalDateTime.now(), 50);
+		
+		enchere1.setJukebox(jukebox);enchere1.setTitre(titre2);
+		enchere2.setJukebox(jukebox);enchere2.setTitre(titre3);
+		enchere3.setJukebox(jukebox);enchere3.setTitre(titre1);
+		enchere4.setJukebox(jukebox);enchere4.setTitre(titre3);
+		
+		enchereDao.save(enchere1);
+		enchereDao.save(enchere2);
+		enchereDao.save(enchere3);
+		enchereDao.save(enchere4);
+		
+		playlistDao.save(playlist);
+		jukeboxDao.save(jukebox);
+
+		List<Titre> titres = jukeboxDao.findAllTitreWithoutEnchere(jukebox.getId());
+		
+		assertEquals(2, titres.size());
+		assertEquals(titre4.getId(), titres.get(0).getId());
+		assertEquals(titre5.getId(), titres.get(1).getId());		
 	}
 }
