@@ -3,6 +3,7 @@ package m2i.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,7 @@ public class Membre extends Utilisateur {
 	@OneToMany(mappedBy = "membre", fetch = FetchType.LAZY)
 	private List<Enchere> encheres = new ArrayList<Enchere>();
 
-	@OneToMany(mappedBy = "createur", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "createur", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Playlist> playlists = new ArrayList<Playlist>();
 
 	@ManyToMany(fetch = FetchType.LAZY)

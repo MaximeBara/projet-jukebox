@@ -45,7 +45,7 @@ public class TestUtilisateur {
 		
 		assertEquals("Maxime", findJukbox.get().getAdministrateur().getPseudo());
 		
-		Optional<Administrateur> findadmin = userDao.findAdminId(13l);
+		Optional<Administrateur> findadmin = userDao.findAdminId(admin1.getId()-1);
 		
 		userDao.delete(findadmin.get());
 	}
