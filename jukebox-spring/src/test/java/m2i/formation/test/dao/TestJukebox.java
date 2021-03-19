@@ -45,7 +45,7 @@ public class TestJukebox {
 
 	@Test
 	public void testFindAllConnectes() {
-		Jukebox jukeboxDisco = new Jukebox("Le jukebox disco", "54198498", TypeEnchere.GRATUITE);
+		Jukebox jukeboxDisco = new Jukebox("Le jukebox disco", "FindAllConnectes", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukeboxDisco);
 		int before = jukeboxDao.findAllConnectesById(jukeboxDisco.getId()).size();
 		Membre membre = new Membre("membre", 0, "***");
@@ -70,7 +70,7 @@ public class TestJukebox {
 		Administrateur admin = new Administrateur("AdminTest", 0, "******");
 		utilisateurDao.save(admin);
 
-		Jukebox jukebox = new Jukebox("AdminTest", "19448", TypeEnchere.MIXTE);
+		Jukebox jukebox = new Jukebox("AdminTest", "AdministrateurById", TypeEnchere.MIXTE);
 		jukebox.setAdministrateur(admin);
 
 		jukeboxDao.save(jukebox);
@@ -107,7 +107,7 @@ public class TestJukebox {
 
 	@Test
 	public void testFindByUtilisateur() {
-		Jukebox jukeboxDisco = new Jukebox("Le jukebox disco", "54198498", TypeEnchere.GRATUITE);
+		Jukebox jukeboxDisco = new Jukebox("Le jukebox disco", "FindByUtilisateur", TypeEnchere.GRATUITE);
 
 		jukeboxDao.save(jukeboxDisco);
 
@@ -136,8 +136,8 @@ public class TestJukebox {
 
 	@Test
 	public void testFindAllByMembre() {
-		Jukebox jukeboxDisco = new Jukebox("Le jukebox disco", "54198498", TypeEnchere.GRATUITE);
-		Jukebox jukeboxRock = new Jukebox("Le jukebox rock", "54198498", TypeEnchere.MIXTE);
+		Jukebox jukeboxDisco = new Jukebox("Le jukebox disco", "FindAllByMembre1", TypeEnchere.GRATUITE);
+		Jukebox jukeboxRock = new Jukebox("Le jukebox rock", "FindAllByMembre2", TypeEnchere.MIXTE);
 
 		jukeboxDao.save(jukeboxDisco);
 		jukeboxDao.save(jukeboxRock);
@@ -154,7 +154,7 @@ public class TestJukebox {
 
 	@Test
 	public void testFindByEnchere() {
-		Jukebox jukeboxDisco = new Jukebox("FindByEnchere", "54198498", TypeEnchere.GRATUITE);
+		Jukebox jukeboxDisco = new Jukebox("FindByEnchere", "FindByEnchere", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukeboxDisco);
 		EnchereGratuite enchere = new EnchereGratuite(LocalDateTime.now(), 100);
 		enchere.setJukebox(jukeboxDisco);
@@ -169,7 +169,7 @@ public class TestJukebox {
 
 	@Test
 	public void testFindByAdministrateur() {
-		Jukebox jukeboxDisco = new Jukebox("FindByEnchere", "54198498", TypeEnchere.GRATUITE);
+		Jukebox jukeboxDisco = new Jukebox("FindByEnchere", "FindByAdministrateur", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukeboxDisco);
 		Administrateur admin = new Administrateur("Admin", 0, "***");
 		jukeboxDisco.setAdministrateur(admin);
@@ -184,7 +184,7 @@ public class TestJukebox {
 
 	@Test
 	public void testFindAllTitreOrderByEnchere() throws ParseException {
-		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "18974984", TypeEnchere.GRATUITE);
+		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "AllTitreOrdByEnch", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukebox);
 
 		Playlist playlist = new Playlist("La playlist", sdf.parse("01/03/2021"));
@@ -192,9 +192,9 @@ public class TestJukebox {
 		jukebox.setPlaylist(playlist);
 		jukeboxDao.save(jukebox);
 
-		Titre titre1 = new Titre("Le titre 1", "L'artiste1", "youtube.fr/test1");
-		Titre titre2 = new Titre("Le titre 2", "L'artiste2", "youtube.fr/test2");
-		Titre titre3 = new Titre("Le titre 3", "L'artiste3", "youtube.fr/test3");
+		Titre titre1 = new Titre("Le titre 1", "L'artiste1", "FindAllTitreOrderByEnchere1");
+		Titre titre2 = new Titre("Le titre 2", "L'artiste2", "FindAllTitreOrderByEnchere2");
+		Titre titre3 = new Titre("Le titre 3", "L'artiste3", "FindAllTitreOrderByEnchere3");
 
 		titreDao.save(titre1);
 		titreDao.save(titre2);
@@ -236,7 +236,7 @@ public class TestJukebox {
 
 	@Test
 	public void testFindAllTitreWithoutEnchere() throws ParseException {
-		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "18974984", TypeEnchere.GRATUITE);
+		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "AllTitreWithout", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukebox);
 
 		Playlist playlist = new Playlist("La playlist", sdf.parse("01/03/2021"));
@@ -244,11 +244,11 @@ public class TestJukebox {
 		jukebox.setPlaylist(playlist);
 		jukeboxDao.save(jukebox);
 
-		Titre titre1 = new Titre("Le titre 1", "L'artiste1", "youtube.fr/test1");
-		Titre titre2 = new Titre("Le titre 2", "L'artiste2", "youtube.fr/test2");
-		Titre titre3 = new Titre("Le titre 3", "L'artiste3", "youtube.fr/test3");
-		Titre titre4 = new Titre("Le titre 4", "L'artiste4", "youtube.fr/test4");
-		Titre titre5 = new Titre("Le titre 5", "L'artiste5", "youtube.fr/test5");
+		Titre titre1 = new Titre("Le titre 1", "L'artiste1", "FindAllTitreWithoutEnchere1");
+		Titre titre2 = new Titre("Le titre 2", "L'artiste2", "FindAllTitreWithoutEnchere2");
+		Titre titre3 = new Titre("Le titre 3", "L'artiste3", "FindAllTitreWithoutEnchere3");
+		Titre titre4 = new Titre("Le titre 4", "L'artiste4", "FindAllTitreWithoutEnchere4");
+		Titre titre5 = new Titre("Le titre 5", "L'artiste5", "FindAllTitreWithoutEnchere5");
 
 		titreDao.save(titre1);
 		titreDao.save(titre2);

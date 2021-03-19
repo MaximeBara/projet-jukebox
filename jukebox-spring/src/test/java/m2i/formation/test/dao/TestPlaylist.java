@@ -52,7 +52,7 @@ public class TestPlaylist {
 
 	@Test
 	public void testFindAllByTitre() {
-		Titre titre = new Titre("le titre", "artiste", "null");
+		Titre titre = new Titre("le titre", "artiste", "FindAllByTitre");
 
 		Playlist playlist1 = new Playlist("Playlist 1", new Date());
 		Playlist playlist2 = new Playlist("Playlist 2", new Date());

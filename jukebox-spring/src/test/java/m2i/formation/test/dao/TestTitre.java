@@ -28,9 +28,9 @@ public class TestTitre {
 
 	@Test
 	public void testFindAllByPlaylist() {
-		Titre titre1 = new Titre("le titre1", "artiste", "null");
-		Titre titre2 = new Titre("le titre2", "artiste", "null");
-		Titre titre3 = new Titre("le titre3", "artiste", "null");
+		Titre titre1 = new Titre("le titre1", "artiste", "FindAllByPlaylist1");
+		Titre titre2 = new Titre("le titre2", "artiste", "FindAllByPlaylist2");
+		Titre titre3 = new Titre("le titre3", "artiste", "FindAllByPlaylist3");
 
 		Playlist playlist = new Playlist("Playlist", new Date());
 
