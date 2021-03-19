@@ -14,7 +14,7 @@ public interface ITitreDao extends JpaRepository<Titre, Long> {
 	@Query("select t from Playlist p join p.titres t where p.id = :id")
 	public List<Titre> findAllByPlaylist(@Param("id") Long id);
 
-	@Query("select e.titre from Enchere e where e = :id")
+	@Query("select e.titre from Enchere e where e.id = :id")
 	public Titre findByEnchere(@Param("id") Long id);
 
 	@Query("select t from Titre t where t.lien LIKE :lien")
