@@ -293,7 +293,18 @@ public class TestJukebox {
 
 	@Test
 	public void testFindByCode() {
-		// TODO
+		String code = "monCode";
+
+		Jukebox jukebox = new Jukebox("Jukebox", code, TypeEnchere.GRATUITE);
+
+		jukeboxDao.save(jukebox);
+
+		Optional<Jukebox> newJukebox = jukeboxDao.findByCode(code);
+
+		assertEquals(jukebox.getId(), newJukebox.orElseThrow().getId());
+		assertEquals(jukebox.getNom(), newJukebox.orElseThrow().getNom());
+		assertEquals(jukebox.getCode(), newJukebox.orElseThrow().getCode());
+		assertEquals(jukebox.getTypeEnchere(), newJukebox.orElseThrow().getTypeEnchere());
 	}
 
 }
