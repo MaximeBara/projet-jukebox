@@ -27,7 +27,7 @@ public class Titre {
 	@Column(name = "artiste", length = 100)
 	@JsonView(IViews.IViewBasic.class)
 	private String artiste;
-	@Column(name = "lien", length = 255)
+	@Column(name = "lien", length = 255, unique=true)
 	@JsonView(IViews.IViewBasic.class)
 	private String lien;
 

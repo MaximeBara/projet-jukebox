@@ -1,4 +1,4 @@
-package m2i.formation.test;
+package m2i.formation.test.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -305,6 +305,8 @@ public class TestJukebox {
 		assertEquals(jukebox.getNom(), newJukebox.orElseThrow().getNom());
 		assertEquals(jukebox.getCode(), newJukebox.orElseThrow().getCode());
 		assertEquals(jukebox.getTypeEnchere(), newJukebox.orElseThrow().getTypeEnchere());
+		
+		jukeboxDao.delete(jukebox);
 	}
 
 }

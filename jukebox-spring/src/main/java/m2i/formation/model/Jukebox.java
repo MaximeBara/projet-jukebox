@@ -27,7 +27,7 @@ public class Jukebox {
 	@Column(name = "nom", length = 20)
 	@JsonView(IViews.IViewBasic.class)
 	private String nom;
-	@Column(name = "code", length = 20)
+	@Column(name = "code", length = 20, unique=true)
 	@JsonView(IViews.IViewBasic.class)
 	private String code;
 	@Column(name = "typeEnchere", length = 10)

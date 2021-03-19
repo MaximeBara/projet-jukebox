@@ -1,4 +1,4 @@
-package m2i.formation.test;
+package m2i.formation.test.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -83,6 +83,8 @@ public class TestTitre {
 		assertEquals(titre.getNom(), newTitre.orElseThrow().getNom());
 		assertEquals(titre.getArtiste(), newTitre.orElseThrow().getArtiste());
 		assertEquals(titre.getLien(), newTitre.orElseThrow().getLien());
+		
+		titreDao.delete(titre);
 	}
 
 }
