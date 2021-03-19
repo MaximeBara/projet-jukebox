@@ -181,14 +181,12 @@ public class TestJukebox {
 
 		assertEquals(1, newJukebox.size());
 	}
-	
+
 	@Test
 	public void testFindAllTitreOrderByEnchere() throws ParseException {
 		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "18974984", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukebox);
-		
-		
-		
+
 		Playlist playlist = new Playlist("La playlist", sdf.parse("01/03/2021"));
 		playlistDao.save(playlist);
 		jukebox.setPlaylist(playlist);
@@ -205,40 +203,42 @@ public class TestJukebox {
 		playlist.getTitres().add(titre1);
 		playlist.getTitres().add(titre2);
 		playlist.getTitres().add(titre3);
-		
+
 		Enchere enchere1 = new EncherePayante(LocalDateTime.now(), 300);
 		Enchere enchere2 = new EncherePayante(LocalDateTime.now(), 50);
 		Enchere enchere3 = new EncherePayante(LocalDateTime.now(), 200);
 		Enchere enchere4 = new EncherePayante(LocalDateTime.now(), 50);
-		
-		enchere1.setJukebox(jukebox);enchere1.setTitre(titre2);
-		enchere2.setJukebox(jukebox);enchere2.setTitre(titre3);
-		enchere3.setJukebox(jukebox);enchere3.setTitre(titre1);
-		enchere4.setJukebox(jukebox);enchere4.setTitre(titre3);
-		
+
+		enchere1.setJukebox(jukebox);
+		enchere1.setTitre(titre2);
+		enchere2.setJukebox(jukebox);
+		enchere2.setTitre(titre3);
+		enchere3.setJukebox(jukebox);
+		enchere3.setTitre(titre1);
+		enchere4.setJukebox(jukebox);
+		enchere4.setTitre(titre3);
+
 		enchereDao.save(enchere1);
 		enchereDao.save(enchere2);
 		enchereDao.save(enchere3);
 		enchereDao.save(enchere4);
-		
+
 		playlistDao.save(playlist);
 		jukeboxDao.save(jukebox);
 
 		List<Titre> titres = jukeboxDao.findAllTitreOrderByEnchere(jukebox.getId());
-		
+
 		assertEquals(titre2.getId(), titres.get(0).getId());
 		assertEquals(titre1.getId(), titres.get(1).getId());
 		assertEquals(titre3.getId(), titres.get(2).getId());
-		
+
 	}
-	
+
 	@Test
 	public void testFindAllTitreWithoutEnchere() throws ParseException {
 		Jukebox jukebox = new Jukebox("FindAllTitreOrder", "18974984", TypeEnchere.GRATUITE);
 		jukeboxDao.save(jukebox);
-		
-		
-		
+
 		Playlist playlist = new Playlist("La playlist", sdf.parse("01/03/2021"));
 		playlistDao.save(playlist);
 		jukebox.setPlaylist(playlist);
@@ -261,29 +261,39 @@ public class TestJukebox {
 		playlist.getTitres().add(titre3);
 		playlist.getTitres().add(titre4);
 		playlist.getTitres().add(titre5);
-		
+
 		Enchere enchere1 = new EncherePayante(LocalDateTime.now(), 300);
 		Enchere enchere2 = new EncherePayante(LocalDateTime.now(), 50);
 		Enchere enchere3 = new EncherePayante(LocalDateTime.now(), 200);
 		Enchere enchere4 = new EncherePayante(LocalDateTime.now(), 50);
-		
-		enchere1.setJukebox(jukebox);enchere1.setTitre(titre2);
-		enchere2.setJukebox(jukebox);enchere2.setTitre(titre3);
-		enchere3.setJukebox(jukebox);enchere3.setTitre(titre1);
-		enchere4.setJukebox(jukebox);enchere4.setTitre(titre3);
-		
+
+		enchere1.setJukebox(jukebox);
+		enchere1.setTitre(titre2);
+		enchere2.setJukebox(jukebox);
+		enchere2.setTitre(titre3);
+		enchere3.setJukebox(jukebox);
+		enchere3.setTitre(titre1);
+		enchere4.setJukebox(jukebox);
+		enchere4.setTitre(titre3);
+
 		enchereDao.save(enchere1);
 		enchereDao.save(enchere2);
 		enchereDao.save(enchere3);
 		enchereDao.save(enchere4);
-		
+
 		playlistDao.save(playlist);
 		jukeboxDao.save(jukebox);
 
 		List<Titre> titres = jukeboxDao.findAllTitreWithoutEnchere(jukebox.getId());
-		
+
 		assertEquals(2, titres.size());
 		assertEquals(titre4.getId(), titres.get(0).getId());
-		assertEquals(titre5.getId(), titres.get(1).getId());		
+		assertEquals(titre5.getId(), titres.get(1).getId());
 	}
+
+	@Test
+	public void testFindByCode() {
+		// TODO
+	}
+
 }

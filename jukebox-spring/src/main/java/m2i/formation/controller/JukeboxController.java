@@ -64,6 +64,18 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/{code}")
+	@JsonView(IViews.IViewJukebox.class)
+	public Jukebox findByCode(@PathVariable String code) {
+		Optional<Jukebox> optJukebox = jukeboxDao.findByCode(code);
+		
+		if (optJukebox.isPresent()) {
+			return optJukebox.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@GetMapping("/{id}/allByAdministrateur")
 	@JsonView(IViews.IViewJukebox.class)

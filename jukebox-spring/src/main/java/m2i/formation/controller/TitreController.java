@@ -97,8 +97,6 @@ public class TitreController {
 		String result = rest.getForObject(url, String.class);
 		JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
 		JsonObject je = jsonObject.getAsJsonArray("items").get(0).getAsJsonObject().getAsJsonObject("snippet");
-
-		System.out.println("-->" + je.get("title").getAsString() + je.get("channelTitle").getAsString());
 		
 		return new Titre(je.get("title").getAsString(), je.get("channelTitle").getAsString(), lien);
 	}

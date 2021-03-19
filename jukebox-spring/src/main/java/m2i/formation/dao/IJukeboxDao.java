@@ -49,31 +49,30 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 	@Query("select j from Enchere e left join e.jukebox j where e.id = :id")
 	public Optional<Jukebox> findByEnchere(@Param("id") Long id);
 
-	@Query("select j from Jukebox j where j.administrateur.id = :id")
-	public List<Jukebox> findAllByAdministrateur(@Param("id") Long id);
+	@Query("select j from Jukebox j where j.code LIKE :code")
+	public Optional<Jukebox> findByCode(@Param("code") String code);
 
-	
-	
 	@Query("select distinct j from Jukebox j left join fetch j.playlist where j.id = :id")
 	public Optional<Jukebox> findByIdWithPlaylist(@Param("id") Long id);
 
 	@Query("select distinct j from Jukebox j left join fetch j.playlist p left join fetch p.titres where j.id = :id")
 	public Optional<Jukebox> findByIdWithPlaylistAndTitre(@Param("id") Long id);
 
+	@Query("select j from Jukebox j where j.administrateur.id = :id")
+	public List<Jukebox> findAllByAdministrateur(@Param("id") Long id);
+
 	@Query("select distinct j from Jukebox j left join fetch j.playlist")
 	public List<Jukebox> findAllWithPlaylist();
 
 	@Query("select distinct j from Jukebox j left join fetch j.playlist p left join fetch p.titres")
 	public List<Jukebox> findAllWithPlaylistAndTitre();
-	
-	@Query("select t from Enchere e join e.titre t "
-			+ "where e.jukebox.id = :id AND e.terminee = FALSE "
-			+ "GROUP BY e.titre.id "
-			+ "ORDER BY sum(e.valeur) DESC")
-	public List<Titre>findAllTitreOrderByEnchere(@Param("id") Long id);
-	
+
+	@Query("select t from Enchere e join e.titre t " + "where e.jukebox.id = :id AND e.terminee = FALSE "
+			+ "GROUP BY e.titre.id " + "ORDER BY sum(e.valeur) DESC")
+	public List<Titre> findAllTitreOrderByEnchere(@Param("id") Long id);
+
 	@Query("select t from Jukebox j join j.playlist.titres t where j.id = :id "
 			+ "AND t NOT IN (select t from Enchere e join e.titre t where e.jukebox.id = :id AND e.terminee = FALSE ) ")
-	public List<Titre>findAllTitreWithoutEnchere(@Param("id") Long id);
+	public List<Titre> findAllTitreWithoutEnchere(@Param("id") Long id);
 
 }
