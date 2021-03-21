@@ -3,7 +3,6 @@ package m2i.formation.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.tomcat.util.json.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -34,7 +33,7 @@ public class TitreController {
 
 	@Value("${data.googleKey}")
 	private String googleKey;
-	
+
 	@Autowired
 	private ITitreDao titreDao;
 
@@ -70,6 +69,14 @@ public class TitreController {
 		}
 	}
 
+	@GetMapping("/{id}/allByPlaylist")
+	@JsonView(IViews.IViewPlaylistWithTitre.class)
+	public List<Titre> findAllByPlaylist(@PathVariable Long id) {
+		List<Titre> titres = titreDao.findAllByPlaylist(id);
+
+		return titres;
+	}
+
 	@PostMapping("")
 	@JsonView(IViews.IViewTitre.class)
 	public Titre create(@RequestBody Titre titre) {
@@ -78,9 +85,9 @@ public class TitreController {
 		return titre;
 	}
 
-	@PostMapping("/{lien}/createByLien")
+	@PostMapping("/createByLien/{lien}")
 	@JsonView(IViews.IViewTitre.class)
-	public Titre createByLien(@PathVariable String lien) throws ParseException {
+	public Titre createByLien(@PathVariable String lien) {
 		Optional<Titre> optTitre = titreDao.findByLien(lien);
 
 		if (optTitre.isPresent()) {
@@ -92,12 +99,12 @@ public class TitreController {
 
 	private Titre createNewTitre(String lien) {
 		RestTemplate rest = new RestTemplate();
-		String url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=" + lien
-				+ "&alt=json&key="+ this.googleKey +"\r\n";
+		String url = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=" + lien + "&alt=json&key="
+				+ this.googleKey + "\r\n";
 		String result = rest.getForObject(url, String.class);
 		JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
 		JsonObject je = jsonObject.getAsJsonArray("items").get(0).getAsJsonObject().getAsJsonObject("snippet");
-		
+
 		return new Titre(je.get("title").getAsString(), je.get("channelTitle").getAsString(), lien);
 	}
 
@@ -109,7 +116,7 @@ public class TitreController {
 		}
 
 		titre = titreDao.save(titre);
- 
+
 		return titre;
 	}
 

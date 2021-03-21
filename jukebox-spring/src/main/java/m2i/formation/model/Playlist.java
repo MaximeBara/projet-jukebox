@@ -34,16 +34,19 @@ public class Playlist {
 	@JsonView(IViews.IViewBasic.class)
 	@Column(name = "dateCreation")
 	private Date dateCreation;
+	@Column(name = "lien", length = 255, unique = true)
+	@JsonView(IViews.IViewBasic.class)
+	private String lien;
 
 	@ManyToOne()
 	@JoinColumn(name = "createur_id")
 	private Membre createur;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "PLAYLIST_TITRE", joinColumns = @JoinColumn(name = "playlist_id"), inverseJoinColumns = @JoinColumn(name = "titre_id"))
 	@JsonView(IViews.IViewPlaylistWithTitre.class)
 	private List<Titre> titres = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)
 	private List<Jukebox> jukeboxes = new ArrayList<>();
 
@@ -55,10 +58,23 @@ public class Playlist {
 		this.dateCreation = dateCreation;
 	}
 
+	public Playlist(String nom, Date dateCreation, String lien) {
+		this.nom = nom;
+		this.dateCreation = dateCreation;
+		this.lien = lien;
+	}
+
 	public Playlist(Long id, String nom, Date dateCreation) {
 		this.id = id;
 		this.nom = nom;
 		this.dateCreation = dateCreation;
+	}
+
+	public Playlist(Long id, String nom, Date dateCreation, String lien) {
+		this.id = id;
+		this.nom = nom;
+		this.dateCreation = dateCreation;
+		this.lien = lien;
 	}
 
 	public Long getId() {
@@ -87,6 +103,14 @@ public class Playlist {
 
 	public Membre getCreateur() {
 		return createur;
+	}
+
+	public String getLien() {
+		return lien;
+	}
+
+	public void setLien(String lien) {
+		this.lien = lien;
 	}
 
 	public void setCreateur(Membre createur) {

@@ -38,6 +38,11 @@ public class Titre {
 	public Titre() {
 	}
 
+	public Titre(String nom, String lien) {
+		this.nom = nom;
+		this.lien = lien;
+	}
+	
 	public Titre(String nom, String artiste, String lien) {
 		this.nom = nom;
 		this.artiste = artiste;
@@ -50,6 +55,7 @@ public class Titre {
 		this.artiste = artiste;
 		this.lien = lien;
 	}
+	
 
 	public Long getId() {
 		return id;
