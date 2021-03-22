@@ -89,8 +89,9 @@ public class EnchereControllerTest {
 		enchereDao.save(ep2);
 		enchereDao.save(ep3);
 
+		// EXEMPLE :
 		this.mockMvc.perform(get("/api/enchere")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString("trouduc")));
+				.andExpect(content().string(containsString("")));
 
 	}
 
