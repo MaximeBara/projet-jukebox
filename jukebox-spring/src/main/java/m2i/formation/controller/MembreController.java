@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import m2i.formation.dao.IUtilisateurDao;
+import m2i.formation.model.Enchere;
 import m2i.formation.model.IViews;
 import m2i.formation.model.Membre;
 
@@ -81,5 +82,4 @@ public class MembreController {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
 		}
 	}
-
 }

@@ -30,7 +30,7 @@ public class Administrateur extends Membre {
 	public String toString() {
 		return "Administrateur [getMotDePasse()=" + getMotDePasse() + ", getPoint()=" + getPoint() + ", toString()="
 				+ super.toString() + ", getId()=" + getId() + ", getPseudo()=" + getPseudo() + ", getClass()="
-				+ getClass() + "]";
+				+ getClass() + "]"+"\n";
 	}
 
 	public List<Jukebox> getJukeboxes() {

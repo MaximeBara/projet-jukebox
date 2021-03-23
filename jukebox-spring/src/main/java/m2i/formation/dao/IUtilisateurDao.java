@@ -20,9 +20,6 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	@Query("select user from Utilisateur user where user.id = :id")
 	 Optional <Membre> findMembreId(@Param("id") long id);
 	
-	/*@Query("select jukeboxfav from Membre jukeboxfav left join jukeboxfav.Favoris s where jukeboxfav.id = :id")
-	Membre findByFavoris(@Param("id") long id);*/
-	
 	@Query("select user from Utilisateur user where user.id = :id")
 	 Optional <Invite> findInviteId(@Param("id") long id);
 	
@@ -37,20 +34,5 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	
 	@Query("select user from Utilisateur user where user.id = :id")
 	 Optional <Administrateur> findAdminId(@Param("id") long id);
-
-	/*@Query("select m from Membre m left join m.encheres e where e.valeur > 0 ")
-	List<Membre> findAllMembresByValeur(@Param("valeur") int valeur); */
-
-	/*
-	 * @Query("select s.formateur from Stagiaire s where s.id = :id") Formateur
-	 * findByStagiaire(@Param("id") Long id);
-	 * 
-	 * @Query("select s from Stagiaire s join s.formateur f where f.id = :id")
-	 * List<Stagiaire> findAllStagiaireByFormateur(@Param("id") Long id);
-	 * 
-	 * @Query("select f from Formateur f where f.experience > :experience")
-	 * List<Formateur> findAllFormateurExperienceGreaterThan(@Param("experience")
-	 * int experience);
-	 */
 
 }
