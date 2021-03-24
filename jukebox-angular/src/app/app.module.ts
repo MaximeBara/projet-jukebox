@@ -9,14 +9,18 @@ import {TabViewModule} from 'primeng/tabview';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginPageComponent,
+    JukeboxPageComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +31,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     InputTextModule,
     ButtonModule,
 		TabViewModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

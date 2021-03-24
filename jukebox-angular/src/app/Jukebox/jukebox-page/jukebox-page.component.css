@@ -1,0 +1,16 @@
+.titre {
+    width: 100vw;
+    margin-top: 2vh;
+    background-color: blue;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

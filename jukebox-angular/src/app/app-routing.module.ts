@@ -1,38 +1,35 @@
-import {​​​​​​​​ NgModule }​​​​​​​​ from'@angular/core';
-import {​​​​​​​​ CommonModule }​​​​​​​​ from'@angular/common';
-import {​​​​​​​​ RouterModule, Routes }​​​​​​​​ from'@angular/router';
-import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import {​​​​​​​​ LoginPageComponent }​​​​​​​​ from'./login-page/login-page.component';
+import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
 
 const routes: Routes = [
   /* Routes de base */
-  { path: '', component: HomePageComponent, pathMatch: 'full' },
-  { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
+  // { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
   // { path: 'about', component: AboutPageComponent, pathMatch: 'full' },
   // { path: 'contact', component: ContactPageComponent, pathMatch: 'full' },
-
-  // /* Routes pour les utilisateurs */
-  // { path: 'profil', component: ProfilPageComponent, pathMatch: 'full' },
+  // { path: '', component: HomePageComponent, pathMatch: 'full' },
   
-  // /* Routes pour les jukebox */
+  /* Routes pour les jukebox */
   // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/create', component: CreateJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/join', component: JoinJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/favorites', component: CreateJukeboxPageComponent, pathMatch: 'full' },
-  // { path: 'jukebox/:id', component: JukeboxPageComponent, pathMatch: 'full' },
+  { path: 'jukebox/id', component: JukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/:id/update', component: UpdateJukeboxPageComponent, pathMatch: 'full' },
 
-  // /* Routes pour les playlists */
+  /* Routes pour les playlists */
   // { path: 'playlists', component: PlaylistsPageComponent, pathMatch: 'full' },
   // { path: 'playlists/create', component: CreatePlaylistPageComponent, pathMatch: 'full' },
   // { path: 'playlists/:id', component: PlaylistPageComponent, pathMatch: 'full' },
   // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full' },
 
-  // /* Routes pour les titres */
+  /* Routes pour les titres */
   // { path: 'titres', component: TitresPageComponent, pathMatch: 'full' },
   // { path: 'titres/create', component: CreateTitrePageComponent, pathMatch: 'full' },
 
-  // /* Routes pour les enchères */
+  /* Routes pour les enchères */
   // { path: 'encheres', component: EncheresPageComponent, pathMatch: 'full' },
 
 ];

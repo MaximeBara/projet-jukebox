@@ -20,7 +20,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import m2i.formation.dao.IJukeboxDao;
 import m2i.formation.model.IViews;
 import m2i.formation.model.Jukebox;
+import m2i.formation.model.Membre;
 import m2i.formation.model.Titre;
+import m2i.formation.model.Utilisateur;
 
 @RestController
 @RequestMapping("/api/jukebox")
@@ -75,6 +77,14 @@ public class JukeboxController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/{id}/allConnectes")
+	@JsonView(IViews.IViewJukebox.class)
+	public List<Utilisateur> findAllConnectes(@PathVariable Long id) {
+		List<Utilisateur> utilisateurs = jukeboxDao.findAllConnectesById(id);
+
+		return utilisateurs;
 	}
 
 	@GetMapping("/{id}/allByAdministrateur")
