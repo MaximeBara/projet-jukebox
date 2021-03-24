@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import m2i.formation.model.Enchere;
 import m2i.formation.model.IViews;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api/enchere")
 public class EnchereController {
 
@@ -59,7 +61,7 @@ public class EnchereController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/withJukebox")
 	@JsonView(IViews.IViewEnchereWithJukebox.class)
 	public Enchere findWithJukebox(@PathVariable Long id) {
@@ -71,7 +73,7 @@ public class EnchereController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/withTitre")
 	@JsonView(IViews.IViewEnchereWithTitre.class)
 	public Enchere findWithTitre(@PathVariable Long id) {
@@ -83,7 +85,7 @@ public class EnchereController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/withMembreJukeboxAndTitre")
 	@JsonView(IViews.IViewEnchereWithMembreJukeboxAndTitre.class)
 	public Enchere findWithMembreJukeboxAndTitre(@PathVariable Long id) {
@@ -95,11 +97,13 @@ public class EnchereController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/non-terminee-by-jukebox-and-titre-with-membre/{idJukebox}/{idTitre}")
 	@JsonView(IViews.IViewEnchereWithMembreJukeboxAndTitre.class)
-	public List<Enchere> findAllEnchereNonTermineeByTitreWithMembre(@PathVariable Long idJukebox, @PathVariable Long idTitre){
-		Optional<List<Enchere>> optEncheres = enchereDao.findAllEnchereNonTermineeByJukeboxAndTitreWithMembre(idJukebox, idTitre);
+	public List<Enchere> findAllEnchereNonTermineeByTitreWithMembre(@PathVariable Long idJukebox,
+			@PathVariable Long idTitre) {
+		Optional<List<Enchere>> optEncheres = enchereDao.findAllEnchereNonTermineeByJukeboxAndTitreWithMembre(idJukebox,
+				idTitre);
 
 		if (optEncheres.isPresent()) {
 			return optEncheres.get();

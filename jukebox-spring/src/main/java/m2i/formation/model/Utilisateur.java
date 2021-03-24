@@ -15,11 +15,12 @@ public abstract class Utilisateur {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(length = 15)
+	@Column(length = 15, nullable = false, unique = true)
 	private String pseudo;
 	@ManyToOne
 	@JoinColumn(name = "jukebox_id")
 	private Jukebox jukebox;
+	private boolean enabled = true;
 
 	public Utilisateur() {
 		super();
@@ -58,6 +59,14 @@ public abstract class Utilisateur {
 
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override

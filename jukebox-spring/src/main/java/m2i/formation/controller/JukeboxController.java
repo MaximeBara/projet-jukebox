@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +21,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import m2i.formation.dao.IJukeboxDao;
 import m2i.formation.model.IViews;
 import m2i.formation.model.Jukebox;
-import m2i.formation.model.Membre;
 import m2i.formation.model.Titre;
 import m2i.formation.model.Utilisateur;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api/jukebox")
 public class JukeboxController {
 
@@ -66,19 +67,19 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{code}")
 	@JsonView(IViews.IViewJukebox.class)
 	public Jukebox findByCode(@PathVariable String code) {
 		Optional<Jukebox> optJukebox = jukeboxDao.findByCode(code);
-		
+
 		if (optJukebox.isPresent()) {
 			return optJukebox.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/{id}/allConnectes")
 	@JsonView(IViews.IViewJukebox.class)
 	public List<Utilisateur> findAllConnectes(@PathVariable Long id) {

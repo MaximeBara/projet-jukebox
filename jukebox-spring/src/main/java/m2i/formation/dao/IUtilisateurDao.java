@@ -18,11 +18,11 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	List<Utilisateur> findAllUtilisateur();
 
 	@Query("select user from Utilisateur user where user.id = :id")
-	 Optional <Membre> findMembreId(@Param("id") long id);
-	
+	Optional<Membre> findMembreId(@Param("id") long id);
+
 	@Query("select user from Utilisateur user where user.id = :id")
-	 Optional <Invite> findInviteId(@Param("id") long id);
-	
+	Optional<Invite> findInviteId(@Param("id") long id);
+
 	@Query("select m from Membre m")
 	List<Membre> findMembre();
 
@@ -31,8 +31,11 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 
 	@Query("select admin from Administrateur admin")
 	List<Administrateur> findAllAdmin();
-	
+
 	@Query("select user from Utilisateur user where user.id = :id")
-	 Optional <Administrateur> findAdminId(@Param("id") long id);
+	Optional<Administrateur> findAdminId(@Param("id") long id);
+
+	@Query("select user from Utilisateur user where user.pseudo = :pseudo")
+	Optional<Utilisateur> findByUsername(@Param("pseudo") String pseudo);
 
 }
