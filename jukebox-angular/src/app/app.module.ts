@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import {CommonModule} from '@angular/common';
+
+import { HttpClientModule } from "@angular/common/http";
+
 import {MenubarModule} from 'primeng/menubar';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
@@ -27,6 +30,7 @@ import {TableModule} from 'primeng/table';
     AppRoutingModule,
     RouterModule,
     CommonModule,
+    HttpClientModule,
     MenubarModule,
     InputTextModule,
     ButtonModule,
