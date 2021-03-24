@@ -34,7 +34,7 @@ import m2i.formation.model.Playlist;
 import m2i.formation.model.Titre;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/playlist")
 @PropertySource("classpath:config.properties")
 public class PlaylistController {

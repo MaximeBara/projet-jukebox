@@ -23,7 +23,7 @@ import m2i.formation.model.Enchere;
 import m2i.formation.model.IViews;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/enchere")
 public class EnchereController {
 

@@ -23,7 +23,7 @@ import m2i.formation.model.IViews;
 import m2i.formation.model.Membre;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/membre")
 public class MembreController {
 

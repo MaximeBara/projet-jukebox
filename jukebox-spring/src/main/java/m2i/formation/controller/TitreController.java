@@ -28,7 +28,7 @@ import m2i.formation.model.IViews;
 import m2i.formation.model.Titre;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/titre")
 @PropertySource("classpath:config.properties")
 public class TitreController {

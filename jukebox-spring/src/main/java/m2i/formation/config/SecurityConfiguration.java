@@ -1,7 +1,5 @@
 package m2i.formation.config;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
 
 import m2i.formation.service.CustomUserDetailService;
 
@@ -31,23 +28,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
 	}
 
-	// definir les pages securisees
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		http.cors().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous();
-		http.headers().frameOptions().disable();
+		http.cors().and().headers().frameOptions().disable();
 
-		http.cors().and().authorizeRequests().antMatchers("/api").permitAll().antMatchers("/**").authenticated().and().httpBasic();
+		http.cors().and().authorizeRequests().antMatchers("/api").permitAll().antMatchers("/**").authenticated().and()
+				.httpBasic();
 	}
 
 	@Bean(name = "passwordEncoder")
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
-//	@Bean(name = "passwordEncoder")
-//	public PasswordEncoder getPasswordEncoder() {
-//		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//	}
 }

@@ -23,7 +23,7 @@ import m2i.formation.model.IViews;
 import m2i.formation.model.Invite;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/invite")
 public class InviteController {
 

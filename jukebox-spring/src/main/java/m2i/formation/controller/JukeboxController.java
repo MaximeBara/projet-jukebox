@@ -25,7 +25,7 @@ import m2i.formation.model.Titre;
 import m2i.formation.model.Utilisateur;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/jukebox")
 public class JukeboxController {
 
