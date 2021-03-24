@@ -6,10 +6,10 @@ import {​​​​​​​​ HomePageComponent }​​​​​​​​ fro
 
 const routes: Routes = [
   /* Routes de base */
-  // { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
   // { path: 'about', component: AboutPageComponent, pathMatch: 'full' },
   // { path: 'contact', component: ContactPageComponent, pathMatch: 'full' },
-  // { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
   // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
