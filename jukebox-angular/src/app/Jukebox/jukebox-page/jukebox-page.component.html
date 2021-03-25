@@ -1,11 +1,14 @@
 <div>
     <div class="flex">
-        <h1>{{jukebox.nom}}</h1>
+        <h1>{{jukebox.nom}} playing {{jukebox.playlist.nom}}</h1>
     </div>
 
+    
+    <app-youtube></app-youtube>
+
     <div class="">
-        <p-table [columns]="cols" [value]="titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
-        [virtualScroll]="true" [virtualRowHeight]="20">
+        <p-table [columns]="cols" [value]="jukebox.playlist.titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
+            [virtualScroll]="true" [virtualRowHeight]="20">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns">
@@ -13,10 +16,19 @@
                     </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <ng-template pTemplate="body" let-titre>
                 <tr>
-                    <td *ngFor="let col of columns">
-                        {{rowData[col.field]}}
+                    <td>
+                        {{titre.id}}
+                    </td>
+                    <td>
+                        {{titre.artiste}}
+                    </td>
+                    <td>
+                        {{titre.lien}}
+                    </td>
+                    <td>
+                        {{titre.nom}}
                     </td>
                 </tr>
             </ng-template>
@@ -24,6 +36,16 @@
     </div>
 
     <div class="flex titre">
-        <h2>Le Titre en cours de Artiste</h2>
+
+        <div *ngIf="jukebox.titreEnCours else loading">
+            ... <h2>{{jukebox.titreEnCours.nom}} - {{jukebox.titreEnCours.artiste}}</h2>
+
+        </div>
+
+        <ng-template #loading>
+            <h2>Loading...</h2>
+        </ng-template>
     </div>
+
+
 </div>

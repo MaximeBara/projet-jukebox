@@ -28,36 +28,8 @@ export class JukeboxPageComponent implements OnInit {
         console.log(jukebox);
       });
 
-        this.titres = [
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-          {id: 1, artiste: "Dimension", lien: "d2u3BRGd2rs", nom: "Offender"},
-        ]
-
         this.cols = [
-            { field: 'id', header: 'ID' },
+            { field: '{{jukebox.id}}', header: 'ID' },
             { field: 'artiste', header: 'Artiste' },
             { field: 'lien', header: 'Lien' },
             { field: 'nom', header: 'Nom' }

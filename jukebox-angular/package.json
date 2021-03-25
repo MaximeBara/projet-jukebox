@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~11.1.2",
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
+    "@angular/youtube-player": "^11.2.6",
     "primeicons": "^4.1.0",
     "primeng": "^11.3.1",
     "rxjs": "~6.6.0",

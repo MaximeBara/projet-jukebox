@@ -23,6 +23,8 @@ import { ContacteComponent } from './contacte/contacte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { YoutubeComponent } from './Jukebox/youtube/youtube.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { LoginComponent } from './login/login.component';
     ProfileComponent,
     AboutComponent,
     LoginComponent
+    JukeboxPageComponent,
+    YoutubeComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { LoginComponent } from './login/login.component';
     TableModule,
     ReactiveFormsModule,
     FormsModule,
+    TableModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
