@@ -1,6 +1,5 @@
 package m2i.formation.controller;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -114,8 +113,14 @@ public class PlaylistController {
 		} else {
 			p = new Playlist(nom, new Date(), lien);
 		}
-
-		p.setTitres(findAllTitreFromLien(lien));
+		
+		List<Titre> titres = findAllTitreFromLien(lien);
+		
+		System.out.println("Titre.size(): " + titres.size());
+		
+		if( !titres.isEmpty() )
+			p.setTitres(titres);
+		
 		return playlistDao.save(p);
 	}
 
@@ -133,13 +138,9 @@ public class PlaylistController {
 		RestTemplate rest = new RestTemplate();
 		String token = "";
 
-		// TODO : Gérer les titres ayant le même lien
-		// Erreur de type : java.sql.SQLIntegrityConstraintViolationException: Duplicate
-		// entry 'cd4vsOOD9Ck' for key 'titre.UK_nuucp0hhcrw2v7cmtmraucxfr'
-
 		do {
-			String url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&pageToken=" + token + "&playlistId="
-					+ playlistId + "&key=" + googleKey;
+			String url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&pageToken="
+					+ token + "&playlistId=" + playlistId + "&key=" + googleKey;
 			String result = rest.getForObject(url, String.class);
 			JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
 			token = jsonObject.get("nextPageToken") == null ? "" : jsonObject.get("nextPageToken").getAsString();
@@ -148,9 +149,14 @@ public class PlaylistController {
 				String titre = elt.getAsJsonObject().getAsJsonObject("snippet").get("title").getAsString();
 				String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId")
 						.get("videoId").getAsString();
-				Titre t = new Titre(titre, lien);
-				titreDao.save(t);
-				liste.add(t);
+				Optional<Titre> optTitre = titreDao.findByLien(lien);
+				if(optTitre.isEmpty()) {
+					Titre t = new Titre(titre, lien);
+					titreDao.save(t);
+					liste.add(t);
+				}else {
+					liste.add(optTitre.get());
+				}
 			}
 		} while (token != "");
 
