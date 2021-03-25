@@ -32,11 +32,11 @@ import { ContacteComponent } from './contacte/contacte.component';
     LoginPageComponent,
     JukeboxPageComponent,
     TitrePageComponent
-    JukeboxPageComponent,
     ContacteComponent,
+    JukeboxPageComponent,
     ProfileComponent,
-    AboutComponent,
     LoginComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
