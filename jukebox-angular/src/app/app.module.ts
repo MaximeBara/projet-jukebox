@@ -20,6 +20,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
 import {TableModule} from 'primeng/table';
 import { TitrePageComponent } from './titre-page/titre-page.component';
+<<<<<<< Updated upstream
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
