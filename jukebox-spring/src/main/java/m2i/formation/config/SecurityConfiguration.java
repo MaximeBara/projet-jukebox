@@ -30,12 +30,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous();
-		http.cors().and().headers().frameOptions().disable();
+		http.headers().frameOptions().disable();
 
-		http.cors().and().authorizeRequests().antMatchers("/api").permitAll().antMatchers("/**").authenticated().and()
-				.httpBasic();
+		http.cors().and().authorizeRequests().anyRequest().permitAll();
 	}
 
 	@Bean(name = "passwordEncoder")

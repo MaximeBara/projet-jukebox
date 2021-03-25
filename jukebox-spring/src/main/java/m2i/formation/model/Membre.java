@@ -12,14 +12,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Membre extends Utilisateur {
 
 	@Column(length = 15)
+	@JsonView(IViews.IViewBasic.class)
 	private String motDePasse;
-
+	
+	@JsonView(IViews.IViewBasic.class)
 	private int point;
-
+	
 	@OneToMany(mappedBy = "membre", fetch = FetchType.LAZY)
 	private List<Enchere> encheres = new ArrayList<Enchere>();
 

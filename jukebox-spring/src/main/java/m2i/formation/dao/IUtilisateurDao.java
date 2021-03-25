@@ -14,7 +14,7 @@ import m2i.formation.model.Utilisateur;
 
 public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 
-	@Query("select user from Utilisateur user ")
+	@Query("select user from Utilisateur user")
 	List<Utilisateur> findAllUtilisateur();
 
 	@Query("select user from Utilisateur user where user.id = :id")

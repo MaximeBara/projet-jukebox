@@ -8,17 +8,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "UTILISATEUR")
 public abstract class Utilisateur {
 
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
 	@Column(length = 15, nullable = false, unique = true)
+	@JsonView(IViews.IViewBasic.class)
 	private String pseudo;
 	@ManyToOne
 	@JoinColumn(name = "jukebox_id")
+	@JsonView(IViews.IViewBasic.class)
 	private Jukebox jukebox;
 	private boolean enabled = true;
 
