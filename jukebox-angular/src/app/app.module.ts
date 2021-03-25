@@ -19,6 +19,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
 
 import {TableModule} from 'primeng/table';
+import { TitrePageComponent } from './titre-page/titre-page.component';
+import { LoginComponent } from './login/login.component';
+import { AboutComponent } from './about/about.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ContacteComponent } from './contacte/contacte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
@@ -32,8 +36,11 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     HomePageComponent,
     LoginPageComponent,
     JukeboxPageComponent,
+    TitrePageComponent
     ContacteComponent,
+    JukeboxPageComponent,
     ProfileComponent,
+    LoginComponent
     AboutComponent,
     LoginComponent
     JukeboxPageComponent,

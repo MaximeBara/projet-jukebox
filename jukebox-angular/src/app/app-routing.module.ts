@@ -3,10 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import {​​​​​​​​ LoginPageComponent }​​​​​​​​ from'./login-page/login-page.component';
 import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
-import {​​​​​​​​ ContacteComponent }​​​​​​​​ from'./contacte/contacte.component';
-import {​​​​​​​​ ProfileComponent }​​​​​​​​ from'./profile/profile.component';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
+import {​​​​​​​​ TitrePageComponent }​​​​​​​​ from'./titre-page/titre-page.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -32,7 +29,7 @@ const routes: Routes = [
   // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full' },
 
   /* Routes pour les titres */
-  // { path: 'titres', component: TitresPageComponent, pathMatch: 'full' },
+  { path: 'titres', component: TitrePageComponent, pathMatch: 'full' },
   // { path: 'titres/create', component: CreateTitrePageComponent, pathMatch: 'full' },
 
   /* Routes pour les enchères */
