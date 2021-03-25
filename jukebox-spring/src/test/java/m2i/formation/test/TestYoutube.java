@@ -20,27 +20,30 @@ public class TestYoutube {
 	private static List<Titre> findAllTitre(String playlistId) {
 
 		List<Titre> liste = new ArrayList<Titre>();
-
 		RestTemplate rest = new RestTemplate();
-		String url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + playlistId
-				+ "&key=" + googleKey;
-		String result = rest.getForObject(url, String.class);
-
-		JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
-
-		for (JsonElement elt : jsonObject.getAsJsonArray("items")) {
-			String titre = elt.getAsJsonObject().getAsJsonObject("snippet").get("title").getAsString();
-			String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId").get("videoId")
-					.getAsString();
-			liste.add(new Titre(titre, lien));
-		}
+		String token = "";
+		
+		do {
+			String url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&pageToken=" + token + "&playlistId="
+					+ playlistId + "&key=" + googleKey;
+			String result = rest.getForObject(url, String.class);
+			JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
+			token = jsonObject.get("nextPageToken") == null ? "" : jsonObject.get("nextPageToken").getAsString();
+			
+			for (JsonElement elt : jsonObject.getAsJsonArray("items")) {
+				String titre = elt.getAsJsonObject().getAsJsonObject("snippet").get("title").getAsString();
+				String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId")
+						.get("videoId").getAsString();
+				liste.add(new Titre(titre, lien));
+			}
+		} while (token != "");
 
 		return liste;
 	}
 
 	public static void main(String[] args) {
 
-		System.out.println(findAllTitre("PLZ8d5-HBlr_QEkUR-rhJ3T29wvw8-1pSL"));
+		System.out.println(findAllTitre("PLAEfXHuNOsEbSUbEZ7p-DITYGHJsDZ95_"));
 
 	}
 

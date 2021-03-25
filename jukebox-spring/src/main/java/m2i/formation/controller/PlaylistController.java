@@ -1,5 +1,6 @@
 package m2i.formation.controller;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -130,24 +131,28 @@ public class PlaylistController {
 		List<Titre> liste = new ArrayList<Titre>();
 
 		RestTemplate rest = new RestTemplate();
-		String url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + playlistId
-				+ "&key=" + this.googleKey;
-		String result = rest.getForObject(url, String.class);
-
-		JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
+		String token = "";
 
 		// TODO : Gérer les titres ayant le même lien
 		// Erreur de type : java.sql.SQLIntegrityConstraintViolationException: Duplicate
 		// entry 'cd4vsOOD9Ck' for key 'titre.UK_nuucp0hhcrw2v7cmtmraucxfr'
 
-		for (JsonElement elt : jsonObject.getAsJsonArray("items")) {
-			String titre = elt.getAsJsonObject().getAsJsonObject("snippet").get("title").getAsString();
-			String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId").get("videoId")
-					.getAsString();
-			Titre t = new Titre(titre, lien);
-			titreDao.save(t);
-			liste.add(t);
-		}
+		do {
+			String url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&pageToken=" + token + "&playlistId="
+					+ playlistId + "&key=" + googleKey;
+			String result = rest.getForObject(url, String.class);
+			JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
+			token = jsonObject.get("nextPageToken") == null ? "" : jsonObject.get("nextPageToken").getAsString();
+
+			for (JsonElement elt : jsonObject.getAsJsonArray("items")) {
+				String titre = elt.getAsJsonObject().getAsJsonObject("snippet").get("title").getAsString();
+				String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId")
+						.get("videoId").getAsString();
+				Titre t = new Titre(titre, lien);
+				titreDao.save(t);
+				liste.add(t);
+			}
+		} while (token != "");
 
 		return liste;
 	}

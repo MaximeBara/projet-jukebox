@@ -1,0 +1,29 @@
+<div>
+    <div class="flex">
+        <h1>{{jukebox.nom}}</h1>
+    </div>
+
+    <div class="">
+        <p-table [columns]="cols" [value]="titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
+        [virtualScroll]="true" [virtualRowHeight]="20">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="flex titre">
+        <h2>Le Titre en cours de Artiste</h2>
+    </div>
+</div>

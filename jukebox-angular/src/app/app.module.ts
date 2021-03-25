@@ -23,12 +23,15 @@ import { ContacteComponent } from './contacte/contacte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { TitrePageComponent } from './titre-page/titre-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginPageComponent,
+    JukeboxPageComponent,
+    TitrePageComponent
     JukeboxPageComponent,
     ContacteComponent,
     ProfileComponent,
