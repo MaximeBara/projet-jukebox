@@ -4,6 +4,10 @@ import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.compon
 import {​​​​​​​​ LoginPageComponent }​​​​​​​​ from'./login-page/login-page.component';
 import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
 import {​​​​​​​​ TitrePageComponent }​​​​​​​​ from'./titre-page/titre-page.component';
+import { AboutComponent } from './about/about.component';
+import { ContacteComponent } from './contacte/contacte.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   /* Routes de base */
