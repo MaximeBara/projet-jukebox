@@ -1,12 +1,14 @@
+<app-login-page></app-login-page>
+<div>
 <form [formGroup]='userConnexion' (ngSubmit)="connexion()">
-    <label> Identifiant :
-        <input type="text" formControlName="Identifiant">
+    <label> Identifiant :</label>
+    
+    <input type="text" formControlName="identifiant"/>
 
-    </label>
+    <label>Mot de passe:</label>
 
-    <label>Mot de passe:
-        <input type="text" formControlName="mdp">
-    </label>
-
+    <input type="text" formControlName="mdp"/>
+    
     <button type="submit"> validation </button>
 </form>
+</div>
