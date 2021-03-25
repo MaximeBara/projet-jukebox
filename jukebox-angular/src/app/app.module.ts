@@ -24,9 +24,6 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContacteComponent } from './contacte/contacte.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
 import { YoutubeComponent } from './Jukebox/youtube/youtube.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
@@ -36,14 +33,11 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     HomePageComponent,
     LoginPageComponent,
     JukeboxPageComponent,
-    TitrePageComponent
+    TitrePageComponent,
     ContacteComponent,
-    JukeboxPageComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
     AboutComponent,
-    LoginComponent
-    JukeboxPageComponent,
     YoutubeComponent
   ],
   imports: [
@@ -59,7 +53,6 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     TableModule,
     ReactiveFormsModule,
     FormsModule,
-    TableModule,
     YouTubePlayerModule
   ],
   providers: [],
