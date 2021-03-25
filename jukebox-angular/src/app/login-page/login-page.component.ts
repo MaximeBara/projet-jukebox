@@ -47,7 +47,7 @@ export class LoginPageComponent implements OnInit {
       {
          label:'Déconnexion',
          icon:'pi pi-fw pi-power-off',
-         routerLink:['/connexion']
+         routerLink:['']
       }
     ];
 

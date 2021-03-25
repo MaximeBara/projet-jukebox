@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent, pathMatch: 'full' },
   { path: 'contact', component: ContacteComponent, pathMatch: 'full' }, 
-  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: 'home', component: HomePageComponent, pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, pathMatch: 'full' },
-  { path: 'connexion', component: LoginComponent, pathMatch: 'full' },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
   // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
