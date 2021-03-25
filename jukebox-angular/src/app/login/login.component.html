@@ -1,0 +1,12 @@
+<form [formGroup]='userConnexion' (ngSubmit)="connexion()">
+    <label> Identifiant :
+        <input type="text" formControlName="Identifiant">
+
+    </label>
+
+    <label>Mot de passe:
+        <input type="text" formControlName="mdp">
+    </label>
+
+    <button type="submit"> validation </button>
+</form>

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import {CommonModule} from '@angular/common';
 
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import {MenubarModule} from 'primeng/menubar';
 import {InputTextModule} from 'primeng/inputtext';
@@ -16,14 +17,23 @@ import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.compon
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
+
 import {TableModule} from 'primeng/table';
+import { ContacteComponent } from './contacte/contacte.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginPageComponent,
-    JukeboxPageComponent
+    JukeboxPageComponent,
+    ContacteComponent,
+    ProfileComponent,
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +45,9 @@ import {TableModule} from 'primeng/table';
     InputTextModule,
     ButtonModule,
 		TabViewModule,
-    TableModule
+    TableModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

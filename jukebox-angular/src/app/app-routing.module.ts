@@ -3,13 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import {​​​​​​​​ LoginPageComponent }​​​​​​​​ from'./login-page/login-page.component';
 import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
+import {​​​​​​​​ ContacteComponent }​​​​​​​​ from'./contacte/contacte.component';
+import {​​​​​​​​ ProfileComponent }​​​​​​​​ from'./profile/profile.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   /* Routes de base */
   { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
-  // { path: 'about', component: AboutPageComponent, pathMatch: 'full' },
-  // { path: 'contact', component: ContactPageComponent, pathMatch: 'full' },
+  { path: 'about', component: AboutComponent, pathMatch: 'full' },
+  { path: 'contact', component: ContacteComponent, pathMatch: 'full' }, 
   { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: 'profile', component: ProfileComponent, pathMatch: 'full' },
+  { path: 'connexion', component: LoginComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
   // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
