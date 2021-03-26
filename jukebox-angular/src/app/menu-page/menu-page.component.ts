@@ -47,7 +47,7 @@ export class MenuPageComponent implements OnInit {
                routerLink: ['/contact']
             },
             {
-               label: user.motDePasse,
+               label: user.pseudo,
                routerLink: ['/profile']
             },
             {
@@ -58,25 +58,6 @@ export class MenuPageComponent implements OnInit {
          ];
       } else {
          this.items = [
-            {
-               label: 'Jukebox Favoris',
-               icon: 'pi pi-fw pi-star',
-               items: [
-                  {
-                     label: 'Ajouter',
-                     icon: 'pi pi-fw pi-plus',
-                  },
-                  {
-                     icon: 'pi pi-fw pi-bars',
-                     label: 'List'
-                  }
-               ]
-            },
-            {
-               label: 'Profile',
-               icon: 'pi pi-fw pi-user',
-               routerLink: ['/profile']
-            },
             {
                label: 'About',
                icon: 'pi pi-fw pi-thumbs-up',

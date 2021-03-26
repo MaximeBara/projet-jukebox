@@ -12,12 +12,12 @@ import { InscriptionComponent } from './inscription/inscription.component';
 
 const routes: Routes = [
   /* Routes de base */
-  { path: 'login', component: MenuPageComponent, pathMatch: 'full' },
+  { path: '', component: MenuPageComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent, pathMatch: 'full' },
   { path: 'contact', component: ContacteComponent, pathMatch: 'full' }, 
   { path: 'home', component: HomePageComponent, pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, pathMatch: 'full' },
-  { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
