@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-contacte',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContacteComponent implements OnInit {
 
-  constructor() { }
+  contacter: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
+    this.contacter = this.fb.group({
+      subject: ['']
+    })
   }
+
+  ngOnInit() {
+  }
+
+  envoie = () => {
+    if (this.contacter.valid) {
+      
+
+    } else {
+      console.log("erreur");
+
+    }
+
+  };
 
 }

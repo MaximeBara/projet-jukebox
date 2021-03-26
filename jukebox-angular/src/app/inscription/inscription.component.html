@@ -1,0 +1,14 @@
+<app-menu-page></app-menu-page>
+<div class="grey">
+    <form [formGroup]='userInscription' (ngSubmit)="inscription()">
+        <label> Crée Identifiant :</label>
+
+        <input type="text" formControlName="identifiant" />
+
+        <label>Crée Mot de passe:</label>
+
+        <input type="text" formControlName="mdp" />
+
+        <button type="submit"> validation </button>
+    </form>
+</div>

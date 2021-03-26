@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { MenuPageComponent } from './menu-page/menu-page.component';
 
 
 import {TableModule} from 'primeng/table';
@@ -26,19 +26,21 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContacteComponent } from './contacte/contacte.component';
 import { YoutubeComponent } from './Jukebox/youtube/youtube.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LoginPageComponent,
+    MenuPageComponent,
     JukeboxPageComponent,
     TitrePageComponent,
     ContacteComponent,
     ProfileComponent,
     LoginComponent,
     AboutComponent,
-    YoutubeComponent
+    YoutubeComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,

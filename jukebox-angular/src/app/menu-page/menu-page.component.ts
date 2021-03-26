@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-menu-page',
+  templateUrl: './menu-page.component.html',
+  styleUrls: ['./menu-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class MenuPageComponent implements OnInit {
 
   items: MenuItem[] = [];
 

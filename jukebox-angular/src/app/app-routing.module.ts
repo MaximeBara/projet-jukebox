@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
-import {​​​​​​​​ LoginPageComponent }​​​​​​​​ from'./login-page/login-page.component';
+import {​​​​​​​​ MenuPageComponent }​​​​​​​​ from'./menu-page/menu-page.component';
 import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
 import {​​​​​​​​ TitrePageComponent }​​​​​​​​ from'./titre-page/titre-page.component';
 import { AboutComponent } from './about/about.component';
 import { ContacteComponent } from './contacte/contacte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 const routes: Routes = [
   /* Routes de base */
-  { path: 'login', component: LoginPageComponent, pathMatch: 'full' },
+  { path: 'login', component: MenuPageComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent, pathMatch: 'full' },
   { path: 'contact', component: ContacteComponent, pathMatch: 'full' }, 
   { path: 'home', component: HomePageComponent, pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, pathMatch: 'full' },
   { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
   // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
