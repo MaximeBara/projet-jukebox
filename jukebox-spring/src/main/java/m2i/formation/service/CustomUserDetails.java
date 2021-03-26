@@ -27,6 +27,10 @@ public class CustomUserDetails implements UserDetails {
 		final List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("User"));
 		return authorities;
 	}
+	
+	public Long getId() {
+		return utilisateur.getId();
+	}
 
 	@Override
 	public String getPassword() {
@@ -55,7 +59,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return utilisateur.isEnabled();
+		return true;
 	}
 
 }

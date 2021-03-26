@@ -36,6 +36,8 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	Optional<Administrateur> findAdminId(@Param("id") long id);
 
 	@Query("select user from Utilisateur user where user.pseudo = :pseudo")
-	Optional<Utilisateur> findByUsername(@Param("pseudo") String pseudo);
+	Optional<Utilisateur> findByPseudo(@Param("pseudo") String pseudo);
+	
+	Boolean existsByPseudo(String pseudo);
 
 }

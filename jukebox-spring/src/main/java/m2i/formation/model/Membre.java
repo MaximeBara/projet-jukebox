@@ -48,7 +48,12 @@ public class Membre extends Utilisateur {
 		super(pseudo);
 		this.motDePasse = motDePasse;
 		this.point = point;
-
+	}
+	
+	public Membre(String pseudo, String motDePasse) {
+		super(pseudo);
+		this.motDePasse = motDePasse;
+		this.point = 0;
 	}
 
 	public String getMotDePasse() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -7,27 +8,45 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  userConnexion: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.userConnexion = this.fb.group({
-      identifiant: ["josse", [Validators.minLength(1), Validators.required]],
-      mdp: ["root", Validators.required]
-    })
-  }
-
-  ngOnInit() {
-  }
-
-  connexion = () => {
-    if (this.userConnexion.valid) {
-      
-
-    } else {
-      console.log("erreur");
-
-    }
-
+  form: any = {
+    pseudo: null,
+    motDePasse: null
   };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
+  }
+
+  onSubmit(): void {
+    const { pseudo, motDePasse } = this.form;
+
+    this.authService.login(pseudo, motDePasse).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
 }

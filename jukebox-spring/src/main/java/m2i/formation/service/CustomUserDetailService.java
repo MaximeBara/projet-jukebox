@@ -18,13 +18,13 @@ public class CustomUserDetailService implements UserDetailsService {
 	private IUtilisateurDao utilisateurDao;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Utilisateur> opt = utilisateurDao.findByUsername(username);
+	public UserDetails loadUserByUsername(String pseudo) throws UsernameNotFoundException {
+		Optional<Utilisateur> opt = utilisateurDao.findByPseudo(pseudo);
 
 		if (opt.isPresent()) {
 			return new CustomUserDetails(opt.get());
 		} else {
-			throw new UsernameNotFoundException(username + " Inconnu");
+			throw new UsernameNotFoundException(pseudo + " Inconnu");
 		}
 	}
 
