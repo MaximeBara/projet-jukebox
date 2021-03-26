@@ -1,56 +1,105 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
-  selector: 'app-menu-page',
-  templateUrl: './menu-page.component.html',
-  styleUrls: ['./menu-page.component.css']
+   selector: 'app-menu-page',
+   templateUrl: './menu-page.component.html',
+   styleUrls: ['./menu-page.component.css']
 })
 export class MenuPageComponent implements OnInit {
 
-  items: MenuItem[] = [];
+   items: MenuItem[] = [];
+   isLoggedIn = false;
+   username?: string;
 
-  constructor() { }
+   constructor(private tokenStorageService: TokenStorageService) { }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
 
-    this.items = [
-      {
-         label:'Jukebox Favoris',
-         icon:'pi pi-fw pi-star',
-         items:[
+      this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+      if (this.isLoggedIn) {
+         const user = this.tokenStorageService.getUser();
+         this.items = [
             {
-               label:'Ajouter',
-               icon:'pi pi-fw pi-plus',
+               label: 'Jukebox Favoris',
+               icon: 'pi pi-fw pi-star',
+               items: [
+                  {
+                     label: 'Ajouter',
+                     icon: 'pi pi-fw pi-plus',
+                  },
+                  {
+                     icon: 'pi pi-fw pi-bars',
+                     label: 'List'
+                  }
+               ]
             },
             {
-               icon:'pi pi-fw pi-bars',
-               label:'List'
+               label: 'About',
+               icon: 'pi pi-fw pi-thumbs-up',
+               routerLink: ['/about']
+            },
+            {
+               label: 'Contact',
+               icon: 'pi pi-fw pi-pencil',
+               routerLink: ['/contact']
+            },
+            {
+               label: user.motDePasse,
+               routerLink: ['/profile']
+            },
+            {
+               label: 'Déconnexion',
+               icon: 'pi pi-fw pi-power-off',
+               command: () => this.logout()
             }
-         ]
-      },
-      {
-         label:'Profile',
-         icon:'pi pi-fw pi-user',
-         routerLink:['/profile']     
-      },
-      {
-         label:'about',
-         icon:'pi pi-fw pi-thumbs-up',
-         routerLink:['/about']
-      },
-      {
-         label:'Contacte',
-         icon:'pi pi-fw pi-pencil',
-         routerLink:['/contact']
-      },
-      {
-         label:'Déconnexion',
-         icon:'pi pi-fw pi-power-off',
-         routerLink:['']
+         ];
+      } else {
+         this.items = [
+            {
+               label: 'Jukebox Favoris',
+               icon: 'pi pi-fw pi-star',
+               items: [
+                  {
+                     label: 'Ajouter',
+                     icon: 'pi pi-fw pi-plus',
+                  },
+                  {
+                     icon: 'pi pi-fw pi-bars',
+                     label: 'List'
+                  }
+               ]
+            },
+            {
+               label: 'Profile',
+               icon: 'pi pi-fw pi-user',
+               routerLink: ['/profile']
+            },
+            {
+               label: 'About',
+               icon: 'pi pi-fw pi-thumbs-up',
+               routerLink: ['/about']
+            },
+            {
+               label: 'Contact',
+               icon: 'pi pi-fw pi-pencil',
+               routerLink: ['/contact']
+            },
+            {
+               label: 'Login',
+               icon: 'pi pi-fw pi-power-off',
+               routerLink: ['/login']
+            }
+         ];
       }
-    ];
 
-  }
+   }
+
+   logout(): void {
+      this.tokenStorageService.signOut();
+      window.location.reload();
+   }
 
 }
