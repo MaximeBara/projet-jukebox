@@ -95,9 +95,14 @@ public class TestUtilisateur {
 		Membre membre = new Membre("membre", 10, "password");
 		userDao.save(membre);
 		
+		Jukebox j2 = new Jukebox("Jukebox2", "test2", TypeEnchere.PAYANTE);
+		j2.setAdministrateur(admin2);
+		jukeboxDao.save(j2);
+		
 		assertEquals(true, userDao.isAdmin(admin.getId(), j.getId()));
 		assertEquals(false, userDao.isAdmin(membre.getId(), j.getId()));
 		assertEquals(false, userDao.isAdmin(admin2.getId(), j.getId()));
+		assertEquals(true, userDao.isAdmin(admin2.getId(), j2.getId()));
 	}
 
 }

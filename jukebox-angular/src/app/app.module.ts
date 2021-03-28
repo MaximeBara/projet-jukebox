@@ -10,6 +10,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
+import {PaginatorModule} from 'primeng/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,6 @@ import { MenuPageComponent } from './menu-page/menu-page.component';
 
 
 import {TableModule} from 'primeng/table';
-import { TitrePageComponent } from './titre-page/titre-page.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -27,6 +27,8 @@ import { ContacteComponent } from './contacte/contacte.component';
 import { YoutubeComponent } from './Jukebox/youtube/youtube.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { TitreComponent } from './titre/titre.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,14 @@ import { InscriptionComponent } from './inscription/inscription.component';
     HomePageComponent,
     MenuPageComponent,
     JukeboxPageComponent,
-    TitrePageComponent,
     ContacteComponent,
     ProfileComponent,
     LoginComponent,
     AboutComponent,
     YoutubeComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    TitreComponent,
+    PlaylistComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     TableModule,
     ReactiveFormsModule,
     FormsModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    PaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

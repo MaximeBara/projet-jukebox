@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import {​​​​​​​​ MenuPageComponent }​​​​​​​​ from'./menu-page/menu-page.component';
 import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
-import {​​​​​​​​ TitrePageComponent }​​​​​​​​ from'./titre-page/titre-page.component';
+import {​​​​​​​​ TitreComponent }​​​​​​​​ from'./titre/titre.component';
 import { AboutComponent } from './about/about.component';
 import { ContacteComponent } from './contacte/contacte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -29,13 +30,13 @@ const routes: Routes = [
   // { path: 'jukebox/:id/update', component: UpdateJukeboxPageComponent, pathMatch: 'full' },
 
   /* Routes pour les playlists */
-  // { path: 'playlists', component: PlaylistsPageComponent, pathMatch: 'full' },
+   { path: 'playlists', component: PlaylistComponent, pathMatch: 'full' },
   // { path: 'playlists/create', component: CreatePlaylistPageComponent, pathMatch: 'full' },
   // { path: 'playlists/:id', component: PlaylistPageComponent, pathMatch: 'full' },
   // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full' },
 
   /* Routes pour les titres */
-  { path: 'titres', component: TitrePageComponent, pathMatch: 'full' },
+  { path: 'titres', component: TitreComponent, pathMatch: 'full' },
   // { path: 'titres/create', component: CreateTitrePageComponent, pathMatch: 'full' },
 
   /* Routes pour les enchères */
