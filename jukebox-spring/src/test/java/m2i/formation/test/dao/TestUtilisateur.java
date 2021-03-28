@@ -89,11 +89,15 @@ public class TestUtilisateur {
 		j.setAdministrateur(admin);
 		jukeboxDao.save(j);
 		
+		Administrateur admin2 = new Administrateur("admin2", 10, "password");
+		userDao.save(admin2);
+		
 		Membre membre = new Membre("membre", 10, "password");
 		userDao.save(membre);
 		
-		assertEquals(false, userDao.isAdmin(membre.getId(), j.getId()));
 		assertEquals(true, userDao.isAdmin(admin.getId(), j.getId()));
+		assertEquals(false, userDao.isAdmin(membre.getId(), j.getId()));
+		assertEquals(false, userDao.isAdmin(admin2.getId(), j.getId()));
 	}
 
 }
