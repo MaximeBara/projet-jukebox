@@ -1,8 +1,8 @@
-<p-menubar [model]="items"  [style]="{backgroundColor:'var(--blue-500)'}">
+<p-menubar [model]="items" [style]="{backgroundColor:'var(--blue-500)'}">
     <ng-template pTemplate="start">
-        
     </ng-template>
-    <ng-template pTemplate="end">
-        
-    </ng-template>
+   
+        <ng-template pTemplate="end">
+            <button type="button" pButton label="{{loggin.label}}" (click)="btnClick();" icon="{{loggin.icon}}"></button>
+        </ng-template>
 </p-menubar>

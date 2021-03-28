@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { LoginComponent } from '../login/login.component';
 import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
@@ -12,6 +13,12 @@ export class MenuPageComponent implements OnInit {
    items: MenuItem[] = [];
    isLoggedIn = false;
 
+   loggin: MenuItem = {
+   label: '',
+   icon: '',
+   routerLink: ['']
+   }
+
    constructor(private tokenStorageService: TokenStorageService) { }
 
    ngOnInit(): void {
@@ -20,6 +27,11 @@ export class MenuPageComponent implements OnInit {
 
       if (this.isLoggedIn) {
          const user = this.tokenStorageService.getUser();
+         this.loggin = {
+               label: 'Déconnexion',
+               icon: 'pi pi-fw pi-power-off',
+               style:'red'
+         };
          this.items = [
             {
                label: 'Jukebox Favoris',
@@ -48,14 +60,13 @@ export class MenuPageComponent implements OnInit {
             {
                label: user.pseudo,
                routerLink: ['/profile']
-            },
-            {
-               label: 'Déconnexion',
-               icon: 'pi pi-fw pi-power-off',
-               command: () => this.logout()
             }
          ];
       } else {
+         this.loggin = {
+            label: 'Login',
+            icon: 'pi pi-fw pi-power-off'
+         };
          this.items = [
             {
                label: 'About',
@@ -66,20 +77,30 @@ export class MenuPageComponent implements OnInit {
                label: 'Contact',
                icon: 'pi pi-fw pi-pencil',
                routerLink: ['/contact']
-            },
-            {
-               label: 'Login',
-               icon: 'pi pi-fw pi-power-off',
-               routerLink: ['/login']
             }
          ];
+
       }
 
    }
 
    logout(): void {
       this.tokenStorageService.signOut();
-      window.location.reload();
+      window.location.replace('');
    }
+
+   btnClick(): void {
+      
+      if(this.isLoggedIn){
+         const user = this.tokenStorageService.getUser();
+         this.tokenStorageService.signOut();
+         window.location.replace('');
+         
+      }else{
+         window.location.replace('/login');
+
+      }
+     
+};
 
 }
