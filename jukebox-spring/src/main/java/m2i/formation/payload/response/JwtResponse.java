@@ -1,19 +1,15 @@
 package m2i.formation.payload.response;
 
-import java.util.List;
-
 public class JwtResponse {
 	private String token;
 	private String type = "Bearer";
 	private Long id;
 	private String pseudo;
-	private List<String> roles;
 
-	public JwtResponse(String accessToken, Long id, String pseudo, List<String> roles) {
+	public JwtResponse(String accessToken, Long id, String pseudo) {
 		this.token = accessToken;
 		this.id = id;
 		this.pseudo = pseudo;
-		this.roles = roles;
 	}
 
 	public String getAccessToken() {
@@ -48,7 +44,4 @@ public class JwtResponse {
 		this.pseudo = pseudo;
 	}
 
-	public List<String> getRoles() {
-		return roles;
-	}
 }

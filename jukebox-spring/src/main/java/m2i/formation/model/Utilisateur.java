@@ -1,16 +1,10 @@
 package m2i.formation.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,9 +25,6 @@ public abstract class Utilisateur {
 	@JoinColumn(name = "jukebox_id")
 	@JsonView(IViews.IViewBasic.class)
 	private Jukebox jukebox;
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<UtilisateurRole> roles = new HashSet<>();
 
 	public Utilisateur() {
 		super();
@@ -72,14 +63,6 @@ public abstract class Utilisateur {
 
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
-	}
-
-	public Set<UtilisateurRole> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<UtilisateurRole> roles) {
-		this.roles = roles;
 	}
 
 	@Override

@@ -11,7 +11,6 @@ export class MenuPageComponent implements OnInit {
 
    items: MenuItem[] = [];
    isLoggedIn = false;
-   username?: string;
 
    constructor(private tokenStorageService: TokenStorageService) { }
 

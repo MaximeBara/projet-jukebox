@@ -1,10 +1,5 @@
 package m2i.formation.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import m2i.formation.config.jwt.JwtUtils;
-import m2i.formation.dao.IRoleDao;
 import m2i.formation.dao.IUtilisateurDao;
 import m2i.formation.model.Membre;
-import m2i.formation.model.Role;
-import m2i.formation.model.UtilisateurRole;
 import m2i.formation.payload.request.LoginRequest;
 import m2i.formation.payload.request.SignupRequest;
 import m2i.formation.payload.response.JwtResponse;
@@ -43,9 +35,6 @@ public class AuthController {
 	IUtilisateurDao utilisateurDao;
 
 	@Autowired
-	IRoleDao roleDao;
-
-	@Autowired
 	PasswordEncoder encoder;
 
 	@Autowired
@@ -61,10 +50,8 @@ public class AuthController {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), roles));
+		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername()));
 	}
 
 	@PostMapping("/signup")
@@ -76,33 +63,6 @@ public class AuthController {
 		// Create new user's account
 		Membre membre = new Membre(signUpRequest.getPseudo(), encoder.encode(signUpRequest.getMotDePasse()));
 
-		Set<String> strRoles = signUpRequest.getRole();
-		Set<UtilisateurRole> roles = new HashSet<>();
-
-		if (strRoles == null) {
-			UtilisateurRole utilisateurRole = roleDao.findByNom(Role.MEMBRE).get();
-			roles.add(utilisateurRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					UtilisateurRole adminRole = roleDao.findByNom(Role.ADMIN).get();
-					roles.add(adminRole);
-
-					break;
-				case "invite":
-					UtilisateurRole inviteRole = roleDao.findByNom(Role.INVITE).get();
-					roles.add(inviteRole);
-
-					break;
-				default:
-					UtilisateurRole utilisateurRole = roleDao.findByNom(Role.MEMBRE).get();
-					roles.add(utilisateurRole);
-				}
-			});
-		}
-
-		membre.setRoles(roles);
 		utilisateurDao.save(membre);
 
 		return ResponseEntity.ok(new MessageResponse("Le membre a bien été enregistré !!"));

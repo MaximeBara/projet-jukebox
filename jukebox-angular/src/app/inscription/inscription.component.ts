@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-inscription',
@@ -8,28 +7,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
-
-  userInscription: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.userInscription = this.fb.group({
-      identifiant: ["josse", [Validators.minLength(1), Validators.required]],
-      mdp: ["root", Validators.required]
-    })
-  }
-
-  ngOnInit() {
-  }
-
-  inscription = () => {
-    if (this.userInscription.valid) {
-      
-
-    } else {
-      console.log("erreur");
-
-    }
-
+  form: any = {
+    pseudo: null,
+    motDePasse: null
   };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    const { pseudo, motDePasse } = this.form;
+
+    this.authService.register(pseudo, motDePasse).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
 }

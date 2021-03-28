@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -17,17 +16,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Membre extends Utilisateur {
 
-	@Column(length = 15)
 	@JsonView(IViews.IViewBasic.class)
 	private String motDePasse;
-	
+
 	@JsonView(IViews.IViewBasic.class)
 	private int point;
-	
+
 	@OneToMany(mappedBy = "membre", fetch = FetchType.LAZY)
 	private List<Enchere> encheres = new ArrayList<Enchere>();
 
-	@OneToMany(mappedBy = "createur", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "createur", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Playlist> playlists = new ArrayList<Playlist>();
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -49,7 +47,7 @@ public class Membre extends Utilisateur {
 		this.motDePasse = motDePasse;
 		this.point = point;
 	}
-	
+
 	public Membre(String pseudo, String motDePasse) {
 		super(pseudo);
 		this.motDePasse = motDePasse;

@@ -1,14 +1,41 @@
 <app-menu-page></app-menu-page>
 <div class="grey">
-    <form [formGroup]='userInscription' (ngSubmit)="inscription()">
-        <label> Crée Identifiant :</label>
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" name="pseudo" [(ngModel)]="form.pseudo" required minlength="3"
+                maxlength="15" #username="ngModel" />
+            <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                <div *ngIf="username.errors.required">Le pseudo est nécessaire !</div>
+                <div *ngIf="username.errors.minlength">
+                    Le pseudo doit contenir au minimum 3 caractères
+                </div>
+                <div *ngIf="username.errors.maxlength">
+                    Le pseudo doit contenir au maximum 15 caractères
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="motDePasse">Mot de passe</label>
+            <input type="password" class="form-control" name="motDePasse" [(ngModel)]="form.motDePasse" required
+                minlength="6" #motDePasse="ngModel" />
+            <div class="alert-danger" *ngIf="motDePasse.errors && f.submitted">
+                <div *ngIf="motDePasse.errors.required">Le mot de passe est nécessaire !</div>
+                <div *ngIf="motDePasse.errors.minlength">
+                    Le mot de passe doit contenir au minimum 6 caractères
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Inscription</button>
+        </div>
 
-        <input type="text" formControlName="identifiant" />
-
-        <label>Crée Mot de passe:</label>
-
-        <input type="text" formControlName="mdp" />
-
-        <button type="submit"> validation </button>
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Signup failed!<br />{{ errorMessage }}
+        </div>
     </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+    </div>
 </div>

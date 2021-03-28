@@ -17,21 +17,19 @@ import m2i.formation.model.Administrateur;
 import m2i.formation.model.Invite;
 import m2i.formation.model.Membre;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UtilisateurControllerTest {
-	
-	
+
 	@Autowired
 	private IUtilisateurDao userDao;
-	
+
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@Test
 	public void findAllMembre() throws Exception {
-		
+
 		int sizeStart = userDao.findMembre().size();
 
 		Administrateur admin1 = new Administrateur("Maxime", 10, "test");
@@ -40,23 +38,26 @@ public class UtilisateurControllerTest {
 		userDao.save(membre);
 		Invite invite = new Invite("guillaume");
 		userDao.save(invite);
-		
-		System.out.println("ICI = "+ userDao.findMembre());
-		
-		mockMvc.perform(get("/api/membre")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.length()").value(sizeStart+2));
+
+		System.out.println("ICI = " + userDao.findMembre());
+
+		mockMvc.perform(get("/api/membre")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$.length()").value(sizeStart + 2));
 	}
-	
+
 	@Test
 	public void findAllAdmin() throws Exception {
-		
+
 		int sizeStart = userDao.findAllAdmin().size();
 
 		Administrateur admin1 = new Administrateur("josse", 12, "test");
 		userDao.save(admin1);
-		
-		mockMvc.perform(get("/api/administrateur")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.length()").value(sizeStart+1));
-		
+
+		mockMvc.perform(get("/api/administrateur")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$.length()").value(sizeStart + 1));
+
 	}
+
 }
