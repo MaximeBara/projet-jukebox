@@ -11,14 +11,15 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
 import {PaginatorModule} from 'primeng/paginator';
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
-
-
 import {TableModule} from 'primeng/table';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
@@ -60,6 +61,9 @@ import { PlaylistComponent } from './playlist/playlist.component';
     FormsModule,
     YouTubePlayerModule,
     PaginatorModule,
+    MessagesModule,
+    ConfirmDialogModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

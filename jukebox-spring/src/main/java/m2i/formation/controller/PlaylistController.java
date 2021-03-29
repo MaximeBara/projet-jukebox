@@ -113,14 +113,14 @@ public class PlaylistController {
 		} else {
 			p = new Playlist(nom, new Date(), lien);
 		}
-		
+
 		List<Titre> titres = findAllTitreFromLien(lien);
-		
+
 		System.out.println("Titre.size(): " + titres.size());
-		
-		if( !titres.isEmpty() )
+
+		if (!titres.isEmpty())
 			p.setTitres(titres);
-		
+
 		return playlistDao.save(p);
 	}
 
@@ -151,11 +151,11 @@ public class PlaylistController {
 				String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId")
 						.get("videoId").getAsString();
 				Optional<Titre> optTitre = titreDao.findByLien(lien);
-				if(optTitre.isEmpty()) {
+				if (optTitre.isEmpty()) {
 					Titre t = new Titre(titre, artiste, lien);
 					titreDao.save(t);
 					liste.add(t);
-				}else {
+				} else {
 					liste.add(optTitre.get());
 				}
 			}
@@ -177,7 +177,7 @@ public class PlaylistController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long id) {
+	public List<Playlist> delete(@PathVariable Long id) {
 		if (!playlistDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
@@ -187,5 +187,6 @@ public class PlaylistController {
 		if (playlistDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
 		}
+		return playlistDao.findAll();
 	}
 }

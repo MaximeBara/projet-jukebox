@@ -21,4 +21,8 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(`${this.route}/${id}/findAllByMembre`);
   }
 
+  deleteById(id: number): Observable<Playlist[]>{
+    return this.http.delete<Playlist[]>(`${this.route}/${id}`);
+  }
+
 }
