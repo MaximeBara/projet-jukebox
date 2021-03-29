@@ -34,6 +34,11 @@ export class MenuPageComponent implements OnInit {
          };
          this.items = [
             {
+               label: 'accueil',
+               icon: 'pi pi-fw pi-home',
+               routerLink: ['']
+            },
+            {
                label: 'Jukebox Favoris',
                icon: 'pi pi-fw pi-star',
                items: [
@@ -68,6 +73,11 @@ export class MenuPageComponent implements OnInit {
             icon: 'pi pi-fw pi-power-off'
          };
          this.items = [
+            {
+               label: 'accueil',
+               icon: 'pi pi-fw pi-home',
+               routerLink: ['']
+            },
             {
                label: 'About',
                icon: 'pi pi-fw pi-thumbs-up',
