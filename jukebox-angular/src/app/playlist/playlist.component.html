@@ -1,6 +1,8 @@
 <app-menu-page></app-menu-page>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <p-messages [value]="msgs"></p-messages>
+<button pButton type="button" [routerLink]="['/playlists/create']" label="Créer une playlist" class="p-button-info"></button>
+<button pButton type="button" [routerLink]="['importViaYoutube']" label="Import via Youtube" class="p-button-danger"></button>
 <p-table *ngIf="playlists" [value]="playlists" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
     <ng-template pTemplate="header">
@@ -16,7 +18,7 @@
             <td><a [routerLink]="['/playlists', playlist.id]"><i class="pi pi-folder-open"></i></a></td>
             <td><a [routerLink]="['/playlists', playlist.id]">{{playlist.nom}}</a></td>
             <td>{{playlist.dateCreation}}</td>
-            <td><p-button (click)="confirm1(playlist)" icon="pi pi-trash" label="Supprimer"></p-button></td>
+            <td><p-button [disabled]="playlist.createur.id==userId ? false : true" (click)="playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash" label="Supprimer"></p-button></td>
         </tr>
     </ng-template>
 </p-table>

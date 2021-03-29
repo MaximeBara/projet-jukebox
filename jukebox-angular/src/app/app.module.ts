@@ -30,6 +30,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { TitreComponent } from './titre/titre.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
     InscriptionComponent,
     TitreComponent,
     PlaylistComponent,
+    CreatePlaylistComponent,
   ],
   imports: [
     BrowserModule,

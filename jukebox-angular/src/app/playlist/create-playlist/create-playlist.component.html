@@ -1,0 +1,30 @@
+<app-menu-page></app-menu-page>
+<div class="grey">
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" name="nom" [(ngModel)]="form.nom" required minlength="3"
+                maxlength="20" #nom="ngModel" />
+            <div class="alert-danger" *ngIf="nom.errors && f.submitted">
+                <div *ngIf="nom.errors.required">Le nom est nécessaire !</div>
+                <div *ngIf="nom.errors.minlength">
+                    Le nom doit contenir au minimum 3 caractères
+                </div>
+                <div *ngIf="nom.errors.maxlength">
+                    Le nom doit contenir au maximum 20 caractères
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Créer</button>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+            La création de la playlist a échoué !<br />{{ errorMessage }}
+        </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+        La création de la playlist a réussi !
+    </div>
+</div>

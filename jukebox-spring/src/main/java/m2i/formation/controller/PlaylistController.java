@@ -177,7 +177,7 @@ public class PlaylistController {
 	}
 
 	@DeleteMapping("/{id}")
-	public List<Playlist> delete(@PathVariable Long id) {
+	public void delete(@PathVariable Long id) {
 		if (!playlistDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
@@ -187,6 +187,5 @@ public class PlaylistController {
 		if (playlistDao.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Unable to find resource");
 		}
-		return playlistDao.findAll();
 	}
 }

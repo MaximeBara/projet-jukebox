@@ -16,6 +16,5 @@ export class UtilisateurService {
 
   getByIdProfil(id: number): Observable<Profile>{
     return this.http.get<Profile>(`${this.route}/${id}`);
-  
   }
 }

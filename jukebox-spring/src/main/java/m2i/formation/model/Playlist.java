@@ -34,12 +34,13 @@ public class Playlist {
 	@JsonView(IViews.IViewBasic.class)
 	@Column(name = "dateCreation")
 	private Date dateCreation;
-	@Column(name = "lien", length = 255, unique = true)
+	@Column(name = "lien", length = 255)
 	@JsonView(IViews.IViewBasic.class)
 	private String lien;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "createur_id")
+	@JsonView(IViews.IViewBasic.class)
 	private Membre createur;
 
 	@ManyToMany(fetch = FetchType.LAZY)

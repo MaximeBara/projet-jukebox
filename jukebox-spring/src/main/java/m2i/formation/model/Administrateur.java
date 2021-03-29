@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Administrateur extends Membre {
 
-	@OneToMany(mappedBy = "administrateur", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "administrateur", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Jukebox> jukeboxes = new ArrayList<Jukebox>();
 
 	public Administrateur() {
@@ -30,7 +30,7 @@ public class Administrateur extends Membre {
 	public String toString() {
 		return "Administrateur [getMotDePasse()=" + getMotDePasse() + ", getPoint()=" + getPoint() + ", toString()="
 				+ super.toString() + ", getId()=" + getId() + ", getPseudo()=" + getPseudo() + ", getClass()="
-				+ getClass() + "]"+"\n";
+				+ getClass() + "]" + "\n";
 	}
 
 	public List<Jukebox> getJukeboxes() {

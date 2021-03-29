@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -31,7 +32,7 @@ const routes: Routes = [
 
   /* Routes pour les playlists */
    { path: 'playlists', component: PlaylistComponent, pathMatch: 'full' },
-  // { path: 'playlists/create', component: CreatePlaylistPageComponent, pathMatch: 'full' },
+   { path: 'playlists/create', component: CreatePlaylistComponent, pathMatch: 'full' },
    { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', data: { kind: 'fromPlaylists' } },
   // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full' },
 
