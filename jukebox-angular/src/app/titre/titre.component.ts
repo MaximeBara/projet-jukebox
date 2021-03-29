@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TitreService } from 'src/app/services/titre.service';
 import { Titre } from '../models/titre';
 
@@ -11,13 +12,25 @@ export class TitreComponent implements OnInit {
 
   titres: Titre[] = [];
 
-  constructor(private titreService: TitreService) { }
+  constructor(private titreService: TitreService, private activatedRoute: ActivatedRoute) { 
+  }
 
   ngOnInit(): void {
 
-    this.titreService.getAllTitres().subscribe((titres: Titre[]) => {
-      this.titres = titres;
-      console.log(titres);
+    const id = this.activatedRoute.snapshot.params['id'];
+
+    this.activatedRoute.data.subscribe(data => {
+      switch (data.kind) {
+        case "fromPlaylists":
+          this.titreService.getAllTitresByPlaylist(id).subscribe((titres: Titre[]) => {
+            this.titres = titres;
+          });
+          break;
+        default:
+          this.titreService.getAllTitres().subscribe((titres: Titre[]) => {
+            this.titres = titres;
+          });
+      }
     });
 
   }

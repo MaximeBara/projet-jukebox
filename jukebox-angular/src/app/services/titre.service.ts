@@ -16,5 +16,8 @@ export class TitreService {
   getAllTitres(): Observable<Titre[]>{
     return this.http.get<Titre[]>(`${this.route}`);
   }
+  getAllTitresByPlaylist(id: number): Observable<Titre[]>{
+    return this.http.get<Titre[]>(`${this.route}/${id}/allByPlaylist`);
+  }
 
 }

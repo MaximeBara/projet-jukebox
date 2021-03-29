@@ -32,7 +32,7 @@ const routes: Routes = [
   /* Routes pour les playlists */
    { path: 'playlists', component: PlaylistComponent, pathMatch: 'full' },
   // { path: 'playlists/create', component: CreatePlaylistPageComponent, pathMatch: 'full' },
-  // { path: 'playlists/:id', component: PlaylistPageComponent, pathMatch: 'full' },
+   { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', data: { kind: 'fromPlaylists' } },
   // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full' },
 
   /* Routes pour les titres */

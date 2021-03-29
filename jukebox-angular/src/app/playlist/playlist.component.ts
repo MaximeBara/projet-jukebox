@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from 'src/app/services/playlist.service';
 import { Playlist } from '../models/playlist';
+import { TitreService } from 'src/app/services/titre.service';
+import { Titre } from '../models/titre';
 
 @Component({
   selector: 'app-playlist',
@@ -10,6 +12,7 @@ import { Playlist } from '../models/playlist';
 export class PlaylistComponent implements OnInit {
 
   playlists: Playlist[] = [];
+  titres: Titre[] = [];
 
   constructor(private playlistService: PlaylistService) { }
 

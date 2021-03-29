@@ -17,4 +17,8 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(`${this.route}`);
   }
 
+  getAllPlaylistsByOwner(id: number): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(`${this.route}/${id}/findAllByMembre`);
+  }
+
 }

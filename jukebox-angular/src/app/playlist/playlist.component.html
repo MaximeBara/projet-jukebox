@@ -1,2 +1,20 @@
 <app-menu-page></app-menu-page>
-<p>playlist works!</p>
+<p-table *ngIf="playlists" [value]="playlists" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th></th>
+            <th>Nom</th>
+            <th>Date de création</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-playlist>
+        <tr>
+            <td><a [routerLink]="['/playlists', playlist.id]"><i class="pi pi-folder-open"></i></a></td>
+            <td><a [routerLink]="['/playlists', playlist.id]">{{playlist.nom}}</a></td>
+            <td>{{playlist.dateCreation}}</td>
+            <td><i class="pi pi-trash"></i></td>
+        </tr>
+    </ng-template>
+</p-table>
