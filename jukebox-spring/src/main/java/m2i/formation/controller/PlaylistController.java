@@ -147,11 +147,12 @@ public class PlaylistController {
 
 			for (JsonElement elt : jsonObject.getAsJsonArray("items")) {
 				String titre = elt.getAsJsonObject().getAsJsonObject("snippet").get("title").getAsString();
+				String artiste = elt.getAsJsonObject().getAsJsonObject("snippet").get("channelTitle").getAsString();
 				String lien = elt.getAsJsonObject().getAsJsonObject("snippet").getAsJsonObject("resourceId")
 						.get("videoId").getAsString();
 				Optional<Titre> optTitre = titreDao.findByLien(lien);
 				if(optTitre.isEmpty()) {
-					Titre t = new Titre(titre, lien);
+					Titre t = new Titre(titre, artiste, lien);
 					titreDao.save(t);
 					liste.add(t);
 				}else {
