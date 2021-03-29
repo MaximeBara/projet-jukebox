@@ -13,10 +13,10 @@ import { PlaylistComponent } from './playlist/playlist.component';
 
 const routes: Routes = [
   /* Routes de base */
-  { path: '', component: MenuPageComponent, pathMatch: 'full' },
+  { path: 'menu', component: MenuPageComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent, pathMatch: 'full' },
   { path: 'contact', component: ContacteComponent, pathMatch: 'full' }, 
-  { path: 'home', component: HomePageComponent, pathMatch: 'full' },
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
