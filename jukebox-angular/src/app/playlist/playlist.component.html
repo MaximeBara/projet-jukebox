@@ -1,8 +1,7 @@
-<app-menu-page></app-menu-page>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <p-messages [value]="msgs"></p-messages>
-<button pButton type="button" [routerLink]="['/playlists/create']" label="Créer une playlist" class="p-button-info"></button>
-<button pButton type="button" [routerLink]="['importViaYoutube']" label="Import via Youtube" class="p-button-danger"></button>
+<button pButton type="button" [routerLink]="['/playlists/create']" label="Créer une playlist" class="p-button-info" icon="pi pi-plus-circle"></button>
+<button pButton type="button" [routerLink]="['importViaYoutube']" label="Import via Youtube" class="p-button-danger" icon="pi pi-youtube"></button>
 <p-table *ngIf="playlists" [value]="playlists" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
     <ng-template pTemplate="header">

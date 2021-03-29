@@ -34,7 +34,7 @@ export class MenuPageComponent implements OnInit {
          };
          this.items = [
             {
-               label: 'accueil',
+               label: 'Accueil',
                icon: 'pi pi-fw pi-home',
                routerLink: ['']
             },
@@ -53,6 +53,26 @@ export class MenuPageComponent implements OnInit {
                ]
             },
             {
+               label: 'Jukebox',
+               icon: 'pi pi-fw pi-play',
+               routerLink: ['/jukeboxes']
+            },
+            {
+               label: 'Enchères',
+               icon: 'pi pi-fw pi-euro',
+               routerLink: ['/encheres']
+            },
+            {
+               label: 'Playlists',
+               icon: 'pi pi-fw pi-list',
+               routerLink: ['/playlists']
+            },
+            {
+               label: 'Titres',
+               icon: 'pi pi-fw pi-play',
+               routerLink: ['/titres']
+            },
+            {
                label: 'About',
                icon: 'pi pi-fw pi-thumbs-up',
                routerLink: ['/about']
@@ -64,6 +84,7 @@ export class MenuPageComponent implements OnInit {
             },
             {
                label: user.pseudo,
+               icon: 'pi pi-user',
                routerLink: ['/profile']
             }
          ];
@@ -74,7 +95,7 @@ export class MenuPageComponent implements OnInit {
          };
          this.items = [
             {
-               label: 'accueil',
+               label: 'Accueil',
                icon: 'pi pi-fw pi-home',
                routerLink: ['']
             },
