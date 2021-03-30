@@ -102,21 +102,23 @@ public class PlaylistController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@GetMapping("/{nom}/createByLien/{lien}")
+	@PostMapping("/createByLien")
 	@JsonView(IViews.IViewTitre.class)
-	public Playlist createByLien(@PathVariable String nom, @PathVariable String lien) {
-		Optional<Playlist> optPlaylist = playlistDao.findByLien(lien);
+	public Playlist createByLien(@RequestBody Playlist playlist) {
+		System.out.println("#########################");
+		System.out.println("LIEN : " + playlist.getLien());
+		System.out.println("#########################");
+		Optional<Playlist> optPlaylist = playlistDao.findByLien(playlist.getLien());
 		Playlist p;
 
 		if (optPlaylist.isPresent()) {
 			p = optPlaylist.get();
 		} else {
-			p = new Playlist(nom, new Date(), lien);
+			p = new Playlist(playlist.getNom(), new Date(), playlist.getLien());
+			p.setCreateur(playlist.getCreateur());
 		}
 
-		List<Titre> titres = findAllTitreFromLien(lien);
-
-		System.out.println("Titre.size(): " + titres.size());
+		List<Titre> titres = findAllTitreFromLien(playlist.getLien());
 
 		if (!titres.isEmpty())
 			p.setTitres(titres);

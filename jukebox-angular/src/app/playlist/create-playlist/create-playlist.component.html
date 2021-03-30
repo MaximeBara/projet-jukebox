@@ -1,7 +1,10 @@
+<div class="img">
 <div class="grey">
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
-            <label for="nom">Nom</label>
+            <div class="col-25">
+                <label for="nom">Nom</label>
+            </div>
             <input type="text" class="form-control" name="nom" [(ngModel)]="form.nom" required minlength="3"
                 maxlength="20" #nom="ngModel" />
             <div class="alert-danger" *ngIf="nom.errors && f.submitted">
@@ -13,9 +16,26 @@
                     Le nom doit contenir au maximum 20 caractères
                 </div>
             </div>
+            <div *ngIf="youtube">
+                <div class="col-25">
+                    <label for="nom">Lien</label>
+                </div>
+                <input type="text" class="form-control" name="lien" [(ngModel)]="form.lien" required minlength="34"
+                    maxlength="34" #lien="ngModel" />
+                <div class="alert-danger" *ngIf="lien.errors && f.submitted">
+                    <div *ngIf="lien.errors.required">Le lien est nécessaire !</div>
+                    <div *ngIf="lien.errors.minlength">
+                        Le lien doit contenir 34 caractères
+                    </div>
+                    <div *ngIf="lien.errors.maxlength">
+                        Le lien doit contenir 34 caractères
+                    </div>
+                </div>
+            </div> 
         </div>
         <div class="form-group">
-            <button type="submit">Créer</button>
+            <div *ngIf="attente" class="spinner"><i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i></div>
+            <button *ngIf="!attente" type="submit">Créer</button>
         </div>
 
         <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
@@ -26,4 +46,5 @@
     <div class="alert alert-success" *ngIf="isSuccessful">
         La création de la playlist a réussi !
     </div>
+</div>
 </div>

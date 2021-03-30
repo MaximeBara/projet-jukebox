@@ -16,11 +16,9 @@ export class MembreGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const currentUser = this.tokenStorageService.getUser();
     if (currentUser) {
-      console.log(currentUser);
       return true;
     }
 
-    console.log("NOK");
     this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
     return false;
   }

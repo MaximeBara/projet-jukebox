@@ -34,7 +34,8 @@ const routes: Routes = [
   /* Routes pour les playlists */
    { path: 'playlists', component: PlaylistComponent, pathMatch: 'full', canActivate: [MembreGuard] },
    { path: 'playlists/create', component: CreatePlaylistComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-   { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', data: { kind: 'fromPlaylists', canActivate: [MembreGuard] } },
+   { path: 'playlists/import', component: CreatePlaylistComponent, data: { kind: 'importFromYoutube' }, pathMatch: 'full', canActivate: [MembreGuard] },
+   { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', data: { kind: 'fromPlaylists' }, canActivate: [MembreGuard]},
   // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
 
   /* Routes pour les titres */
@@ -43,7 +44,6 @@ const routes: Routes = [
 
   /* Routes pour les enchères */
   // { path: 'encheres', component: EncheresPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-
 ];
 
 

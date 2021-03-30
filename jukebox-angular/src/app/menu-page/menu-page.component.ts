@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { LoginComponent } from '../login/login.component';
 import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
@@ -14,9 +13,15 @@ export class MenuPageComponent implements OnInit {
    isLoggedIn = false;
 
    loggin: MenuItem = {
-   label: '',
-   icon: '',
-   routerLink: ['']
+      label: '',
+      icon: '',
+      routerLink: ['']
+   }
+
+   user: MenuItem = {
+      label: '',
+      icon: '',
+      routerLink: ['']
    }
 
    constructor(private tokenStorageService: TokenStorageService) { }
@@ -27,10 +32,15 @@ export class MenuPageComponent implements OnInit {
 
       if (this.isLoggedIn) {
          const user = this.tokenStorageService.getUser();
+         this.user = {
+            label: user.pseudo,
+            icon: 'pi pi-user',
+            routerLink: ['/profile']
+         }
          this.loggin = {
-               label: 'Déconnexion',
-               icon: 'pi pi-fw pi-power-off',
-               style:'red'
+            label: 'Déconnexion',
+            icon: 'pi pi-fw pi-power-off',
+            style: 'red'
          };
          this.items = [
             {
@@ -58,11 +68,6 @@ export class MenuPageComponent implements OnInit {
                routerLink: ['/jukeboxes']
             },
             {
-               label: 'Enchères',
-               icon: 'pi pi-fw pi-euro',
-               routerLink: ['/encheres']
-            },
-            {
                label: 'Playlists',
                icon: 'pi pi-fw pi-list',
                routerLink: ['/playlists']
@@ -81,11 +86,6 @@ export class MenuPageComponent implements OnInit {
                label: 'Contact',
                icon: 'pi pi-fw pi-pencil',
                routerLink: ['/contact']
-            },
-            {
-               label: user.pseudo,
-               icon: 'pi pi-user',
-               routerLink: ['/profile']
             }
          ];
       } else {
@@ -121,17 +121,16 @@ export class MenuPageComponent implements OnInit {
    }
 
    btnClick(): void {
-      
-      if(this.isLoggedIn){
+
+      if (this.isLoggedIn) {
          const user = this.tokenStorageService.getUser();
          this.tokenStorageService.signOut();
          window.location.replace('');
-         
-      }else{
-         window.location.replace('/login');
 
+      } else {
+         window.location.replace('/login');
       }
-     
-};
+
+   };
 
 }

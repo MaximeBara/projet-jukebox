@@ -19,7 +19,11 @@ export class PlaylistService {
 
   createPlaylist(playlist: Playlist): Observable<Playlist>{
     return this.http.post<Playlist>(`${this.route}`, playlist, httpOptions);
-  } 
+  }
+
+  createPlaylistByLien(playlist: Playlist): Observable<Playlist>{
+    return this.http.post<Playlist>(`${this.route}/createByLien`, playlist);
+  }
 
   getAllPlaylists(): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(`${this.route}`);

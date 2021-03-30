@@ -31,6 +31,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { TitreComponent } from './titre/titre.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
+import { EnchereComponent } from './enchere/enchere.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CreatePlaylistComponent } from './playlist/create-playlist/create-playl
     TitreComponent,
     PlaylistComponent,
     CreatePlaylistComponent,
+    EnchereComponent,
   ],
   imports: [
     BrowserModule,
