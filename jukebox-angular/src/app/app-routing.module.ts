@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
+import { JukeboxesPageComponent } from './jukebox/jukeboxes-page/jukeboxes-page.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
-  // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
+  { path: 'jukeboxes', component: JukeboxesPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/create', component: CreateJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/join', component: JoinJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/favorites', component: CreateJukeboxPageComponent, pathMatch: 'full' },

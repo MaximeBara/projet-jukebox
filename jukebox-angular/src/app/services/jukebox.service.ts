@@ -14,6 +14,10 @@ export class JukeboxService {
 
   constructor(private http: HttpClient) { }
 
+  getAllJukeboxByAdministrateur(id: number): Observable<Jukebox[]>{
+    return this.http.get<Jukebox[]>(`${this.route}/${id}/allByAdministrateur`);
+  }
+
   getByIdWithPlaylistAndTitre(id: number): Observable<Jukebox>{
     return this.http.get<Jukebox>(`${this.route}/${id}/withPlaylistAndTitre`);
   }

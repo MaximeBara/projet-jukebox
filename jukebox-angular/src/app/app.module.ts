@@ -32,6 +32,7 @@ import { TitreComponent } from './titre/titre.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
 import { EnchereComponent } from './enchere/enchere.component';
+import { JukeboxesPageComponent } from './jukebox/jukeboxes-page/jukeboxes-page.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EnchereComponent } from './enchere/enchere.component';
     PlaylistComponent,
     CreatePlaylistComponent,
     EnchereComponent,
+    JukeboxesPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   constructor(private user: UtilisateurService, private token: TokenStorageService) {
   }
 
+  
   ngOnInit(): void {
     this.user.getByIdProfil(this.token.getUser().id).toPromise().then(
       (profileSerch: Profile) => {
