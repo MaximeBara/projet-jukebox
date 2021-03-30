@@ -10,27 +10,33 @@ import { UtilisateurService } from '../services/utilisateur.service';
 })
 export class ProfileComponent implements OnInit {
 
-  profile!: Profile;
+  motDePasse: string = "";
+  profile: Profile = {
+    id: 0,
+    pseudo: '',
+    point: '',
+    motDePasse: ''
+  };
 
   constructor(private user: UtilisateurService, private token: TokenStorageService) {
-
-
   }
 
   ngOnInit(): void {
-    
-    this.user.getByIdProfil(this.token.getUser().id).subscribe(
-      (profile: Profile) => {
-        this.profile = profile;
-        console.log("L'id du profil " + this.profile.id);
-        this.profile =
-        {
-          id: this.profile.id,
-          pseudo: this.profile.pseudo,
-          point: this.profile.point
-        };
+    this.user.getByIdProfil(this.token.getUser().id).toPromise().then(
+      (profileSerch: Profile) => {
+        this.profile = profileSerch;
       }
     );
   }
+
+  updateMotDePasse() {
+    
+    this.profile.motDePasse = this.motDePasse
+    this.user.changeByIdMDP(this.profile).subscribe();
+    
+  }
+
+
+
 
 }

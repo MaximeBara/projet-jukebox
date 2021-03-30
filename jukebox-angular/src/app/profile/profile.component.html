@@ -1,8 +1,13 @@
 <div class='grey'>
-    <div>
-        Pseudo: {{profile.pseudo}}
-    </div>
-    <div>
-        Nombre de points: {{profile.point}}
-    </div>
+        <div>
+            Pseudo: {{profile.pseudo}}
+        </div>
+        <div>
+            Nombre de points: {{profile.point}}
+        </div>
+        <div>
+            <label>mot de passe : </label>
+            <input type="text" [(ngModel)]="motDePasse"  />
+        </div>
+        <button type="button" (click)='updateMotDePasse()'>valider</button>
 </div>

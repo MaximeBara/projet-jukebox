@@ -26,9 +26,24 @@ input{
   .grey {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    
   }
-
+  @media screen and (min-width: 800px) {
+    .grey{
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin: auto;
+    }
+    .img{
+      background-image: url("../../assets/login/backLogin.png") ; 
+      background-size: cover;
+      width: 20%;
+      padding:initial;
+      z-index: index -10;
+      margin: auto;
+    }
+  } 
   .img{
     background-image: url("../../assets/login/backLogin.png") ; 
     background-size: cover;

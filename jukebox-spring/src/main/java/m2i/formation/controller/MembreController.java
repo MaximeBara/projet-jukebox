@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,9 @@ public class MembreController {
 
 	@Autowired
 	private IUtilisateurDao membreDao;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("")
 	@JsonView(IViews.IViewMembre.class)
@@ -61,10 +65,12 @@ public class MembreController {
 	@PutMapping("/{id}")
 	@JsonView(IViews.IViewMembre.class)
 	public Membre update(@RequestBody Membre membre, @PathVariable Long id) {
+
 		if (!membreDao.existsById(id) || !id.equals(membre.getId())) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
-
+		
+		membre.setMotDePasse(passwordEncoder.encode(membre.getMotDePasse()));
 		membre = membreDao.save(membre);
 
 		return membre;
