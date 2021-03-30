@@ -67,12 +67,16 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 	@Query("select distinct j from Jukebox j left join fetch j.playlist p left join fetch p.titres")
 	public List<Jukebox> findAllWithPlaylistAndTitre();
 
-	@Query("select t from Enchere e join e.titre t " + "where e.jukebox.id = :id AND e.terminee = FALSE "
+	@Query("select t from Enchere e left join e.titre t " + "where e.jukebox.id = :id AND e.terminee = FALSE "
 			+ "GROUP BY e.titre.id " + "ORDER BY sum(e.valeur) DESC")
-	public List<Titre> findAllTitreOrderByEnchere(@Param("id") Long id);
+	public List<Titre> findAllTitreOrderByEnchere(@Param("id") Long id);	
 
 	@Query("select t from Jukebox j join j.playlist.titres t where j.id = :id "
 			+ "AND t NOT IN (select t from Enchere e join e.titre t where e.jukebox.id = :id AND e.terminee = FALSE ) ")
 	public List<Titre> findAllTitreWithoutEnchere(@Param("id") Long id);
+	
+	@Query("select t from Enchere e join e.titre t " + "where e.jukebox.id = :id AND e.terminee = FALSE "
+			+ "GROUP BY e.titre.id " + "ORDER BY sum(e.valeur) DESC")
+	public List<Titre> findNextTitre(@Param("id") Long id);
 
 }

@@ -3,8 +3,8 @@
         <h1>{{jukebox.nom}} playing {{jukebox.playlist.nom}}</h1>
     </div>
 
-    
-    <app-youtube></app-youtube>
+
+    <app-youtube #youtube (next)="nextTitre($event)" [titre]="titreEnCours"></app-youtube>
 
     <div class="">
         <p-table [columns]="cols" [value]="jukebox.playlist.titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
@@ -37,9 +37,8 @@
 
     <div class="flex titre">
 
-        <div *ngIf="jukebox.titreEnCours else loading">
-            ... <h2>{{jukebox.titreEnCours.nom}} - {{jukebox.titreEnCours.artiste}}</h2>
-
+        <div *ngIf="titreEnCours else loading">
+            <h2>{{titreEnCours.nom}} - {{titreEnCours.artiste}}</h2>
         </div>
 
         <ng-template #loading>

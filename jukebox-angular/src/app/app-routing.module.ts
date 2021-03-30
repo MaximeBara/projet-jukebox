@@ -24,12 +24,12 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
-  // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-  // { path: 'jukebox/create', component: CreateJukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-  // { path: 'jukebox/join', component: JoinJukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-  // { path: 'jukebox/favorites', component: CreateJukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-  { path: 'jukebox/id', component: JukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-  // { path: 'jukebox/:id/update', component: UpdateJukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
+  // { path: 'jukebox', component: MyJukeboxPageComponent, pathMatch: 'full' },
+  // { path: 'jukebox/create', component: CreateJukeboxPageComponent, pathMatch: 'full' },
+  // { path: 'jukebox/join', component: JoinJukeboxPageComponent, pathMatch: 'full' },
+  // { path: 'jukebox/favorites', component: CreateJukeboxPageComponent, pathMatch: 'full' },
+  { path: 'jukebox/:id', component: JukeboxPageComponent, pathMatch: 'full' },
+  // { path: 'jukebox/:id/update', component: UpdateJukeboxPageComponent, pathMatch: 'full' },
 
   /* Routes pour les playlists */
    { path: 'playlists', component: PlaylistComponent, pathMatch: 'full', canActivate: [MembreGuard] },

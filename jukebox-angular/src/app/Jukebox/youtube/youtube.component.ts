@@ -1,36 +1,62 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Titre } from 'src/app/models/titre';
 
 @Component({
   selector: 'app-youtube',
   templateUrl: './youtube.component.html',
-  styleUrls: ['./youtube.component.css']
+  styleUrls: ['./youtube.component.css'],
 })
 export class YoutubeComponent implements OnInit {
   @ViewChild('player') player: any;
-  videoId: string = "";
+  videoId!: string;
+
+  @Input() titre!: Titre;
 
   @Input()
   set id(id: string) {
     this.videoId = id;
   }
 
+  @Output() next = new EventEmitter<string>();
+  
+
+
   ngOnInit() {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
+
+    this.videoId = this.titre.lien;
   }
 
-  // Autoplay
+
   onReady() {
-    this.player.mute();         
-    this.player.playVideo();    
+    this.player.playVideo();
   }
 
-  // Loop
-  onStateChange(event :any) {
-    if (event.data === 0) {
-      this.player.playVideo();  
+  onStateChange(event: any) {
+    switch (event.data) {
+      case 0:
+        // console.log('video ended');
+        this.changeVideo();
+        break;
+      case 1:
+        // console.log('video playing from ' + this.player.getCurrentTime());
+        break;
+      case 2:
+        // console.log('video paused at ' + this.player.getCurrentTime());
+        if(this.player.getCurrentTime() == 0) this.player.playVideo();
     }
   }
 
+  changeVideo() {
+    this.next.emit('complete');
+  }
+
+  changeVidEnd(event: string) {
+    console.log("fin")
+    this.videoId = this.titre.lien;
+    console.log(this.videoId)
+    this.player.playVideo();
+  }
 }
