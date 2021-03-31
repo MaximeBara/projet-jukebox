@@ -17,6 +17,7 @@ export class PlaylistComponent implements OnInit {
   titres: Titre[] = [];
   msgs: Message[] = [];
   userId= 0;
+  editMode = false;
 
   constructor(private playlistService: PlaylistService, private confirmationService: ConfirmationService, private primengConfig: PrimeNGConfig, private tokenStorageService: TokenStorageService) { }
 
@@ -26,6 +27,14 @@ export class PlaylistComponent implements OnInit {
       this.playlists = playlists;
     });
     this.userId = this.tokenStorageService.getUser().id;
+  }
+
+  onFocusOut(event: any, playlist: Playlist){
+    playlist.nom = event.target.value;
+    this.playlistService.updatePlaylistById(playlist.id, playlist).subscribe(() => {
+      this.editMode = false;
+      console.log(this.editMode);
+    });
   }
 
   confirm1(playlist: Playlist) {

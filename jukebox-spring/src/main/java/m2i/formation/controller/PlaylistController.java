@@ -105,9 +105,8 @@ public class PlaylistController {
 	@PostMapping("/createByLien")
 	@JsonView(IViews.IViewTitre.class)
 	public Playlist createByLien(@RequestBody Playlist playlist) {
-		System.out.println("#########################");
-		System.out.println("LIEN : " + playlist.getLien());
-		System.out.println("#########################");
+
+		// TODO : Lien non unique, à corriger
 		Optional<Playlist> optPlaylist = playlistDao.findByLien(playlist.getLien());
 		Playlist p;
 

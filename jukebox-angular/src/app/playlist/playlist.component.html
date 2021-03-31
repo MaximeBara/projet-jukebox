@@ -15,9 +15,9 @@
     <ng-template pTemplate="body" let-playlist>
         <tr>
             <td><a [routerLink]="['/playlists', playlist.id]"><i class="pi pi-folder-open"></i></a></td>
-            <td><a [routerLink]="['/playlists', playlist.id]">{{playlist.nom}}</a></td>
+            <td><span (click)="editMode = true" *ngIf="!editMode">{{playlist.nom}}</span><input *ngIf="editMode" (focusout)="onFocusOut($event, playlist)" value="{{playlist.nom}}"></td>
             <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
-            <td><p-button [disabled]="playlist.createur != null && playlist.createur.id==userId ? false : true" (click)="playlist.createur != null && playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash" label="Supprimer"></p-button></td>
+            <td><p-button [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash" label="Supprimer"></p-button></td>
         </tr>
     </ng-template>
 </p-table>

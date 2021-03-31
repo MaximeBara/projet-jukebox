@@ -33,6 +33,10 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(`${this.route}/${id}/findAllByMembre`);
   }
 
+  updatePlaylistById(id: number, playlist: Playlist): Observable<Playlist> {
+    return this.http.put<Playlist>(`${this.route}/${id}`, playlist);
+  }
+
   deleteById(id: number){
     return this.http.delete(`${this.route}/${id}`);
   }
