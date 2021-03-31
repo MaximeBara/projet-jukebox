@@ -9,5 +9,6 @@ export interface Enchere {
     terminee: boolean,
     user: Profile,
     jukebox: Jukebox,
-    titre: Titre
+    titre: Titre,
+    type: String
 }

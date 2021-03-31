@@ -57,7 +57,7 @@ public abstract class Enchere {
 	@JoinColumn(name = "titre_id")
 	@JsonView(IViews.IViewEnchereWithTitre.class)
 	private Titre titre;
-
+	
 	public Enchere() {
 		super();
 	}
@@ -81,14 +81,6 @@ public abstract class Enchere {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public LocalDateTime getDate() {
-		return dateTime;
-	}
-
-	public void setDate(LocalDateTime dateTime) {
-		this.dateTime = dateTime;
 	}
 
 	public int getValeur() {
@@ -129,6 +121,14 @@ public abstract class Enchere {
 
 	public void setTerminee(boolean terminee) {
 		this.terminee = terminee;
+	}
+
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	@Override

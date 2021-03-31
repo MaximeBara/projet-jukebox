@@ -5,11 +5,8 @@ import java.time.LocalDateTime;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
-
 @Entity
 @DiscriminatorValue("P")
-@JsonTypeName("P")
 public class EncherePayante extends Enchere {
 
 	public EncherePayante() {
