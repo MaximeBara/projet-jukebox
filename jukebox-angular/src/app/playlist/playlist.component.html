@@ -17,7 +17,7 @@
             <td><a [routerLink]="['/playlists', playlist.id]"><i class="pi pi-folder-open"></i></a></td>
             <td><a [routerLink]="['/playlists', playlist.id]">{{playlist.nom}}</a></td>
             <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
-            <td><p-button [disabled]="playlist.createur.id==userId ? false : true" (click)="playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash" label="Supprimer"></p-button></td>
+            <td><p-button [disabled]="playlist.createur != null && playlist.createur.id==userId ? false : true" (click)="playlist.createur != null && playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash" label="Supprimer"></p-button></td>
         </tr>
     </ng-template>
 </p-table>
