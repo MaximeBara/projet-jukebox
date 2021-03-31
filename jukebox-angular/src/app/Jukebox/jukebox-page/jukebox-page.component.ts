@@ -49,11 +49,16 @@ export class JukeboxPageComponent implements OnInit {
         .getByIdWithPlaylistAndTitre(this.id)
         .toPromise()
         .then((jukebox: Jukebox) => {
+          if(jukebox.titreEnCours == null){
+            jukebox.titreEnCours = jukebox.playlist.titres[0];
+          }
           this.jukebox = jukebox;
           this.titreEnCours = jukebox.titreEnCours;
           this.titresAJouer = jukebox.playlist.titres;
           this.titresAJouer = this.titresAJouer.filter(
-            (titre: Titre) => titre.id !== this.titreEnCours.id
+            (titre: Titre) => {
+              return titre.id !== this.titreEnCours.id;
+            }
           );
         });
     });

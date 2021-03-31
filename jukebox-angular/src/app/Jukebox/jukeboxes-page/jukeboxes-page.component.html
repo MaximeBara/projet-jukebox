@@ -11,10 +11,10 @@
     </ng-template>
     <ng-template pTemplate="body" let-jukebox>
         <tr>
-            <td>{{jukebox.nom}}</td>
-            <td><a [routerLink]="['/playlists', jukebox.id]">{{jukebox.nom}}</a></td>
-            <td>{{jukebox.nom}}</td>
-            <td>{{jukebox.nom}}</td>
+            <td><a [routerLink]="['/jukebox', jukebox.id]"></a></td>
+            <td><a [routerLink]="['/jukebox', jukebox.id]">{{jukebox.nom}}</a></td>
+            <td>{{jukebox.dateCreation}}</td>
+            <td>{{jukebox.createur}}</td>
         </tr>
     </ng-template>
 </p-table>
