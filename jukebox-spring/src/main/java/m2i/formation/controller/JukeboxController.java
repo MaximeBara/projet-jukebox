@@ -3,8 +3,6 @@ package m2i.formation.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -161,7 +159,7 @@ public class JukeboxController {
 		List<Titre> titres2 = jukeboxDao.findAllTitreWithoutEnchere(id);
 
 		Optional<Jukebox> jukebox = jukeboxDao.findById(id);
-		
+
 		titres1.addAll(titres2);
 
 		jukebox.get().setTitreEnCours(titres1.get(0));
@@ -170,16 +168,16 @@ public class JukeboxController {
 
 		return titres1;
 	}
-	
+
 	@GetMapping("/{id}/nextTitre")
 	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
 	public Optional<Titre> findNextTitre(@PathVariable Long id) {
 		Optional<Titre> titre = Optional.ofNullable(null);
-		
+
 		try {
 			titre = Optional.ofNullable(jukeboxDao.findNextTitre(id).get(0));
 		} catch (Exception e) {
-			
+
 		}
 
 		return titre;
@@ -201,15 +199,15 @@ public class JukeboxController {
 
 		return titres;
 	}
-	
+
 	@PutMapping("/{idJukebox}/setTerminee/{idTitre}")
 	@JsonView(IViews.IViewJukeboxWithPlaylistAndTitre.class)
 	public void setTerminee(@PathVariable Long idJukebox, @PathVariable Long idTitre) {
-		List<Enchere> encheres = enchereDao.findAllEnchereNotTermineeByTitreAndJukebox(idJukebox, idTitre);	
-		for(Enchere e : encheres) {
+		List<Enchere> encheres = enchereDao.findAllEnchereNotTermineeByTitreAndJukebox(idJukebox, idTitre);
+		for (Enchere e : encheres) {
 			e.setTerminee(true);
 			enchereDao.save(e);
-		}	
+		}
 	}
 
 	@PostMapping("")
