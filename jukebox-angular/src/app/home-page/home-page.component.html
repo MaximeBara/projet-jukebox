@@ -1,1 +1,45 @@
-<div>home</div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div>
+    <video autoplay muted loop id="myVideo">
+        <source src="../../assets/menu/Light Effect - 3129.mp4" type="video/mp4">
+
+    </video>
+    <div id="buton">
+    <p-button label=" Rejoindre un jukbox" (click)= 'code()' ></p-button>
+    </div>
+    <div id="tab">
+        <p-table  *ngIf="playlists" [value]="playlists" [paginator]="true" [rows]="5">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Date de création</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-playlist>
+                <tr>
+                    <td><a [routerLink]="['/playlists', playlist.id]"><i class="pi pi-folder-open"></i></a></td>
+                    <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+    <div id="tab2">
+    <p-table  *ngIf="titres" [value]="titres" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nom</th>
+                <th>Artiste</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-titre>
+            <tr>
+                <td>{{titre.nom}}</td>
+                <td>{{titre.artiste}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </div>
+</div>
