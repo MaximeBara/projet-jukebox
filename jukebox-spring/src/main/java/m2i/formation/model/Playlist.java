@@ -34,7 +34,7 @@ public class Playlist {
 	@JsonView(IViews.IViewBasic.class)
 	@Column(name = "dateCreation")
 	private Date dateCreation;
-	@Column(name = "lien", length = 255)
+	@Column(name = "lien", length = 34)
 	@JsonView(IViews.IViewBasic.class)
 	private String lien;
 
@@ -45,7 +45,7 @@ public class Playlist {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "PLAYLIST_TITRE", joinColumns = @JoinColumn(name = "playlist_id"), inverseJoinColumns = @JoinColumn(name = "titre_id"))
-	@JsonView(IViews.IViewPlaylistWithTitre.class)
+	@JsonView(IViews.IViewBasic.class)
 	private List<Titre> titres = new ArrayList<>();
 
 	@OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)

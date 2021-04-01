@@ -8,16 +8,21 @@
         <tr>
             <th></th>
             <th>Nom</th>
+            <th>Créateur</th>
             <th>Date de création</th>
             <th></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-playlist>
         <tr>
-            <td><a [routerLink]="['/playlists', playlist.id]"><i class="pi pi-folder-open"></i></a></td>
-            <td><span (click)="editMode = true" *ngIf="!editMode">{{playlist.nom}}</span><input *ngIf="editMode" (focusout)="onFocusOut($event, playlist)" value="{{playlist.nom}}"></td>
+            <td><a [routerLink]="['/playlists', playlist.id]" [state]="{ data: { kind: 'fromPlaylists', playlist : playlist} }"><i class="pi pi-folder-open"></i></a></td>
+            <td><span (click)="editModeMap.set(playlist.id, true)" *ngIf="!editModeMap.get(playlist.id)">{{playlist.nom}}</span><input *ngIf="editModeMap.get(playlist.id)" (focusout)="onFocusOut($event, playlist)" value="{{playlist.nom}}"></td>
+            <td>{{playlist.createur.pseudo}}</td>
             <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
-            <td><p-button [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash" label="Supprimer"></p-button></td>
+            <td>
+                <p-button class="ui-button" [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm2(playlist) : null" icon="pi pi-refresh"></p-button>
+                <p-button class="ui-button" [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash"></p-button>
+            </td>
         </tr>
     </ng-template>
 </p-table>

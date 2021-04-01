@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from 'src/app/models/user';
+import { Playlist } from '../../models/playlist';
 import { PlaylistService } from 'src/app/services/playlist.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
-import { Playlist } from '../../models/playlist';
 import { TokenStorageService } from '../../services/token-storage.service';
 
 
@@ -26,7 +26,8 @@ export class CreatePlaylistComponent implements OnInit {
   attente = false;
 
   constructor(private playlistService: PlaylistService, private tokenStorageService: TokenStorageService,
-    private utilisateurService: UtilisateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
+    private utilisateurService: UtilisateurService, private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
@@ -39,7 +40,6 @@ export class CreatePlaylistComponent implements OnInit {
           this.youtube = true;
           break;
         default:
-          console.log("CREATE CLASSIQUE");
       }
     });
   }
@@ -61,30 +61,28 @@ export class CreatePlaylistComponent implements OnInit {
           this.isCreateFailed = false;
           setTimeout(() => {
             this.router.navigate(['/playlists']);
-          }, 2000);
+          }, 1000);
         },
         err => {
-          this.errorMessage = err.error.message;
           this.isCreateFailed = true;
         }
-      )
+      );
     }else{
       this.attente = true;
-      this.playlistService.createPlaylistByLien(playlist).subscribe(
+      this.playlistService.importFromYoutube(playlist).subscribe(
         data => {
           this.isSuccessful = true;
           this.isCreateFailed = false;
           setTimeout(() => {
             this.router.navigate(['/playlists']);
-          }, 2000);
+          }, 1000);
           this.attente = false;
         },
         err => {
-          this.errorMessage = err.error.message;
           this.isCreateFailed = true;
           this.attente = false;
         }
-      )
+      );
     }
   }
 

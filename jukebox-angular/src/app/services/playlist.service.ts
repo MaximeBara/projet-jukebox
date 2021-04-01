@@ -21,8 +21,16 @@ export class PlaylistService {
     return this.http.post<Playlist>(`${this.route}`, playlist, httpOptions);
   }
 
-  createPlaylistByLien(playlist: Playlist): Observable<Playlist>{
-    return this.http.post<Playlist>(`${this.route}/createByLien`, playlist);
+  importFromYoutube(playlist: Playlist): Observable<Playlist>{
+    return this.http.post<Playlist>(`${this.route}/importFromYoutube`, playlist);
+  }
+
+  updateFromYoutube(playlist: Playlist): Observable<Playlist>{
+    return this.http.put<Playlist>(`${this.route}/updateFromYoutube`, playlist);
+  }
+
+  getPlaylistById(id: number) : Observable<Playlist>{
+    return this.http.get<Playlist>(`${this.route}/${id}`);
   }
 
   getAllPlaylists(): Observable<Playlist[]> {
@@ -33,8 +41,8 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(`${this.route}/${id}/findAllByMembre`);
   }
 
-  updatePlaylistById(id: number, playlist: Playlist): Observable<Playlist> {
-    return this.http.put<Playlist>(`${this.route}/${id}`, playlist);
+  updatePlaylistById(playlist: Partial<Playlist>): Observable<Playlist> {
+    return this.http.put<Playlist>(`${this.route}/${playlist.id}`, playlist);
   }
 
   deleteById(id: number){

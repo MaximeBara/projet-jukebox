@@ -1,3 +1,5 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<button pButton type="button" [routerLink]="['/titres/create']" label="Ajouter un titre" class="p-button-info" icon="pi pi-plus-circle"></button>
 <p-table *ngIf="titres" [value]="titres"   [paginator]="true" 
             [rows]="10" [showCurrentPageReport]="true" 
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
@@ -5,12 +7,14 @@
         <tr>
             <th>Nom</th>
             <th>Artiste</th>
+            <th></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-titre>
         <tr>
             <td>{{titre.nom}}</td>
             <td>{{titre.artiste}}</td>
+            <td><p-button class="ui-button" [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm1(titre) : null" icon="pi pi-trash"></p-button></td>
         </tr>
     </ng-template>
 </p-table>

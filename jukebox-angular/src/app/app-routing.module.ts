@@ -12,7 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
-import { JukeboxesPageComponent } from './jukebox/jukeboxes-page/jukeboxes-page.component';
+import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.component';
+import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -36,15 +37,12 @@ const routes: Routes = [
    { path: 'playlists', component: PlaylistComponent, pathMatch: 'full', canActivate: [MembreGuard] },
    { path: 'playlists/create', component: CreatePlaylistComponent, pathMatch: 'full', canActivate: [MembreGuard] },
    { path: 'playlists/import', component: CreatePlaylistComponent, data: { kind: 'importFromYoutube' }, pathMatch: 'full', canActivate: [MembreGuard] },
-   { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', data: { kind: 'fromPlaylists' }, canActivate: [MembreGuard]},
-  // { path: 'playlists/:id/update', component: UpdatePlaylistPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
+   { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', canActivate: [MembreGuard]},
 
   /* Routes pour les titres */
   { path: 'titres', component: TitreComponent, pathMatch: 'full', canActivate: [MembreGuard] },
-  // { path: 'titres/create', component: CreateTitrePageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
+  { path: 'titres/create', component: CreateTitreComponent, pathMatch: 'full', canActivate: [MembreGuard] },
 
-  /* Routes pour les enchères */
-  // { path: 'encheres', component: EncheresPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
 ];
 
 

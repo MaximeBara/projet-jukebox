@@ -102,19 +102,29 @@ public class PlaylistController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@PostMapping("/createByLien")
+	@PostMapping("/importFromYoutube")
 	@JsonView(IViews.IViewTitre.class)
-	public Playlist createByLien(@RequestBody Playlist playlist) {
+	public Playlist importFromYoutube(@RequestBody Playlist playlist) {
 
-		// TODO : Lien non unique, à corriger
-		Optional<Playlist> optPlaylist = playlistDao.findByLien(playlist.getLien());
-		Playlist p;
+		Playlist p = new Playlist(playlist.getNom(), new Date(), playlist.getLien());
+		p.setCreateur(playlist.getCreateur());
+
+		List<Titre> titres = findAllTitreFromLien(playlist.getLien());
+		p.setTitres(titres);
+
+		return playlistDao.save(p);
+
+	}
+
+	@PutMapping("/updateFromYoutube")
+	@JsonView(IViews.IViewTitre.class)
+	public Playlist updateFromYoutube(@RequestBody Playlist playlist) {
+
+		Optional<Playlist> optPlaylist = playlistDao.findById(playlist.getId());
+		Playlist p = null;
 
 		if (optPlaylist.isPresent()) {
 			p = optPlaylist.get();
-		} else {
-			p = new Playlist(playlist.getNom(), new Date(), playlist.getLien());
-			p.setCreateur(playlist.getCreateur());
 		}
 
 		List<Titre> titres = findAllTitreFromLien(playlist.getLien());
@@ -123,6 +133,7 @@ public class PlaylistController {
 			p.setTitres(titres);
 
 		return playlistDao.save(p);
+
 	}
 
 	/**
