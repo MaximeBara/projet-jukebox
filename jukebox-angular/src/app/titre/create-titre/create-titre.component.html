@@ -1,0 +1,35 @@
+<div class="img">
+    <div class="grey">
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+                <div class="col-25">
+                    <label for="nom">Lien</label>
+                </div>
+                <input type="text" class="form-control" name="lien" [(ngModel)]="form.lien" required minlength="11"
+                    maxlength="11" #lien="ngModel" />
+                <div class="alert-danger" *ngIf="lien.errors && f.submitted">
+                    <div *ngIf="lien.errors.required">Le lien est nécessaire !</div>
+                    <div *ngIf="lien.errors.minlength">
+                        Le lien doit contenir 11 caractères
+                    </div>
+                    <div *ngIf="lien.errors.maxlength">
+                        Le lien doit contenir 11 caractères
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div *ngIf="attente" class="spinner"><i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
+                </div>
+                <button *ngIf="!attente" type="submit">Créer</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+                La création du titre a échoué !<br />{{ errorMessage }}
+            </div>
+        </form>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            La création du titre a réussi !
+        </div>
+    </div>
+</div>
