@@ -21,6 +21,7 @@ export class TitreComponent implements OnInit {
   titre : Partial<Titre> = {};
   userId: number = 0;
   playlistId: number = 0;
+  allTitres: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private titreService: TitreService, 
     private playlistService: PlaylistService, private confirmationService: ConfirmationService,
@@ -42,6 +43,7 @@ export class TitreComponent implements OnInit {
           this.playlist = playlist;
         });
       } else { // Chemin venant de tous les titres (/titres)
+        this.allTitres = true;
         this.titreService.getAllTitres().subscribe((titres: Titre[]) => {
           this.titres = titres;
         });
@@ -57,7 +59,7 @@ export class TitreComponent implements OnInit {
       accept: () => {
         this.titres = this.titres.filter(item => item.id != titre.id);
         this.playlist.titres =  this.titres;
-        this.playlistService.updatePlaylistById(this.playlist).subscribe(() => {
+        this.playlistService.updatePlaylist(this.playlist).subscribe(() => {
           this.msgs = [{ severity: 'info', summary: 'Confirmé', detail: "Le titre a bien été supprimé." }];
         });
       },

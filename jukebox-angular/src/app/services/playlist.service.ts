@@ -41,7 +41,7 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(`${this.route}/${id}/findAllByMembre`);
   }
 
-  updatePlaylistById(playlist: Partial<Playlist>): Observable<Playlist> {
+  updatePlaylist(playlist: Partial<Playlist>): Observable<Playlist> {
     return this.http.put<Playlist>(`${this.route}/${playlist.id}`, playlist);
   }
 

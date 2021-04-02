@@ -33,7 +33,7 @@ export class PlaylistComponent implements OnInit {
   onFocusOut(event: any, playlist: Playlist){
     this.editModeMap.set(playlist.id, false);
     playlist.nom = event.target.value;
-    this.playlistService.updatePlaylistById(playlist).subscribe();
+    this.playlistService.updatePlaylist(playlist).subscribe();
   }
 
   confirm1(playlist: Playlist) {

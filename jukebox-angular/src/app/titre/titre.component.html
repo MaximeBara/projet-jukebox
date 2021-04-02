@@ -1,5 +1,5 @@
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
-<button pButton type="button" [routerLink]="['/titres/create']" label="Ajouter un titre" class="p-button-info" icon="pi pi-plus-circle"></button>
+<button pButton [disabled]="allTitres || (playlist.createur && playlist.createur.id==userId) ? false : true" [routerLink]="['create']" [state]="{ playlist: playlist }" label="Ajouter un titre" class="p-button-info" icon="pi pi-plus-circle"></button>
 <p-table *ngIf="titres" [value]="titres"   [paginator]="true" 
             [rows]="10" [showCurrentPageReport]="true" 
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">

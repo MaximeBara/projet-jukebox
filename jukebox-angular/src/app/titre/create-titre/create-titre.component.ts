@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Titre } from '../../models/titre';
+import { PlaylistService } from 'src/app/services/playlist.service';
 import { TitreService } from 'src/app/services/titre.service';
+import { Playlist } from '../../models/playlist';
 
 @Component({
   selector: 'app-create-titre',
@@ -17,29 +18,70 @@ export class CreateTitreComponent implements OnInit {
   isCreateFailed = false;
   errorMessage = '';
   attente = false;
+  playlistId = 0;
+  currentPlaylist: Partial<Playlist> = {};
 
-  constructor(private titreService: TitreService, private router: Router, 
-    private activatedRoute: ActivatedRoute) { }
+  constructor(private titreService: TitreService, private router: Router,
+    private activatedRoute: ActivatedRoute, private playlistService: PlaylistService) { }
 
   ngOnInit(): void {
+    const id: number = this.activatedRoute.snapshot.params.id;
+    if (id) {
+      this.playlistId = id;
+      this.currentPlaylist = window.history.state.playlist;
+      if (!this.currentPlaylist) {
+        this.playlistService.getPlaylistById(this.playlistId).subscribe(
+          data => {
+            this.currentPlaylist = data;
+          }
+        )
+      }
+    } else {
+      this.playlistId = 0;
+    }
   }
 
   onSubmit(): void {
-    this.titreService.importFromYoutube(this.form.lien).subscribe(
-      data => {
-        // TODO : update de la playlist
-        this.isSuccessful = true;
-        this.isCreateFailed = false;
-        setTimeout(() => {
-          this.router.navigate(['/playlists/']);
-        }, 1000);
-        this.attente = false;
-      },
-      err => {
-        this.isCreateFailed = true;
-        this.attente = false;
-      }
-    );
+    if (this.playlistId == 0) { // Création d'un titre classique
+      this.titreService.importFromYoutube(this.form.lien).subscribe(
+        data => {
+          this.isSuccessful = true;
+          this.isCreateFailed = false;
+          setTimeout(() => {
+            this.router.navigate(['/titres']);
+          }, 1000);
+          this.attente = false;
+        },
+        err => {
+          this.isCreateFailed = true;
+          this.attente = false;
+        }
+      );
+    } else { // Création d'un titre + ajout à la playlist en question
+      this.titreService.importFromYoutube(this.form.lien).subscribe(
+        data => { // Mise à jour de la playlist en question
+          this.currentPlaylist.titres?.push(data);
+          this.playlistService.updatePlaylist(this.currentPlaylist).subscribe(
+            data => {
+              this.isSuccessful = true;
+              this.isCreateFailed = false;
+              setTimeout(() => {
+                this.router.navigate(['/playlists/' + this.currentPlaylist.id]);
+              }, 1000);
+              this.attente = false;
+            },
+            err => {
+              this.isCreateFailed = true;
+              this.attente = false;
+            }
+          )
+        },
+        err => {
+          this.isCreateFailed = true;
+          this.attente = false;
+        }
+      );
+    }
   }
 
 }

@@ -38,6 +38,7 @@ const routes: Routes = [
    { path: 'playlists/create', component: CreatePlaylistComponent, pathMatch: 'full', canActivate: [MembreGuard] },
    { path: 'playlists/import', component: CreatePlaylistComponent, data: { kind: 'importFromYoutube' }, pathMatch: 'full', canActivate: [MembreGuard] },
    { path: 'playlists/:id', component: TitreComponent, pathMatch: 'full', canActivate: [MembreGuard]},
+   { path: 'playlists/:id/create', component: CreateTitreComponent, pathMatch: 'full', canActivate: [MembreGuard]},
 
   /* Routes pour les titres */
   { path: 'titres', component: TitreComponent, pathMatch: 'full', canActivate: [MembreGuard] },
