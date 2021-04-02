@@ -5,6 +5,9 @@ import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { Playlist } from '../models/playlist';
 import { Titre } from '../models/titre';
 import { PlaylistService } from '../services/playlist.service';
+import { Jukebox } from 'src/app/models/jukebox';
+import { JukeboxService } from 'src/app/services/jukebox.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -14,16 +17,21 @@ import { PlaylistService } from '../services/playlist.service';
   providers: [ConfirmationService]
 })
 export class HomePageComponent implements OnInit {
+  [x: string]: any;
 
+  numero: string = "";
+  jukebox: Jukebox[] = [];
   playlists: Playlist[] = [];
   titres: Titre[] = [];
   msgs: Message[] = [];
   userId= 0;
   editMode = false;
-
+ 
   constructor(private playlistService: PlaylistService,
     private confirmationService: ConfirmationService,
-     private primengConfig: PrimeNGConfig) { }
+     private primengConfig: PrimeNGConfig,
+     private jukeboxService: JukeboxService,
+     private router: Router) { }
 
 
   ngOnInit(): void {
@@ -34,19 +42,25 @@ export class HomePageComponent implements OnInit {
 
     this.confirmationService.confirm({
 
-      message: 'Etes-vous sûr de vouloir supprimer cette playlist ?',
-
-      header: 'Confirmation de suppression de la playlist ',
-
-      icon: 'pi pi-info-circle',
-
+      header: 'Notez le code du jukebox ',
+      
+      
       accept: () => {
 
+        console.log("sa passe")
+        this.jukeboxService.getByCode(this.numero).subscribe(
+          (jukeboxeSerch:Jukebox) => {
+          
+
+           jukeboxeSerch.id;
+
+           this.router.navigate(['/jukebox/'+jukeboxeSerch.id]);
+           
+
+          console.log(jukeboxeSerch.id)
+        });
+
         
-
-      },
-
-      reject: () => {
 
       }
 

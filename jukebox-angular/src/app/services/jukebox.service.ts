@@ -39,4 +39,8 @@ export class JukeboxService {
 
     return this.http.put(`${this.route}/${idJukebox}/setTerminee/${idTitre}`, true);
   }
+
+  getByCode(code: string): Observable<Jukebox>{
+    return this.http.get<Jukebox>(`${this.route}/findByCode/${code}`);
+  }
 }
