@@ -20,4 +20,6 @@ public interface IPlaylistDao extends JpaRepository<Playlist, Long> {
 	@Query("select p from Playlist p where p.lien LIKE :lien")
 	public Optional<Playlist> findByLien(@Param("lien") String lien);
 	
+	public List<Playlist> findByOrderByDateCreationDesc();
+	
 }

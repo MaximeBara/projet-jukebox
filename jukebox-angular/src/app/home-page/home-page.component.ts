@@ -5,9 +5,12 @@ import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { Playlist } from '../models/playlist';
 import { Titre } from '../models/titre';
 import { PlaylistService } from '../services/playlist.service';
+
 import { Jukebox } from 'src/app/models/jukebox';
 import { JukeboxService } from 'src/app/services/jukebox.service';
 import { Router } from '@angular/router';
+
+import { TitreService } from '../services/titre.service';
 
 @Component({
   selector: 'app-home-page',
@@ -34,8 +37,12 @@ export class HomePageComponent implements OnInit {
      private router: Router) { }
 
 
+
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+    this.playlistService.getTop5Playlists().subscribe(data => {
+      this.playlists = data;
+    });
   }
 
   code() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import static java.lang.Math.min;
 
 import org.apache.tomcat.util.json.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,16 @@ public class PlaylistController {
 		List<Playlist> playlists = playlistDao.findAll();
 
 		return playlists;
+	}
+	
+	@GetMapping("allByDateCreation")
+	@JsonView(IViews.IViewPlaylist.class)
+	public List<Playlist> findAllOrderByDateCreation(){
+		List<Playlist> playlists = playlistDao.findByOrderByDateCreationDesc();
+		List<Playlist> subPlaylists = playlists.subList(0, min(playlists.size(), 5));
+		System.out.println("Size : " + subPlaylists.size());
+		
+		return subPlaylists;
 	}
 
 	@GetMapping("/{id}/allByMembre")
