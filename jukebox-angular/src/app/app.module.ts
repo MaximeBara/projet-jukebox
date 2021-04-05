@@ -13,11 +13,13 @@ import {TabViewModule} from 'primeng/tabview';
 import {PaginatorModule} from 'primeng/paginator';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {ToggleButtonModule} from 'primeng/togglebutton';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
+import { JukeboxPageComponent } from './jukebox/jukebox-page/jukebox-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import {TableModule} from 'primeng/table';
@@ -25,7 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContacteComponent } from './contacte/contacte.component';
-import { YoutubeComponent } from './Jukebox/youtube/youtube.component';
+import { YoutubeComponent } from './jukebox/youtube/youtube.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { TitreComponent } from './titre/titre.component';
@@ -34,6 +36,9 @@ import { CreatePlaylistComponent } from './playlist/create-playlist/create-playl
 import { EnchereComponent } from './enchere/enchere.component';
 import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.component';
 import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
+import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.component';
+
+
 
 @NgModule({
   declarations: [
@@ -53,6 +58,7 @@ import { CreateTitreComponent } from './titre/create-titre/create-titre.componen
     EnchereComponent,
     JukeboxesPageComponent,
     CreateTitreComponent,
+    CreateJukeboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +78,7 @@ import { CreateTitreComponent } from './titre/create-titre/create-titre.componen
     MessagesModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,
+    ToggleButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

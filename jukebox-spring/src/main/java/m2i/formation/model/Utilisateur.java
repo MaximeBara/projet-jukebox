@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "UTILISATEUR")
+//@DiscriminatorColumn(name = "type")
 public abstract class Utilisateur {
 
 	@Id
@@ -25,6 +26,9 @@ public abstract class Utilisateur {
 	@JoinColumn(name = "jukebox_id")
 	@JsonView(IViews.IViewBasic.class)
 	private Jukebox jukebox;
+	
+	@Column(insertable = false, updatable = false) 
+	private String dtype;
 
 	public Utilisateur() {
 		super();
@@ -63,6 +67,10 @@ public abstract class Utilisateur {
 
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
+	}
+	
+	public boolean isAdministrateur() {
+		return false;
 	}
 
 	@Override

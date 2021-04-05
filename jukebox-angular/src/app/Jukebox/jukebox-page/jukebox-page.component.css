@@ -1,17 +1,24 @@
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
+.input {
+  margin: 5vw;
+}
+
 .titre {
     width: 100vw;
     margin-top: 2vh;
     background-color: blue;
     align-self: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
 
     border-radius: 25px 25px 0 0;
 }
 
+.titres {
+  margin-bottom: 30vh;
+}
 
 .flex {
     display: flex;

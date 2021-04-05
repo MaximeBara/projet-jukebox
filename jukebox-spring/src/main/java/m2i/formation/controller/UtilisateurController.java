@@ -22,11 +22,12 @@ public class UtilisateurController {
 	@Autowired
 	private IUtilisateurDao utilisateurDao;
 
+
 	@GetMapping("")
 	@JsonView(IViews.IViewUtilisateur.class)
 	public List<Utilisateur> list() {
 		List<Utilisateur> utilisateurs = utilisateurDao.findAllUtilisateur();
 		return utilisateurs;
 	}
-
+	
 }

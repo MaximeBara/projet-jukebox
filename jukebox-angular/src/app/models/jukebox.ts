@@ -1,5 +1,6 @@
 import { Playlist } from "./playlist";
 import { Titre } from "./titre";
+import { Profile } from "./user";
 
 export interface Jukebox {
     id: number,
@@ -9,8 +10,8 @@ export interface Jukebox {
 
     titreEnCours: Titre,
     playlist: Playlist,
-    connectes: string[],
-    fans: string[],
-    administrateur: string,
+    connectes: Profile[],
+    fans: Profile[],
+    administrateur: Profile,
     encheres: string[]
 }

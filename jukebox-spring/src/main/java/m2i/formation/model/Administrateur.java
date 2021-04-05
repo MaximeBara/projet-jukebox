@@ -41,4 +41,8 @@ public class Administrateur extends Membre {
 		this.jukeboxes = jukeboxes;
 	}
 
+	public boolean isAdministrateur() {
+		return true;
+	}
+
 }

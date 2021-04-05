@@ -20,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import m2i.formation.dao.IEnchereDao;
 import m2i.formation.dao.IJukeboxDao;
+import m2i.formation.dao.IUtilisateurDao;
+import m2i.formation.model.Administrateur;
 import m2i.formation.model.Enchere;
 import m2i.formation.model.IViews;
 import m2i.formation.model.Jukebox;
@@ -35,6 +37,8 @@ public class JukeboxController {
 	private IJukeboxDao jukeboxDao;
 	@Autowired
 	private IEnchereDao enchereDao;
+	@Autowired
+	private IUtilisateurDao utilisateurDao;
 
 	@GetMapping("")
 	@JsonView(IViews.IViewJukebox.class)
@@ -213,6 +217,14 @@ public class JukeboxController {
 	@PostMapping("")
 	@JsonView(IViews.IViewJukebox.class)
 	public Jukebox create(@RequestBody Jukebox jukebox) {
+
+		System.out.println(!(jukebox.getAdministrateur() instanceof Administrateur));
+		if (jukebox.getAdministrateur().isAdministrateur()) {
+			utilisateurDao.setAdministrateur(jukebox.getAdministrateur().getId());
+		}
+		
+		jukebox.setTitreEnCours(null);
+
 		jukebox = jukeboxDao.save(jukebox);
 
 		return jukebox;

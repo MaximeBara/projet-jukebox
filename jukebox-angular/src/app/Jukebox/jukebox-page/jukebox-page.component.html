@@ -1,12 +1,26 @@
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-footer>
+        <div class="input">montant:<input [(ngModel)]="montantEnchere"></div>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+
+
+
 <div>
     <div class="flex">
         <h1>{{jukebox.nom}} playing {{jukebox.playlist.nom}}</h1>
     </div>
 
+    <p-toggleButton  label=" " [(ngModel)]="checked" ngDefaultControl (onChange)="toggleChange()"
+    offIcon="pi pi-heart" onIcon="pi pi-times" onLabel="" styleClass="p-button-rounded p-button-help"></p-toggleButton>
+
 
     <app-youtube #youtube (next)="nextTitre($event)" [titre]="titreEnCours"></app-youtube>
 
-    <div class="">
+
+
+    <div class="titres">
         <p-table [columns]="cols" [value]="jukebox.playlist.titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
             [virtualScroll]="true" [virtualRowHeight]="20">
             <ng-template pTemplate="header" let-columns>
@@ -29,6 +43,10 @@
                     </td>
                     <td>
                         {{titre.nom}}
+                    </td>
+                    <td>
+                        <button (click)="encherir(titre)" pButton icon="pi pi-check" label="Confirm"></button>
+                        <!-- <button (click)="encherir(titre)">Enchérir</button> -->
                     </td>
                 </tr>
             </ng-template>

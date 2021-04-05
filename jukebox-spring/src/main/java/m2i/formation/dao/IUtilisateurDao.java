@@ -3,7 +3,10 @@ package m2i.formation.dao;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -42,5 +45,10 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	Boolean isAdmin(@Param("idUser") Long idUser, @Param("idJukebox") Long idJukebox);
 
 	Boolean existsByPseudo(String pseudo);
+
+	@Transactional
+	@Modifying
+	@Query("update Utilisateur u set u.dtype = 'Administrateur' where u.id = :idUser")
+	void setAdministrateur(Long idUser);
 
 }

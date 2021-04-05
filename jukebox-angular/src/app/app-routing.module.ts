@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MembreGuard } from './helpers/membre.guard';
-import { JukeboxPageComponent } from './Jukebox/jukebox-page/jukebox-page.component';
 import {​​​​​​​​ MenuPageComponent }​​​​​​​​ from'./menu-page/menu-page.component';
 import {​​​​​​​​ HomePageComponent }​​​​​​​​ from'./home-page/home-page.component';
 import {​​​​​​​​ TitreComponent }​​​​​​​​ from'./titre/titre.component';
@@ -14,6 +13,8 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
 import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.component';
 import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
+import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.component';
+import { JukeboxPageComponent } from './jukebox/jukebox-page/jukebox-page.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -27,7 +28,7 @@ const routes: Routes = [
   
   /* Routes pour les jukebox */
   { path: 'jukeboxes', component: JukeboxesPageComponent, pathMatch: 'full' },
-  // { path: 'jukebox/create', component: CreateJukeboxPageComponent, pathMatch: 'full' },
+  { path: 'jukebox/create', component: CreateJukeboxComponent, pathMatch: 'full' },
   // { path: 'jukebox/join', component: JoinJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/favorites', component: CreateJukeboxPageComponent, pathMatch: 'full' },
   { path: 'jukebox/:id', component: JukeboxPageComponent, pathMatch: 'full' },

@@ -34,7 +34,7 @@ public class Jukebox {
 	@JsonView(IViews.IViewBasic.class)
 	private TypeEnchere typeEnchere;
 
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "titre_id")
 	@JsonView(IViews.IViewBasic.class)
 	private Titre titreEnCours;
