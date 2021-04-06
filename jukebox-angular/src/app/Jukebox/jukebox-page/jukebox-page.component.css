@@ -18,6 +18,22 @@
   background-color: black;
 }
 
+.line{
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.mouse{
+  text-align: center;
+  margin: 50px;
+}
+
+.mouse :hover{
+  cursor: pointer;
+  color: rgb(142, 37, 212);
+  background-color:rgba(0, 0, 0, 0);
+}
+
 .tr{
   text-align: left;
     padding: 1rem 1rem;

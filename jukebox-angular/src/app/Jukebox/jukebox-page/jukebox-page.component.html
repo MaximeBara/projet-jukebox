@@ -15,8 +15,8 @@
         <h1>{{jukebox.nom}} playing {{jukebox.playlist.nom}}</h1>
     </div>
     <div class="p-col-1 favori flex">
-        <p-toggleButton label=" " [(ngModel)]="checked" ngDefaultControl (onChange)="toggleChange()"
-            offIcon="pi pi-heart" onIcon="pi pi-times" onLabel="" styleClass="p-button-rounded p-button-help">
+        <p-toggleButton label=" " [(ngModel)]="checked" ngDefaultControl (onChange)="toggleChange()" 
+        offIcon="pi pi-heart" onIcon="pi pi-times" onLabel="" styleClass="p-button-rounded p-button-help">
         </p-toggleButton>
     </div>
 </div>
@@ -35,30 +35,30 @@
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <div class="p-grid tr">
-                        <div class="p-col-6 flex">
+                        <div class="p-col-8 flex">
                             Nom
                         </div>
                         <div class="p-col-4 flex">
                             Artiste
                         </div>
-                        <div class="p-col-2">
+                        <!-- <div class="p-col-2">
                             
-                        </div>
+                        </div> -->
                     </div>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-titre>
-                <tr>
-                    <div class="p-grid">
-                        <div class="p-col-6 flex">
+                <tr class="mouse" (click)="encherir(titre)"> 
+                    <div class="p-grid line">
+                        <div class="p-col-8 flex">
                             {{titre.nom}}
                         </div>
                         <div class="p-col-4 flex">
                             {{titre.artiste}}
                         </div>
-                        <div class="p-col-2 flex">
+                        <!-- <div class="p-col-2 flex">
                             <button (click)="encherir(titre)" pButton label="Enchérir"></button>
-                        </div>
+                        </div> -->
                     </div>
                 </tr>
             </ng-template>

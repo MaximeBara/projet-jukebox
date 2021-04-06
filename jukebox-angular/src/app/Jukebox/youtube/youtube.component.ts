@@ -15,8 +15,6 @@ export class YoutubeComponent implements OnInit {
     this.videoId = id;
   }
   @Output() next = new EventEmitter<string>();
-  
-
 
   ngOnInit() {
     const tag = document.createElement('script');
