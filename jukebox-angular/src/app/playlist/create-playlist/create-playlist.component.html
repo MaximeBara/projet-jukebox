@@ -21,16 +21,9 @@
                     <div class="col-25">
                         <label for="nom">Lien</label>
                     </div>
-                    <input type="text" class="form-control" name="lien" [(ngModel)]="form.lien" required minlength="34"
-                        maxlength="34" #lien="ngModel" />
+                    <input type="text" class="form-control" name="lien" [(ngModel)]="form.lien" required #lien="ngModel" />
                     <div class="alert-danger" *ngIf="lien.errors && f.submitted">
                         <div *ngIf="lien.errors.required">Le lien est nécessaire !</div>
-                        <div *ngIf="lien.errors.minlength">
-                            Le lien doit contenir 34 caractères
-                        </div>
-                        <div *ngIf="lien.errors.maxlength">
-                            Le lien doit contenir 34 caractères
-                        </div>
                     </div>
                 </div>
             </div>

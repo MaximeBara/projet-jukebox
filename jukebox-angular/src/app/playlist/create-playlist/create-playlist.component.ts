@@ -44,12 +44,19 @@ export class CreatePlaylistComponent implements OnInit {
     });
   }
 
+  youtube_parser(url: string): any {
+    var regPlaylist = /[?&]list=([^#\&\?]+)/;
+    var match = url.match(regPlaylist);
+    return match ? match[1] : "false";
+  }
+
   onSubmit(): void {
+    const lien = this.youtube_parser(this.form.lien);
     const playlist: Playlist = {
       id: 0,
       nom: this.form.nom,
       dateCreation: new Date(),
-      lien: this.form.lien,
+      lien: lien,
       createur: this.user,
       titres: [],
       jukeboxes: []

@@ -41,9 +41,16 @@ export class CreateTitreComponent implements OnInit {
     }
   }
 
+  youtube_parser(url: string): string {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match && match[7].length == 11) ? match[7] : "false";
+  }
+
   onSubmit(): void {
+    const lien = this.youtube_parser(this.form.lien);
     if (this.playlistId == 0) { // Création d'un titre classique
-      this.titreService.importFromYoutube(this.form.lien).subscribe(
+      this.titreService.importFromYoutube(lien).subscribe(
         data => {
           this.isSuccessful = true;
           this.isCreateFailed = false;
@@ -58,7 +65,7 @@ export class CreateTitreComponent implements OnInit {
         }
       );
     } else { // Création d'un titre + ajout à la playlist en question
-      this.titreService.importFromYoutube(this.form.lien).subscribe(
+      this.titreService.importFromYoutube(lien).subscribe(
         data => { // Mise à jour de la playlist en question
           this.currentPlaylist.titres?.push(data);
           this.playlistService.updatePlaylist(this.currentPlaylist).subscribe(
