@@ -22,32 +22,6 @@ export class JukeboxService {
 
   constructor(private http: HttpClient) {this.jukeboxSubject2 = new Subject<Jukebox>()}
 
-  // test2(): void{
-  //   this.http
-  //     .get<Jukebox>(`${this.route}/41/withPlaylistAndTitre`)
-  //     .subscribe((jukebox: Jukebox) => {
-  //       this.jukeboxSubject2.next(jukebox);
-  //     });
-  // }
-
-
-  // test(id: number): void{
-  //   this.http
-  //     .get<Jukebox>(`${this.route}/${id}/withPlaylistAndTitre`)
-  //     .subscribe((jukebox: Jukebox) => {
-  //       this.jukeboxSubject2.next(jukebox);
-  //     });
-  // }
-
-
-  // getByIdWithPlaylistAndTitre2(id: number): void {
-  //   this.http
-  //     .get<Jukebox>(`${this.route}/${id}/withPlaylistAndTitre`)
-  //     .toPromise().then((jukebox: Jukebox) => {
-  //       this.jukeboxSubject.next(jukebox);
-  //     });
-  // }
-
   createJukebox(jukebox: Jukebox): Observable<Jukebox>{
     return this.http.post<Jukebox>(`${this.route}`, jukebox, httpOptions);
   }
@@ -92,6 +66,6 @@ export class JukeboxService {
   }
 
   getAllFavorisByMembre(id: number): Observable<Jukebox[]>{
-    return this.http.get<Jukebox[]>(`${this.route}/${id}/findAllFavorisByMembre`);
+    return this.http.get<Jukebox[]>(`${this.route}/${id}/allFavorisByMembre`);
   }
 }

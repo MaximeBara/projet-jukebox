@@ -17,13 +17,10 @@ export class JukeboxesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.tokenStorageService.getUser().id;
-    // this.jukeboxService.getAllJukeboxByAdministrateur(this.userId).subscribe((jukeboxes: Jukebox[]) => {
-    //   this.jukeboxes = jukeboxes;
-    // });
+
     this.jukeboxService.getAllJukebox().subscribe((jukeboxes: Jukebox[]) => {
       this.jukeboxes = jukeboxes;
     });
-    this.userId = this.tokenStorageService.getUser().id;
 
   }
 

@@ -1,14 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
+.center {
+  width: 100vw;
+  align-items: center;
+}
+
+.title{
+  padding-left: 10em;
+  padding-right: 5m;
+}
+
+.youtubeback{
+  background-color: black;
+}
+
+.favori{
+  /* margin: 10em; */
+  align-items: center;
+}
+
 .input {
-  margin: 5vw;
+  /* margin: 5vw; */
 }
 
 .titre {
     width: 100vw;
     margin-top: 2vh;
     background-color: blue;
-    align-self: center;
+    
     position: fixed;
     bottom: 0;
     left: 0;
@@ -30,9 +49,6 @@
 h2 {
     font-size: calc(10px + 4vh);
     line-height: calc(10px + 5vh);
-  /*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-      0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-    color: #fccaff; */
     text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
       color: #fff6a9;
     font-family: "Sacramento", cursive;

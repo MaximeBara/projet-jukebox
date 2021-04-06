@@ -1,24 +1,33 @@
 <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
     <p-footer>
-        <div class="input">montant:<input [(ngModel)]="montantEnchere"></div>
-        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+        <div class="p-grid">
+            <div class="p-col input">montant:<input [(ngModel)]="montantEnchere"></div>
+            <div class="p-col"><button type="button" pButton icon="pi pi-check" label="Yes"
+                    (click)="cd.accept()"></button></div>
+        </div>
     </p-footer>
 </p-confirmDialog>
 
 
 
-<div>
-    <div class="flex">
+<div class="p-grid">
+    <div class="p-col-11 title flex">
         <h1>{{jukebox.nom}} playing {{jukebox.playlist.nom}}</h1>
     </div>
+    <div class="p-col-1 favori flex">
+        <p-toggleButton label=" " [(ngModel)]="checked" ngDefaultControl (onChange)="toggleChange()"
+            offIcon="pi pi-heart" onIcon="pi pi-times" onLabel="" styleClass="p-button-rounded p-button-help">
+        </p-toggleButton>
+    </div>
+</div>
 
-    <p-toggleButton  label=" " [(ngModel)]="checked" ngDefaultControl (onChange)="toggleChange()"
-    offIcon="pi pi-heart" onIcon="pi pi-times" onLabel="" styleClass="p-button-rounded p-button-help"></p-toggleButton>
+<div class="p-grid youtubeback">
+    <div class="p-col flex center youtube">
+        <app-youtube #youtube (next)="nextTitre($event)" [titre]="titreEnCours"></app-youtube>
+    </div>
+</div>
 
-
-    <app-youtube #youtube (next)="nextTitre($event)" [titre]="titreEnCours"></app-youtube>
-
-
+<div>
 
     <div class="titres">
         <p-table [columns]="cols" [value]="jukebox.playlist.titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
@@ -46,7 +55,6 @@
                     </td>
                     <td>
                         <button (click)="encherir(titre)" pButton icon="pi pi-check" label="Confirm"></button>
-                        <!-- <button (click)="encherir(titre)">Enchérir</button> -->
                     </td>
                 </tr>
             </ng-template>

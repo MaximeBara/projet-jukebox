@@ -14,7 +14,6 @@ import { Jukebox } from 'src/app/models/jukebox';
 import { Titre } from 'src/app/models/titre';
 import { EnchereService } from 'src/app/services/enchere.service';
 import { JukeboxService } from 'src/app/services/jukebox.service';
-// import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ConfirmationService, SelectItem, PrimeNGConfig } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
@@ -48,13 +47,12 @@ export class JukeboxPageComponent implements OnInit {
 
   @ViewChild('youtube') youtube: any;
 
-  refreshJukebox = new BehaviorSubject<boolean>(true);
-  refreshTitres = new BehaviorSubject<boolean>(true);
+  // refreshJukebox = new BehaviorSubject<boolean>(true);
+  // refreshTitres = new BehaviorSubject<boolean>(true);
 
   idEnchere!: number;
   montantEnchere!: number;
 
-  // @ViewChild('cd') cd: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -62,27 +60,22 @@ export class JukeboxPageComponent implements OnInit {
     private utilisateurApi: UtilisateurService,
     private enchereApi: EnchereService,
     private confirmationService: ConfirmationService,
-    private primengConfig: PrimeNGConfig,
     private tokenStorageService: TokenStorageService,
-    private utilisateurService: UtilisateurService
   ) {}
 
   ngAfterContentInit(){
-    this.youtube.player.playVideo();
+    setTimeout(this.youtube.player.playVideo(), 5000);
+    // this.youtube.player.playVideo();
+  }
 
+  ngAfterContentChecked(){
+    // this.youtube.player.playVideo();
   }
 
   ngOnInit(): void {
-    // this.primengConfig.ripple = true;
-
-    this.activatedRoute.data.subscribe((data) => {
-      this.userId = this.tokenStorageService.getUser().id;
-      // this.utilisateurService.getByIdProfil(this.userId).subscribe((data) => {
-      //   this.user = data;
-      // });
-    });
 
     this.activatedRoute.params.subscribe((params) => {
+      this.userId = this.tokenStorageService.getUser().id;
       this.id = parseInt(params.id);
     });
 
@@ -100,25 +93,6 @@ export class JukeboxPageComponent implements OnInit {
           return titre.id !== this.titreEnCours.id;
         });
       });
-
-    // this.jukeboxApi.getByIdWithPlaylistAndTitre2(this.id);
-
-    // this.jukeboxApi.jukeboxObservable$.subscribe((jukebox: Jukebox) => {
-    //   this.jukebox = jukebox;
-
-    //   if (jukebox.titreEnCours == null) {
-    //     jukebox.titreEnCours = jukebox.playlist.titres[0];
-    //   }
-
-    //   this.titreEnCours = jukebox.titreEnCours;
-    //   this.titresAJouer = jukebox.playlist.titres;
-    //   this.titresAJouer = this.titresAJouer.filter((titre: Titre) => {
-    //     return titre.id !== this.titreEnCours.id;
-    //   });
-
-    //   console.log(jukebox);
-    //   console.log(this.jukebox);
-    // });
 
     this.utilisateurApi
     .isFavori(this.userId, this.id)
@@ -140,35 +114,6 @@ export class JukeboxPageComponent implements OnInit {
     console.log('ok');
   }
 
-  // nextTitre2(event: string) {
-  //   this.jukeboxApi
-  //     .getByIdAllTitreOrderByEnchereSwapEnCours(this.id)
-  //     .toPromise()
-  //     .then();
-
-  //   this.jukeboxApi.getByIdWithPlaylistAndTitre2(this.id);
-
-  //   this.jukeboxApi.test(this.id);
-
-  //   this.jukeboxApi.jukeboxObservable$.subscribe((jukebox: Jukebox) => {
-  //     this.jukebox = jukebox;
-
-  //     if (jukebox.titreEnCours == null) {
-  //       jukebox.titreEnCours = jukebox.playlist.titres[0];
-  //     }
-
-  //     this.titreEnCours = jukebox.titreEnCours;
-  //     this.titresAJouer = jukebox.playlist.titres;
-  //     this.titresAJouer = this.titresAJouer.filter((titre: Titre) => {
-  //       return titre.id !== this.titreEnCours.id;
-  //     });
-
-  //     this.youtube.videoId = this.titreEnCours.lien;
-  //     this.youtube.player.playVideo();
-
-  //     subject.next(this.jukebox);
-  //   });
-  // }
 
   nextTitre(event: string) {
     this.jukeboxApi
@@ -176,24 +121,13 @@ export class JukeboxPageComponent implements OnInit {
       .toPromise()
       .then((titre: Titre) => {
         if (titre === null) titre = this.titresAJouer[0];
-
-        console.log(this.titreEnCours);
         this.titreEnCours = titre;
-        console.log(titre);
-        // this.refreshTitres.next(false);
-        // this.refreshJukebox.next(false);
-
         this.titresAJouer = this.titresAJouer.filter(
           (titre: Titre) => titre.id !== this.titreEnCours.id
         );
-
-        // console.log(this.titresAJouer);
-
         this.jukeboxApi
           .setTerminee(this.jukebox.id, this.titreEnCours.id)
           .subscribe();
-        // console.log(this.jukebox.id + '' + this.titreEnCours.id);
-
         this.youtube.videoId = titre.lien;
         this.youtube.player.playVideo();
 
@@ -206,13 +140,6 @@ export class JukeboxPageComponent implements OnInit {
     this.confirmationService.confirm({
       message: `Combien voulez-vous enchérir sur le titre ${myTitre.nom} ?`,
       accept: () => {
-        console.log(myTitre);
-        console.log(this.montantEnchere);
-
-        console.log(this.titreEnCours);
-
-        console.log(this.youtube.videoId);
-
         const enchere: Enchere = {
           id: 0,
           dateTime: new Date(),
@@ -223,28 +150,14 @@ export class JukeboxPageComponent implements OnInit {
           titre: myTitre,
           type: 'P',
         };
-
         this.enchereApi.postEnchere(enchere).subscribe();
       },
     });
   }
 
   toggleChange() {
-    console.log('ok');
-    console.log(this.checked);
-
-    // let isFavori = true;
-
-    // this.utilisateurApi
-    //   .isFavori(this.userId, this.id)
-    //   .subscribe((b: boolean) => {
-    //     isFavori = b;
-    //   });
-
     this.checked
       ? this.utilisateurApi.addFavori(this.userId, this.jukebox).subscribe()
       : this.utilisateurApi.removeFavori(this.userId, this.jukebox).subscribe();
-
-    // this.checked = !this.checked;
   }
 }

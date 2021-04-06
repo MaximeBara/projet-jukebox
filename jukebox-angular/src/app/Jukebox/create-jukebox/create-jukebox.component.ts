@@ -74,14 +74,14 @@ export class CreateJukeboxComponent implements OnInit {
       });
   }
 
-  test() {
-    console.log(this.playlists);
-    console.log(this.playlistSelected);
-  }
+  // test() {
+  //   console.log(this.playlists);
+  //   console.log(this.playlistSelected);
+  // }
 
-  consoleLog($value: any){
-    console.log($value);
-  }
+  // consoleLog($value: any){
+  //   console.log($value);
+  // }
 
    randomCode(size: number): string {
     var result           = [];
@@ -95,14 +95,6 @@ export class CreateJukeboxComponent implements OnInit {
 }
 
   onSubmit(): void {
-
-    console.log(this.form);
-
-    console.log(this.nomJukebox);
-    console.log(this.selectedType);
-    console.log(this.selectedPlaylist);
-
-    // myCode = this.randomCode();
 
     const jukebox: Jukebox = {
       id: 0,

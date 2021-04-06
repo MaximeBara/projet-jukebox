@@ -9,14 +9,11 @@ import { Titre } from 'src/app/models/titre';
 export class YoutubeComponent implements OnInit {
   @ViewChild('player') player: any;
   videoId!: string;
-
   @Input() titre!: Titre;
-
   @Input()
   set id(id: string) {
     this.videoId = id;
   }
-
   @Output() next = new EventEmitter<string>();
   
 
@@ -25,7 +22,6 @@ export class YoutubeComponent implements OnInit {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
-
     this.videoId = this.titre.lien;
   }
 
@@ -37,26 +33,16 @@ export class YoutubeComponent implements OnInit {
   onStateChange(event: any) {
     switch (event.data) {
       case 0:
-        // console.log('video ended');
         this.changeVideo();
         break;
       case 1:
-        // console.log('video playing from ' + this.player.getCurrentTime());
         break;
       case 2:
-        // console.log('video paused at ' + this.player.getCurrentTime());
         if(this.player.getCurrentTime() == 0) this.player.playVideo();
     }
   }
 
   changeVideo() {
     this.next.emit('complete');
-  }
-
-  changeVidEnd(event: string) {
-    console.log("fin")
-    this.videoId = this.titre.lien;
-    console.log(this.videoId)
-    this.player.playVideo();
   }
 }
