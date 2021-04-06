@@ -1,6 +1,6 @@
 <div class="img">
     <div class="grey">
-        <div class="center">Ajout d'un titre <span *ngIf="playlistId">à la playlist XXX</span></div>
+        <div class="center">Ajout d'un titre <span *ngIf="playlistId">à la playlist {{ this.currentPlaylist.nom }}</span></div>
         <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <div class="form-group">
                 <div class="col-25">
