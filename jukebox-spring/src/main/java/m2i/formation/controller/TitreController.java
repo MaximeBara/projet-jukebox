@@ -120,11 +120,6 @@ public class TitreController {
 
 		return new Titre(je.get("title").getAsString(), je.get("channelTitle").getAsString(), lien);
 	}
-	
-	private String getTitreIdFromUrl(String url) {
-		
-		return "";
-	}
 
 	@PutMapping("/{id}")
 	@JsonView(IViews.IViewTitre.class)
