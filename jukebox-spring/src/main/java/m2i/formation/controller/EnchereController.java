@@ -39,15 +39,11 @@ public class EnchereController {
 	}
 
 	@GetMapping("/findByMembre/{id}")
-	@JsonView(IViews.IViewEnchere.class)
+	@JsonView(IViews.IViewEnchereWithAll.class)
 	public List<Enchere> findAllByMembre(@PathVariable Long id) {
-		
-		
-		
+
 		List<Enchere> encheres = enchereDao.findAllEnchereByMembre(id);
 
-		System.out.println(encheres);
-		
 		return encheres;
 	}
 

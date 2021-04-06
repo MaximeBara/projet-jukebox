@@ -179,7 +179,7 @@ console.log(this.user);
           dateTime: new Date(),
           valeur: this.montantEnchere,
           terminee: false,
-          user: this.user,
+          membre: this.user,
           jukebox: this.jukebox,
           titre: myTitre,
           type: 'P',

@@ -12,11 +12,12 @@
     </ng-template>
     <ng-template pTemplate="body" let-enchere>
         <tr>
-            <td>{{enchere.dateTime}}</td>
+            <td>{{enchere.dateTime | date:'dd/MM/yyyy - HH:mm:ss'}}</td>
             <td>{{enchere.valeur}}</td>
-            <td>{{enchere.terminee}}</td>
-            <td>{{enchere.jukebox}}</td>
-            <td>{{enchere.titre}}</td>
+            <td *ngIf="enchere.terminee">Oui</td>
+            <td *ngIf="!enchere.terminee">Non</td>
+            <td>{{enchere.jukebox.nom}}</td>
+            <td>{{enchere.titre.nom}}</td>
         </tr>
     </ng-template>
 </p-table>

@@ -19,7 +19,11 @@ export class EnchereComponent implements OnInit {
     this.userId = this.tokenStorageService.getUser().id;
     this.enchereService.getAllEncheresByUser(this.userId).subscribe((encheres: Enchere[]) => {
       this.encheres = encheres;
+
+      console.log(this.encheres)
     });
+
+    
   }
 
 }

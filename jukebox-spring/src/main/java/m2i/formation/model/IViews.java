@@ -33,6 +33,9 @@ public interface IViews {
 
 	public static interface IViewEnchereWithTitre extends IViewEnchere {
 	}
+	
+	public static interface IViewEnchereWithAll extends IViewEnchereWithMembre, IViewEnchereWithJukebox, IViewEnchereWithTitre {
+	}
 
 	public static interface IViewUtilisateur extends IViewBasic {
 	}

@@ -7,7 +7,7 @@ export interface Enchere {
     dateTime: Date,
     valeur: number,
     terminee: boolean,
-    user: Profile,
+    membre: Profile,
     jukebox: Jukebox,
     titre: Titre,
     type: String
