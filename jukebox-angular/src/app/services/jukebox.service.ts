@@ -90,4 +90,8 @@ export class JukeboxService {
   getByCode(code: string): Observable<Jukebox>{
     return this.http.get<Jukebox>(`${this.route}/findByCode/${code}`);
   }
+
+  getAllFavorisByMembre(id: number): Observable<Jukebox[]>{
+    return this.http.get<Jukebox[]>(`${this.route}/${id}/findAllFavorisByMembre`);
+  }
 }
