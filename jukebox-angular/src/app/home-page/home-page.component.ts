@@ -63,8 +63,6 @@ export class HomePageComponent implements OnInit {
 
            this.router.navigate(['/jukebox/'+jukeboxeSerch.id]);
            
-
-          console.log(jukeboxeSerch.id)
         });
 
         

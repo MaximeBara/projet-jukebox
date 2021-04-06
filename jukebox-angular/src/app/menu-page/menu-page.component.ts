@@ -51,16 +51,7 @@ export class MenuPageComponent implements OnInit {
             {
                label: 'Jukebox Favoris',
                icon: 'pi pi-fw pi-star',
-               items: [
-                  {
-                     label: 'Ajouter',
-                     icon: 'pi pi-fw pi-plus',
-                  },
-                  {
-                     icon: 'pi pi-fw pi-bars',
-                     label: 'List'
-                  }
-               ]
+               routerLink: ['/favoris']   
             },
             {
                label: 'Jukebox',

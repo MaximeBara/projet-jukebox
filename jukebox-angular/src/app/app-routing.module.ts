@@ -15,6 +15,7 @@ import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.
 import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
 import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.component';
 import { JukeboxPageComponent } from './jukebox/jukebox-page/jukebox-page.component';
+import { FavorisComponent } from './favoris/favoris.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, pathMatch: 'full', canActivate: [MembreGuard] },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
+  { path: 'favoris', component: FavorisComponent, pathMatch: 'full' },
   
   /* Routes pour les jukebox */
   { path: 'jukeboxes', component: JukeboxesPageComponent, pathMatch: 'full' },

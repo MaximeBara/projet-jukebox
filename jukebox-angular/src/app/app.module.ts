@@ -37,6 +37,7 @@ import { EnchereComponent } from './enchere/enchere.component';
 import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.component';
 import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
 import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.component';
+import { FavorisComponent } from './favoris/favoris.component';
 
 
 
@@ -59,6 +60,7 @@ import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.
     JukeboxesPageComponent,
     CreateTitreComponent,
     CreateJukeboxComponent,
+    FavorisComponent,
   ],
   imports: [
     BrowserModule,
