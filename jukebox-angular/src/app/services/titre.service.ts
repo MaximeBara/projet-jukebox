@@ -19,6 +19,9 @@ export class TitreService {
   getAllTitresByPlaylist(id: number): Observable<Titre[]>{
     return this.http.get<Titre[]>(`${this.route}/${id}/allByPlaylist`);
   }
+  getTop5Titres(): Observable<Titre[]> {
+    return this.http.get<Titre[]>(`${this.route}/allByIdDesc`);
+  }
   importFromYoutube(lien: String): Observable<Titre>{
     return this.http.post<Titre>(`${this.route}/createByLien/${lien}`, lien);
   }

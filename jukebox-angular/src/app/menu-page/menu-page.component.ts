@@ -12,13 +12,19 @@ export class MenuPageComponent implements OnInit {
    items: MenuItem[] = [];
    isLoggedIn = false;
 
-   loggin: MenuItem = {
+   loginItem: MenuItem = {
       label: '',
       icon: '',
       routerLink: ['']
    }
 
-   user: MenuItem = {
+   signupItem: MenuItem = {
+      label: '',
+      icon: '',
+      routerLink: ['']
+   }
+
+   userItem: MenuItem = {
       label: '',
       icon: '',
       routerLink: ['']
@@ -32,12 +38,12 @@ export class MenuPageComponent implements OnInit {
 
       if (this.isLoggedIn) {
          const user = this.tokenStorageService.getUser();
-         this.user = {
+         this.userItem = {
             label: user.pseudo,
             icon: 'pi pi-user',
             routerLink: ['/profile']
-         }
-         this.loggin = {
+         };
+         this.loginItem = {
             label: 'Déconnexion',
             icon: 'pi pi-fw pi-power-off',
             style: 'red'
@@ -69,7 +75,7 @@ export class MenuPageComponent implements OnInit {
                routerLink: ['/titres']
             },
             {
-               label: 'About',
+               label: 'A propos',
                icon: 'pi pi-fw pi-thumbs-up',
                routerLink: ['/about']
             },
@@ -80,9 +86,13 @@ export class MenuPageComponent implements OnInit {
             }
          ];
       } else {
-         this.loggin = {
-            label: 'Login',
+         this.loginItem = {
+            label: 'Connexion',
             icon: 'pi pi-fw pi-power-off'
+         };
+         this.signupItem = {
+            label: 'Inscription',
+            icon: 'pi pi-fw pi-save'
          };
          this.items = [
             {
@@ -91,7 +101,7 @@ export class MenuPageComponent implements OnInit {
                routerLink: ['']
             },
             {
-               label: 'About',
+               label: 'A propos',
                icon: 'pi pi-fw pi-thumbs-up',
                routerLink: ['/about']
             },
@@ -111,17 +121,24 @@ export class MenuPageComponent implements OnInit {
       window.location.replace('');
    }
 
-   btnClick(): void {
-
+   login(): void {
       if (this.isLoggedIn) {
          const user = this.tokenStorageService.getUser();
          this.tokenStorageService.signOut();
          window.location.replace('');
-
       } else {
          window.location.replace('/login');
       }
+   }
 
-   };
+   signup(): void {
+      if (this.isLoggedIn) {
+         const user = this.tokenStorageService.getUser();
+         this.tokenStorageService.signOut();
+         window.location.replace('');
+      } else {
+         window.location.replace('/inscription');
+      }
+   }
 
 }

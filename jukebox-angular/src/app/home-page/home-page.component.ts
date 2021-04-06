@@ -31,6 +31,7 @@ export class HomePageComponent implements OnInit {
   editMode = false;
  
   constructor(private playlistService: PlaylistService,
+    private titreService: TitreService,
     private confirmationService: ConfirmationService,
      private primengConfig: PrimeNGConfig,
      private jukeboxService: JukeboxService,
@@ -43,6 +44,9 @@ export class HomePageComponent implements OnInit {
     this.playlistService.getTop5Playlists().subscribe(data => {
       this.playlists = data;
     });
+    this.titreService.getTop5Titres().subscribe(data => {
+      this.titres = data;
+    })
   }
 
   code() {

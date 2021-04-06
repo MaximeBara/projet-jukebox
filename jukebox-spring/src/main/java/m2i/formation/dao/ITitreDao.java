@@ -19,5 +19,7 @@ public interface ITitreDao extends JpaRepository<Titre, Long> {
 
 	@Query("select t from Titre t where t.lien LIKE :lien")
 	public Optional<Titre> findByLien(@Param("lien") String lien);
-	
+
+	public List<Titre> findByOrderByIdDesc();
+
 }

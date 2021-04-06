@@ -1,58 +1,31 @@
 <div class="img">
-<div class="grey">
-    <form
-    *ngIf="!isLoggedIn"
-    name="form"
-    (ngSubmit)="f.form.valid && onSubmit()"
-    #f="ngForm"
-    novalidate
-  >
+  <div class="grey">
+    <div class="center">Connexion</div>
+    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <label for="pseudo">Pseudo</label>
-      <input
-        type="text"
-        name="pseudo"
-        [(ngModel)]="form.pseudo"
-        required
-        #pseudo="ngModel"
-      />
-      <div
-        role="alert"
-        *ngIf="pseudo.errors && f.submitted"
-      >
+      <input type="text" name="pseudo" [(ngModel)]="form.pseudo" required #pseudo="ngModel" />
+      <div role="alert" *ngIf="pseudo.errors && f.submitted">
         Le pseudo est nécessaire !
       </div>
-      <label for="motDePasse">Mot de passe</label><br/>
-      <input
-        type="password"
-        name="motDePasse"
-        [(ngModel)]="form.motDePasse"
-        required
-        minlength="6"
-        #motDePasse="ngModel"
-      />
-      <div
-        role="alert"
-        *ngIf="motDePasse.errors && f.submitted"
-      >
+      <label for="motDePasse">Mot de passe</label><br />
+      <input type="password" name="motDePasse" [(ngModel)]="form.motDePasse" required minlength="6"
+        #motDePasse="ngModel" />
+      <div role="alert" *ngIf="motDePasse.errors && f.submitted">
         <div *ngIf="motDePasse.errors.required">Le mot de passe est nécessaire !</div>
         <div *ngIf="motDePasse.errors.minlength">
           Le mot de passe doit contenir au moins 6 caractères
         </div>
       </div>
-    <div>
-      <button type='submit'>
-        Login
-      </button>
-    </div>
-    <div>
-      <div
-        role="alert"
-        *ngIf="f.submitted && isLoginFailed"
-      >
-        Login failed: {{ errorMessage }}
+      <div>
+        <button type='submit'>
+          Se connecter
+        </button>
       </div>
-    </div>
-  </form>
-  <a routerLink='/inscription'>inscription</a>
-</div>
+      <div>
+        <div role="alert" *ngIf="f.submitted && isLoginFailed">
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
