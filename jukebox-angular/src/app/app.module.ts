@@ -22,7 +22,7 @@ import { AppComponent } from './app.component';
 import { JukeboxPageComponent } from './jukebox/jukebox-page/jukebox-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MenuPageComponent } from './menu-page/menu-page.component';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -34,10 +34,11 @@ import { TitreComponent } from './titre/titre.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
 import { EnchereComponent } from './enchere/enchere.component';
-import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.component';
+import { JukeboxesPageComponent } from './jukebox/jukeboxes-page/jukeboxes-page.component';
 import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
 import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.component';
 import { FavorisComponent } from './favoris/favoris.component';
+import { RedirectionComponent } from './redirection/redirection.component';
 
 
 
@@ -61,6 +62,7 @@ import { FavorisComponent } from './favoris/favoris.component';
     CreateTitreComponent,
     CreateJukeboxComponent,
     FavorisComponent,
+    RedirectionComponent,
   ],
   imports: [
     BrowserModule,

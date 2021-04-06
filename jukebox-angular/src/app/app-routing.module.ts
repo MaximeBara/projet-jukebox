@@ -11,11 +11,12 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CreatePlaylistComponent } from './playlist/create-playlist/create-playlist.component';
-import { JukeboxesPageComponent } from './Jukebox/jukeboxes-page/jukeboxes-page.component';
+import { JukeboxesPageComponent } from './jukebox/jukeboxes-page/jukeboxes-page.component';
 import { CreateTitreComponent } from './titre/create-titre/create-titre.component';
 import { CreateJukeboxComponent } from './jukebox/create-jukebox/create-jukebox.component';
 import { JukeboxPageComponent } from './jukebox/jukebox-page/jukebox-page.component';
 import { FavorisComponent } from './favoris/favoris.component';
+import { RedirectionComponent } from './redirection/redirection.component';
 
 const routes: Routes = [
   /* Routes de base */
@@ -26,14 +27,14 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, pathMatch: 'full', canActivate: [MembreGuard] },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent, pathMatch: 'full' },
-  { path: 'favoris', component: FavorisComponent, pathMatch: 'full' },
+  { path: 'favoris', component: FavorisComponent, pathMatch: 'full', canActivate: [MembreGuard] },
   
   /* Routes pour les jukebox */
-  { path: 'jukeboxes', component: JukeboxesPageComponent, pathMatch: 'full' },
-  { path: 'jukebox/create', component: CreateJukeboxComponent, pathMatch: 'full' },
+  { path: 'jukeboxes', component: JukeboxesPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
+  { path: 'jukebox/create', component: CreateJukeboxComponent, pathMatch: 'full', canActivate: [MembreGuard] },
   // { path: 'jukebox/join', component: JoinJukeboxPageComponent, pathMatch: 'full' },
   // { path: 'jukebox/favorites', component: CreateJukeboxPageComponent, pathMatch: 'full' },
-  { path: 'jukebox/:id', component: JukeboxPageComponent, pathMatch: 'full' },
+  { path: 'jukebox/:id', component: JukeboxPageComponent, pathMatch: 'full', canActivate: [MembreGuard] },
   // { path: 'jukebox/:id/update', component: UpdateJukeboxPageComponent, pathMatch: 'full' },
 
   /* Routes pour les playlists */
@@ -46,6 +47,8 @@ const routes: Routes = [
   /* Routes pour les titres */
   { path: 'titres', component: TitreComponent, pathMatch: 'full', canActivate: [MembreGuard] },
   { path: 'titres/create', component: CreateTitreComponent, pathMatch: 'full', canActivate: [MembreGuard] },
+
+  { path: 'redirection', component: RedirectionComponent, pathMatch: 'full' },
 
 ];
 

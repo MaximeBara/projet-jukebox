@@ -19,7 +19,7 @@ export class MembreGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/redirection']);
     return false;
   }
 

@@ -8,13 +8,12 @@
     <div>
         <video autoplay muted loop id="myVideo">
             <source src="../../assets/menu/Light Effect - 3129.mp4" type="video/mp4">
-
         </video>
         <div id="buton">
             <p-button label="Rejoindre un jukebox" (click)='code()'></p-button>
         </div>
         <div id="tab">
-            <h2> Les derniéres playlists :</h2>
+            <h2>Les dernières playlists :</h2>
             <p-table *ngIf="playlists" [value]="playlists" [rows]="5">
                 <ng-template pTemplate="header">
                     <tr>
@@ -34,7 +33,7 @@
             </p-table>
         </div>
         <div id="tab2">
-            <h2> les titres :</h2>
+            <h2>Les titres :</h2>
             <p-table *ngIf="titres" [value]="titres" [rows]="5">
                 <ng-template pTemplate="header">
                     <tr>
