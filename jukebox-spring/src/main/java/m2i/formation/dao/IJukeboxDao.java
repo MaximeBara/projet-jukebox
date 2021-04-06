@@ -79,4 +79,6 @@ public interface IJukeboxDao extends JpaRepository<Jukebox, Long> {
 			+ "GROUP BY e.titre.id " + "ORDER BY sum(e.valeur) DESC")
 	public List<Titre> findNextTitre(@Param("id") Long id);
 
+	@Query("select j from Membre m join m.jukeboxFavoris j where m.id = :id")
+	public List<Jukebox> findAllFavorisByMembre(@Param("id") Long id);
 }

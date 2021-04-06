@@ -1,4 +1,3 @@
-<p>create-jukebox works!</p>
 <div class="img">
     <div class="grey">
 
@@ -25,17 +24,11 @@
                 <div class="col-25">
                     <label for="nom">Type Enchere</label>
                 </div>
-                <select [(ngModel)]="selectedType" name="type" #type="ngModel"> 
+                <select [(ngModel)]="selectedType" name="type" #type="ngModel" required> 
                     <option *ngFor="let t of typeJukebox" [ngValue]='t.code'>{{t.nom}}</option>
                 </select>
                 <div class="alert-danger" *ngIf="type.errors && f.submitted">
                     <div *ngIf="type.errors.required">Le nom est nécessaire !</div>
-                    <div *ngIf="type.errors.minlength">
-                        Le nom doit contenir au minimum 3 caractères
-                    </div>
-                    <div *ngIf="type.errors.maxlength">
-                        Le nom doit contenir au maximum 20 caractères
-                    </div>
                 </div>
             </div>
 
@@ -45,20 +38,11 @@
                 <div class="col-25">
                     <label for="nom">Playlist</label>
                 </div>
-                <select [(ngModel)]="selectedPlaylist" name="playlist" #playlist="ngModel"> 
+                <select [(ngModel)]="selectedPlaylist" name="playlist" #playlist="ngModel" required> 
                     <option *ngFor="let p of playlists" [ngValue]="p">{{p.nom}}</option>
                 </select>
-
-                {{selectedPlaylist | json}}
-
                 <div class="alert-danger" *ngIf="playlist.errors && f.submitted">
-                    <div *ngIf="playlist.errors.required">Le nom est nécessaire !</div>
-                    <div *ngIf="playlist.errors.minlength">
-                        Le nom doit contenir au minimum 3 caractères
-                    </div>
-                    <div *ngIf="playlist.errors.maxlength">
-                        Le nom doit contenir au maximum 20 caractères
-                    </div>
+                    <div *ngIf="playlist.errors.required">La playlist est nécessaire !</div>
                 </div>
             </div>
 
@@ -70,12 +54,12 @@
             </div>
 
             <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
-                La création de la playlist a échoué !<br />{{ errorMessage }}
+                La création du Jukebox a échoué !<br />{{ errorMessage }}
             </div>
         </form>
 
         <div class="alert alert-success" *ngIf="isSuccessful">
-            La création de la playlist a réussi !
+            La création du Jukebox a réussi !
         </div>
     </div>
 </div>

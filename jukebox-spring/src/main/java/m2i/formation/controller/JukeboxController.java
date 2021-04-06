@@ -75,6 +75,14 @@ public class JukeboxController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/{id}/allFavorisByMembre")
+	@JsonView(IViews.IViewJukebox.class)
+	public List<Jukebox> findAllFavorisByMembre(@PathVariable Long id) {
+		List<Jukebox> jukeboxes = jukeboxDao.findAllFavorisByMembre(id);
+
+		return jukeboxes;
+	}
 
 	@GetMapping("/findByCode/{code}")
 	@JsonView(IViews.IViewJukebox.class)

@@ -24,7 +24,6 @@ import m2i.formation.dao.IUtilisateurDao;
 import m2i.formation.model.IViews;
 import m2i.formation.model.Jukebox;
 import m2i.formation.model.Membre;
-import m2i.formation.model.Utilisateur;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")

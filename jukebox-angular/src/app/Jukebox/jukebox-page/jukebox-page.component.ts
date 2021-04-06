@@ -67,8 +67,13 @@ export class JukeboxPageComponent implements OnInit {
     private utilisateurService: UtilisateurService
   ) {}
 
+  ngAfterContentInit(){
+    this.youtube.player.playVideo();
+
+  }
+
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
+    // this.primengConfig.ripple = true;
 
     this.activatedRoute.data.subscribe((data) => {
       this.userId = this.tokenStorageService.getUser().id;
@@ -128,7 +133,7 @@ export class JukeboxPageComponent implements OnInit {
       { header: 'Nom' },
     ];
 
-    this.youtube.player.playVideo();
+    // this.youtube.player.playVideo();
   }
 
   accept() {
