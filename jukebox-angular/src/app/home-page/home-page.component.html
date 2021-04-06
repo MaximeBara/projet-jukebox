@@ -1,52 +1,54 @@
-<p-confirmDialog #cd [style]="{width: '50vw'}" [baseZIndex]="10000">
-    <p-footer>
-        <input type="text" [(ngModel)]="numero">
-        <button type="button" pButton icon="pi pi-check" label="Valider" (click)="cd.accept()"></button>
-    </p-footer>
-</p-confirmDialog>
-<div>
-    <video autoplay muted loop id="myVideo">
-        <source src="../../assets/menu/Light Effect - 3129.mp4" type="video/mp4">
+<div id="fond">
+    <p-confirmDialog #cd [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <p-footer>
+            <input type="text" [(ngModel)]="numero">
+            <button type="button" pButton icon="pi pi-check" label="Valider" (click)="cd.accept()"></button>
+        </p-footer>
+    </p-confirmDialog>
+    <div>
+        <video autoplay muted loop id="myVideo">
+            <source src="../../assets/menu/Light Effect - 3129.mp4" type="video/mp4">
 
-    </video>
-    <div id="buton">
-        <p-button label="Rejoindre un jukebox" (click)='code()'></p-button>
-    </div>
-    <div id="tab">
-        <h2> Les derniéres playlists :</h2>
-        <p-table *ngIf="playlists" [value]="playlists" [rows]="5">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Nom</th>
-                    <th>Date de création</th>
-                    <th>Créateur</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-playlist>
-                <tr>
-                    <td><a [routerLink]="['/playlists/', playlist.id]">{{playlist.nom}}</a></td>
-                    <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
-                    <td>{{playlist.createur.pseudo}}</td>
-                </tr>
-            </ng-template>
+        </video>
+        <div id="buton">
+            <p-button label="Rejoindre un jukebox" (click)='code()'></p-button>
+        </div>
+        <div id="tab">
+            <h2> Les derniéres playlists :</h2>
+            <p-table *ngIf="playlists" [value]="playlists" [rows]="5">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Date de création</th>
+                        <th>Créateur</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-playlist>
+                    <tr>
+                        <td><a [routerLink]="['/playlists/', playlist.id]">{{playlist.nom}}</a></td>
+                        <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{playlist.createur.pseudo}}</td>
+                    </tr>
+                </ng-template>
 
-        </p-table>
-    </div>
-    <div id="tab2">
-        <h2> les titres :</h2>
-        <p-table *ngIf="titres" [value]="titres" [rows]="5">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Nom</th>
-                    <th>Artiste</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-titre>
-                <tr>
-                    <td>{{titre.nom}}</td>
-                    <td>{{titre.artiste}}</td>
-                </tr>
-            </ng-template>
-        </p-table>
+            </p-table>
+        </div>
+        <div id="tab2">
+            <h2> les titres :</h2>
+            <p-table *ngIf="titres" [value]="titres" [rows]="5">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Artiste</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-titre>
+                    <tr>
+                        <td>{{titre.nom}}</td>
+                        <td>{{titre.artiste}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </div>
 </div>
