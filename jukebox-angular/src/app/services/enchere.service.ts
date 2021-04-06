@@ -20,7 +20,6 @@ export class EnchereService {
   }
 
   postEnchere(enchere: Enchere): Observable<Enchere>{
-    console.log("ici2");
     return this.http.post<Enchere>(`${this.route}`, enchere)
   }
 }

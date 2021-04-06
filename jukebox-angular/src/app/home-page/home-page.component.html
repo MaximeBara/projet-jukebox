@@ -1,8 +1,15 @@
 <div id="fond">
     <p-confirmDialog #cd [style]="{width: '50vw'}" [baseZIndex]="10000">
         <p-footer>
-            <input type="text" [(ngModel)]="numero">
-            <button type="button" pButton icon="pi pi-check" label="Valider" (click)="cd.accept()"></button>
+            <!-- <input type="text" [(ngModel)]="numero">
+            <button type="button" pButton icon="pi pi-check" label="Valider" (click)="cd.accept()"></button> -->
+        
+        
+            <div class="p-grid">
+                <div class="p-col-10 input">Code : <input [(ngModel)]="numero"></div>
+                <div class="p-col-2"><button type="button" pButton label="Valider"
+                        (click)="cd.accept()"></button></div>
+            </div>
         </p-footer>
     </p-confirmDialog>
     <div>

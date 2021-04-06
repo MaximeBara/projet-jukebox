@@ -53,12 +53,11 @@ export class HomePageComponent implements OnInit {
 
     this.confirmationService.confirm({
 
-      header: 'Notez le code du jukebox ',
+      header: 'Entrer le code du jukebox',
       
       
       accept: () => {
 
-        console.log("sa passe")
         this.jukeboxService.getByCode(this.numero).subscribe(
           (jukeboxeSerch:Jukebox) => {
           

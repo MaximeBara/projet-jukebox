@@ -101,10 +101,10 @@ export class JukeboxPageComponent implements OnInit {
     });
 
     this.cols = [
-      { header: 'ID' },
-      { header: 'Artiste' },
-      { header: 'Lien' },
       { header: 'Nom' },
+      { header: 'Artiste' },
+      { header: '' },
+      
     ];
 
     // this.youtube.player.playVideo();

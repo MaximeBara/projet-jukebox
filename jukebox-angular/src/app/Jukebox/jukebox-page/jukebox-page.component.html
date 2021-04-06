@@ -1,8 +1,8 @@
-<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-shopping-cart">
     <p-footer>
         <div class="p-grid">
-            <div class="p-col input">montant:<input [(ngModel)]="montantEnchere"></div>
-            <div class="p-col"><button type="button" pButton icon="pi pi-check" label="Yes"
+            <div class="p-col-10 input">Montant : <input [(ngModel)]="montantEnchere"></div>
+            <div class="p-col-2"><button type="button" pButton icon="pi pi-check" label="Enchérir"
                     (click)="cd.accept()"></button></div>
         </div>
     </p-footer>
@@ -34,28 +34,32 @@
             [virtualScroll]="true" [virtualRowHeight]="20">
             <ng-template pTemplate="header" let-columns>
                 <tr>
-                    <th *ngFor="let col of columns">
-                        {{col.header}}
-                    </th>
+                    <div class="p-grid tr">
+                        <div class="p-col-6 flex">
+                            Nom
+                        </div>
+                        <div class="p-col-4 flex">
+                            Artiste
+                        </div>
+                        <div class="p-col-2">
+                            
+                        </div>
+                    </div>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-titre>
                 <tr>
-                    <td>
-                        {{titre.id}}
-                    </td>
-                    <td>
-                        {{titre.artiste}}
-                    </td>
-                    <td>
-                        {{titre.lien}}
-                    </td>
-                    <td>
-                        {{titre.nom}}
-                    </td>
-                    <td>
-                        <button (click)="encherir(titre)" pButton icon="pi pi-check" label="Confirm"></button>
-                    </td>
+                    <div class="p-grid">
+                        <div class="p-col-6 flex">
+                            {{titre.nom}}
+                        </div>
+                        <div class="p-col-4 flex">
+                            {{titre.artiste}}
+                        </div>
+                        <div class="p-col-2 flex">
+                            <button (click)="encherir(titre)" pButton label="Enchérir"></button>
+                        </div>
+                    </div>
                 </tr>
             </ng-template>
         </p-table>

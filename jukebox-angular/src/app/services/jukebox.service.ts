@@ -53,8 +53,6 @@ export class JukeboxService {
   }
 
   setTerminee(idJukebox: number, idTitre: number) {
-    console.log(`${this.route}/${idJukebox}/setTerminee/${idTitre}`);
-
     return this.http.put(
       `${this.route}/${idJukebox}/setTerminee/${idTitre}`,
       true
