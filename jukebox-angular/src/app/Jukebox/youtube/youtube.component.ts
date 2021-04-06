@@ -16,6 +16,12 @@ export class YoutubeComponent implements OnInit {
   }
   @Output() next = new EventEmitter<string>();
 
+  height: number = 720;
+  width: number = 1280;
+
+  fs: boolean = false;
+
+
   ngOnInit() {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';

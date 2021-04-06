@@ -20,6 +20,9 @@ export class EnchereService {
   }
 
   postEnchere(enchere: Enchere): Observable<Enchere>{
+
+    console.log(enchere)
+
     return this.http.post<Enchere>(`${this.route}`, enchere)
   }
 }

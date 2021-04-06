@@ -41,8 +41,13 @@ public class EnchereController {
 	@GetMapping("/findByMembre/{id}")
 	@JsonView(IViews.IViewEnchere.class)
 	public List<Enchere> findAllByMembre(@PathVariable Long id) {
+		
+		
+		
 		List<Enchere> encheres = enchereDao.findAllEnchereByMembre(id);
 
+		System.out.println(encheres);
+		
 		return encheres;
 	}
 
@@ -123,7 +128,12 @@ public class EnchereController {
 	@PostMapping("")
 	@JsonView(IViews.IViewEnchere.class)
 	public Enchere create(@RequestBody Enchere enchere) {
+		System.out.println(enchere);
+
+		
 		enchere = enchereDao.save(enchere);
+		
+		System.out.println(enchere);
 
 		return enchere;
 	}

@@ -64,7 +64,9 @@ export class JukeboxPageComponent implements OnInit {
   ) {}
 
   ngAfterContentInit(){
-    setTimeout(this.youtube.player.playVideo(), 5000);
+     console.log(3);
+    // setTimeout(this.youtube.player.playVideo(), 5000);
+    console.log(4);
     // this.youtube.player.playVideo();
   }
 
@@ -76,6 +78,12 @@ export class JukeboxPageComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params) => {
       this.userId = this.tokenStorageService.getUser().id;
+      this.utilisateurApi.getByIdProfil(this.userId).subscribe(
+        (user: Profile) => {
+          console.log(1);
+          this.user = user;
+        }
+      );
       this.id = parseInt(params.id);
     });
 
@@ -92,6 +100,13 @@ export class JukeboxPageComponent implements OnInit {
         this.titresAJouer = this.titresAJouer.filter((titre: Titre) => {
           return titre.id !== this.titreEnCours.id;
         });
+        console.log(2);
+        
+        console.log(jukebox.titreEnCours)
+
+        this.youtube.videoId =  jukebox.titreEnCours.lien;
+        this.youtube.player.playVideo();
+        // setTimeout(this.youtube.player.playVideo(), 5000);
       });
 
     this.utilisateurApi
@@ -107,7 +122,23 @@ export class JukeboxPageComponent implements OnInit {
       
     ];
 
+    
     // this.youtube.player.playVideo();
+  }
+
+
+  changeSize(){
+    console.log("ok")
+
+    if(this.youtube.fs){
+      this.youtube.height = 720;
+      this.youtube.width = 1280;
+      this.youtube.fs = false;
+    } else {
+      this.youtube.height = 1000;
+      this.youtube.width = 1800;
+      this.youtube.fs = true;
+    }
   }
 
   accept() {
@@ -137,6 +168,9 @@ export class JukeboxPageComponent implements OnInit {
   }
 
   encherir(myTitre: Titre) {
+
+console.log(this.user);
+
     this.confirmationService.confirm({
       message: `Combien voulez-vous enchérir sur le titre ${myTitre.nom} ?`,
       accept: () => {
@@ -145,11 +179,14 @@ export class JukeboxPageComponent implements OnInit {
           dateTime: new Date(),
           valeur: this.montantEnchere,
           terminee: false,
-          user: this.jukebox.administrateur,
+          user: this.user,
           jukebox: this.jukebox,
           titre: myTitre,
           type: 'P',
         };
+
+        console.log(enchere)
+
         this.enchereApi.postEnchere(enchere).subscribe();
       },
     });
