@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from 'src/app/models/user';
-import { Playlist } from '../../models/playlist';
 import { PlaylistService } from 'src/app/services/playlist.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { Playlist } from '../../models/playlist';
 import { TokenStorageService } from '../../services/token-storage.service';
 
 
@@ -26,7 +26,7 @@ export class CreatePlaylistComponent implements OnInit {
   attente = false;
 
   constructor(private playlistService: PlaylistService, private tokenStorageService: TokenStorageService,
-    private utilisateurService: UtilisateurService, private router: Router, 
+    private utilisateurService: UtilisateurService, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -51,17 +51,16 @@ export class CreatePlaylistComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const lien = this.youtube_parser(this.form.lien);
-    const playlist: Playlist = {
-      id: 0,
-      nom: this.form.nom,
-      dateCreation: new Date(),
-      lien: lien,
-      createur: this.user,
-      titres: [],
-      jukeboxes: []
-    };
-    if(!this.youtube){
+    if (!this.youtube) {
+      const playlist: Playlist = {
+        id: 0,
+        nom: this.form.nom,
+        dateCreation: new Date(),
+        lien: this.form.lien,
+        createur: this.user,
+        titres: [],
+        jukeboxes: []
+      };
       this.playlistService.createPlaylist(playlist).subscribe(
         data => {
           this.isSuccessful = true;
@@ -74,7 +73,17 @@ export class CreatePlaylistComponent implements OnInit {
           this.isCreateFailed = true;
         }
       );
-    }else{
+    } else {
+      const lien = this.youtube_parser(this.form.lien);
+      const playlist: Playlist = {
+        id: 0,
+        nom: this.form.nom,
+        dateCreation: new Date(),
+        lien: lien,
+        createur: this.user,
+        titres: [],
+        jukeboxes: []
+      };
       this.attente = true;
       this.playlistService.importFromYoutube(playlist).subscribe(
         data => {
