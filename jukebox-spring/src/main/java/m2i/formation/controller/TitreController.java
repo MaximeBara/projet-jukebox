@@ -27,7 +27,6 @@ import com.google.gson.JsonParser;
 
 import m2i.formation.dao.ITitreDao;
 import m2i.formation.model.IViews;
-import m2i.formation.model.Playlist;
 import m2i.formation.model.Titre;
 
 @RestController
@@ -49,13 +48,13 @@ public class TitreController {
 
 		return titres;
 	}
-	
+
 	@GetMapping("allByIdDesc")
 	@JsonView(IViews.IViewTitre.class)
-	public List<Titre> findAllOrderByDateCreation(){
+	public List<Titre> findAllOrderByDateCreation() {
 		List<Titre> titres = titreDao.findByOrderByIdDesc();
 		List<Titre> subTitres = titres.subList(0, min(titres.size(), 5));
-		
+
 		return subTitres;
 	}
 
