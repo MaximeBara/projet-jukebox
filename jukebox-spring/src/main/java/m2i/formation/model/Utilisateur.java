@@ -8,33 +8,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "UTILISATEUR")
+//@DiscriminatorColumn(name = "type")
 public abstract class Utilisateur {
 
 	@Id
 	@GeneratedValue
-	private Long id ;
-	@Column(length= 15)
-	private String pseudo ;
+	@JsonView(IViews.IViewBasic.class)
+	private Long id;
+	@Column(length = 15, nullable = false, unique = true)
+	@JsonView(IViews.IViewBasic.class)
+	private String pseudo;
 	@ManyToOne
-	@JoinColumn(name="jukebox_id")
+	@JoinColumn(name = "jukebox_id")
+	@JsonView(IViews.IViewBasic.class)
 	private Jukebox jukebox;
-	public Utilisateur(){
+	
+	@Column(insertable = false, updatable = false) 
+	private String dtype;
+
+	public Utilisateur() {
 		super();
 	}
-	
-	public Utilisateur(String pseudo){
+
+	public Utilisateur(String pseudo) {
 		super();
 		this.pseudo = pseudo;
 	}
 
-	public Utilisateur(Long id, String pseudo){
+	public Utilisateur(Long id, String pseudo) {
 		super();
 		this.id = id;
 		this.pseudo = pseudo;
 	}
-	
+
 	public Jukebox getJukebox() {
 		return jukebox;
 	}
@@ -58,12 +68,15 @@ public abstract class Utilisateur {
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
+	
+	public boolean isAdministrateur() {
+		return false;
+	}
 
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", pseudo=" + pseudo + ", getClass()=" + getClass() 
-		+ ", toString()=" + super.toString() + "]";
+		return "Utilisateur [id=" + id + ", pseudo=" + pseudo + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
 	}
-	
-	
+
 }

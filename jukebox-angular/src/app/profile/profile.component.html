@@ -1,0 +1,22 @@
+<div class="card">
+    <p-tabView>
+        <p-tabPanel header="Modifications des informations du compte">
+            <div class='grey'>
+                <div>
+                    Pseudo: {{profile.pseudo}}
+                </div>
+                <div>
+                    Nombre de points: {{profile.point}}
+                </div>
+                <div>
+                    <label>mot de passe : </label>
+                    <input type="text" [(ngModel)]="motDePasse" />
+                </div>
+                <button type="button" (click)='updateMotDePasse()'>valider</button>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mes enchères">
+            <app-enchere></app-enchere>
+        </p-tabPanel>
+    </p-tabView>
+</div>

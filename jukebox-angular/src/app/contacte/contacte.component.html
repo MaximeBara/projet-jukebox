@@ -1,0 +1,15 @@
+<div class="container">
+    <form [formGroup]='contacter' (ngSubmit)="envoie()">
+        <div class="row">
+            <div class="col-25">
+                <label for="subject">votre message:</label>
+            </div>
+            <div class="col-75">
+                <textarea id="subject" name="subject" placeholder="Votre message.." style="height:200px" type="text" formControlName="subject"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>

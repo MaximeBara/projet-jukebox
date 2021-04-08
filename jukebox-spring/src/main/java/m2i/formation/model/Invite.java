@@ -1,13 +1,10 @@
 package m2i.formation.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "INVITE")
 public class Invite extends Utilisateur {
 
-	
 	public Invite() {
 		super();
 	}
@@ -26,5 +23,4 @@ public class Invite extends Utilisateur {
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
-	
 }

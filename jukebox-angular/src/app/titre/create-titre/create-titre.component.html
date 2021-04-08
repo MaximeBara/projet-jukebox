@@ -1,0 +1,29 @@
+<div class="img">
+    <div class="grey">
+        <div class="center">Ajout d'un titre <span *ngIf="playlistId">à la playlist {{ this.currentPlaylist.nom }}</span></div>
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+                <div class="col-25">
+                    <label for="nom">Lien</label>
+                </div>
+                <input type="text" class="form-control" name="lien" [(ngModel)]="form.lien" required #lien="ngModel" />
+                <div class="alert-danger" *ngIf="lien.errors && f.submitted">
+                    <div *ngIf="lien.errors.required">Le lien est nécessaire !</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div *ngIf="attente" class="spinner"><i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
+                </div>
+                <button *ngIf="!attente" type="submit">Créer</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isCreateFailed">
+                La création du titre a échoué !<br />{{ errorMessage }}
+            </div>
+        </form>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            La création du titre a réussi !
+        </div>
+    </div>
+</div>

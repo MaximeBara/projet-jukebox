@@ -3,16 +3,15 @@ package m2i.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "ADMINISTRATEUR")
 public class Administrateur extends Membre {
 
-	@OneToMany(mappedBy = "administrateur", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "administrateur", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Jukebox> jukeboxes = new ArrayList<Jukebox>();
 
 	public Administrateur() {
@@ -31,7 +30,7 @@ public class Administrateur extends Membre {
 	public String toString() {
 		return "Administrateur [getMotDePasse()=" + getMotDePasse() + ", getPoint()=" + getPoint() + ", toString()="
 				+ super.toString() + ", getId()=" + getId() + ", getPseudo()=" + getPseudo() + ", getClass()="
-				+ getClass() + "]";
+				+ getClass() + "]" + "\n";
 	}
 
 	public List<Jukebox> getJukeboxes() {
@@ -41,6 +40,9 @@ public class Administrateur extends Membre {
 	public void setJukeboxes(List<Jukebox> jukeboxes) {
 		this.jukeboxes = jukeboxes;
 	}
-	
-	
+
+	public boolean isAdministrateur() {
+		return true;
+	}
+
 }

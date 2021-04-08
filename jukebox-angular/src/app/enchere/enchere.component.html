@@ -1,0 +1,23 @@
+<p-table *ngIf="encheres" [value]="encheres"   [paginator]="true" 
+            [rows]="10" [showCurrentPageReport]="true" 
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Date</th>
+            <th>Valeur</th>
+            <th>Terminee</th>
+            <th>Jukebox</th>
+            <th>Titre</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-enchere>
+        <tr>
+            <td>{{enchere.dateTime | date:'dd/MM/yyyy - HH:mm:ss'}}</td>
+            <td>{{enchere.valeur}}</td>
+            <td *ngIf="enchere.terminee">Oui</td>
+            <td *ngIf="!enchere.terminee">Non</td>
+            <td>{{enchere.jukebox.nom}}</td>
+            <td>{{enchere.titre.nom}}</td>
+        </tr>
+    </ng-template>
+</p-table>

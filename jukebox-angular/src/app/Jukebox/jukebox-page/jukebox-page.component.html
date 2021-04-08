@@ -1,0 +1,80 @@
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-shopping-cart">
+    <p-footer>
+        <div class="p-grid">
+            <div class="p-col-8 input">Montant : <input [(ngModel)]="montantEnchere"></div>
+            <div class="p-col-2"><button type="button" pButton icon="pi pi-check" label="Enchérir"
+                    (click)="cd.accept()"></button></div>
+        </div>
+    </p-footer>
+</p-confirmDialog>
+
+
+
+<div class="p-grid">
+    <div class="p-col-11 title flex">
+        <h1>{{jukebox.nom}} playing {{jukebox.playlist.nom}}</h1>
+    </div>
+    <div class="p-col-1 favori flex">
+        <p-toggleButton label=" " [(ngModel)]="checked" ngDefaultControl (onChange)="toggleChange()" 
+        offIcon="pi pi-heart" onIcon="pi pi-times" onLabel="" styleClass="p-button-rounded p-button-help">
+        </p-toggleButton>
+    </div>
+</div>
+
+<div class="p-grid youtubeback" (click)="changeSize()">
+    <div class="p-col flex center youtube">
+        <app-youtube #youtube (next)="nextTitre($event)" [titre]="titreEnCours"></app-youtube>
+    </div>
+</div>
+
+<div>
+
+    <div class="titres">
+        <p-table [columns]="cols" [value]="jukebox.playlist.titres" [scrollable]="true" [rows]="100" scrollHeight="70vh"
+            [virtualScroll]="true" [virtualRowHeight]="20">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <div class="p-grid tr">
+                        <div class="p-col-8 flex">
+                            Nom
+                        </div>
+                        <div class="p-col-4 flex">
+                            Artiste
+                        </div>
+                        <!-- <div class="p-col-2">
+                            
+                        </div> -->
+                    </div>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-titre>
+                <tr class="mouse" (click)="encherir(titre)"> 
+                    <div class="p-grid line">
+                        <div class="p-col-8 flex">
+                            {{titre.nom}}
+                        </div>
+                        <div class="p-col-4 flex">
+                            {{titre.artiste}}
+                        </div>
+                        <!-- <div class="p-col-2 flex">
+                            <button (click)="encherir(titre)" pButton label="Enchérir"></button>
+                        </div> -->
+                    </div>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="flex titre">
+
+        <div *ngIf="titreEnCours else loading">
+            <h2>{{titreEnCours.nom}} - {{titreEnCours.artiste}}</h2>
+        </div>
+
+        <ng-template #loading>
+            <h2>Loading...</h2>
+        </ng-template>
+    </div>
+
+
+</div>

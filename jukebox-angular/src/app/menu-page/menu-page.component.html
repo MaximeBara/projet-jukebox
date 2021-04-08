@@ -1,0 +1,10 @@
+<p-menubar [model]="items" [style]="{backgroundColor:'var(--blue-500)'}">
+    <ng-template pTemplate="start">
+    </ng-template>
+    <ng-template pTemplate="end">
+        <button *ngIf="isLoggedIn" type="button" pButton label="{{userItem.label}}" icon="{{userItem.icon}}"
+            routerLink="{{userItem.routerLink}}"></button>
+        <button *ngIf="!isLoggedIn" type="button" pButton label="{{signupItem.label}}" (click)="signup();" icon="{{signupItem.icon}}"></button>
+        <button type="button" pButton label="{{loginItem.label}}" (click)="login();" icon="{{loginItem.icon}}"></button>
+    </ng-template>
+</p-menubar>

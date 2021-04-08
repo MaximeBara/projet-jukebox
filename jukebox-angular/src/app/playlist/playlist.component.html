@@ -1,0 +1,28 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-messages [value]="msgs"></p-messages>
+<button pButton type="button" [routerLink]="['/playlists/create']" label="Créer une playlist" class="p-button-info" icon="pi pi-plus-circle"></button>
+<button pButton type="button" [routerLink]="['/playlists/import']" label="Import via Youtube" class="p-button-danger" icon="pi pi-youtube"></button>
+<p-table *ngIf="playlists" [value]="playlists" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,15,20]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th></th>
+            <th>Nom</th>
+            <th>Créateur</th>
+            <th>Date de création</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-playlist>
+        <tr>
+            <td><a [routerLink]="['/playlists', playlist.id]" [state]="{ data: { kind: 'fromPlaylists', playlist : playlist} }"><i class="pi pi-folder-open"></i></a></td>
+            <td><span (click)="editModeMap.set(playlist.id, true)" *ngIf="!editModeMap.get(playlist.id)">{{playlist.nom}}</span><input *ngIf="editModeMap.get(playlist.id)" (focusout)="onFocusOut($event, playlist)" value="{{playlist.nom}}"></td>
+            <td>{{playlist.createur.pseudo}}</td>
+            <td>{{playlist.dateCreation | date: 'dd/MM/yyyy'}}</td>
+            <td>
+                <p-button class="ui-button" [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm2(playlist) : null" icon="pi pi-refresh"></p-button>
+                <p-button class="ui-button" [disabled]="playlist.createur && playlist.createur.id==userId ? false : true" (click)="playlist.createur && playlist.createur.id==userId ? confirm1(playlist) : null" icon="pi pi-trash"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

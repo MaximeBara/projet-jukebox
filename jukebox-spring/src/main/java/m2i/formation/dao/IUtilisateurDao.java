@@ -1,26 +1,31 @@
 package m2i.formation.dao;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import m2i.formation.model.Administrateur;
 import m2i.formation.model.Invite;
 import m2i.formation.model.Membre;
 import m2i.formation.model.Utilisateur;
 
 public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 
-	@Query("select user from Utilisateur user ")
+	@Query("select user from Utilisateur user")
 	List<Utilisateur> findAllUtilisateur();
 
 	@Query("select user from Utilisateur user where user.id = :id")
-	Membre findByID(@Param("id") long id);
-	
-	/*@Query("select jukeboxfav from Membre jukeboxfav left join jukeboxfav.Favoris s where jukeboxfav.id = :id")
-	Membre findByFavoris(@Param("id") long id);*/
-	
+	Optional<Membre> findMembreId(@Param("id") long id);
+
+	@Query("select user from Utilisateur user where user.id = :id")
+	Optional<Invite> findInviteId(@Param("id") long id);
+
 	@Query("select m from Membre m")
 	List<Membre> findMembre();
 
@@ -28,21 +33,22 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long> {
 	List<Invite> findAllInvite();
 
 	@Query("select admin from Administrateur admin")
-	List<Invite> findAllAdmin();
+	List<Administrateur> findAllAdmin();
 
-	/*@Query("select m from Membre m left join m.encheres e where e.valeur > 0 ")
-	List<Membre> findAllMembresByValeur(@Param("valeur") int valeur); */
+	@Query("select user from Utilisateur user where user.id = :id")
+	Optional<Administrateur> findAdminId(@Param("id") long id);
 
-	/*
-	 * @Query("select s.formateur from Stagiaire s where s.id = :id") Formateur
-	 * findByStagiaire(@Param("id") Long id);
-	 * 
-	 * @Query("select s from Stagiaire s join s.formateur f where f.id = :id")
-	 * List<Stagiaire> findAllStagiaireByFormateur(@Param("id") Long id);
-	 * 
-	 * @Query("select f from Formateur f where f.experience > :experience")
-	 * List<Formateur> findAllFormateurExperienceGreaterThan(@Param("experience")
-	 * int experience);
-	 */
+	@Query("select user from Utilisateur user where user.pseudo = :pseudo")
+	Optional<Utilisateur> findByPseudo(@Param("pseudo") String pseudo);
+
+	@Query("select count(admin)>0 from Administrateur admin left join admin.jukeboxes jukeboxes where admin.id = :idUser AND jukeboxes.id = :idJukebox")
+	Boolean isAdmin(@Param("idUser") Long idUser, @Param("idJukebox") Long idJukebox);
+
+	Boolean existsByPseudo(String pseudo);
+
+	@Transactional
+	@Modifying
+	@Query("update Utilisateur u set u.dtype = 'Administrateur' where u.id = :idUser")
+	void setAdministrateur(Long idUser);
 
 }

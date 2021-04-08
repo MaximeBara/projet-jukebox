@@ -12,20 +12,32 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "JUKEBOX")
 public class Jukebox {
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
 	@Column(name = "nom", length = 20)
+	@JsonView(IViews.IViewBasic.class)
 	private String nom;
-	@Column(name = "code", length = 20)
+	@Column(name = "code", length = 20, unique=true)
+	@JsonView(IViews.IViewBasic.class)
 	private String code;
 	@Column(name = "typeEnchere", length = 10)
+	@JsonView(IViews.IViewBasic.class)
 	private TypeEnchere typeEnchere;
+
+	@OneToOne()
+	@JoinColumn(name = "titre_id")
+	@JsonView(IViews.IViewBasic.class)
+	private Titre titreEnCours;
 
 	@OneToMany(mappedBy = "jukebox", fetch = FetchType.LAZY)
 	private List<Utilisateur> connectes;
@@ -40,6 +52,7 @@ public class Jukebox {
 
 	@ManyToOne()
 	@JoinColumn(name = "playlist_id")
+	@JsonView(IViews.IViewJukeboxWithPlaylist.class)
 	private Playlist playlist;
 
 	@OneToMany(mappedBy = "jukebox", fetch = FetchType.LAZY)
@@ -91,6 +104,14 @@ public class Jukebox {
 
 	public void setTypeEnchere(TypeEnchere typeEnchere) {
 		this.typeEnchere = typeEnchere;
+	}
+
+	public Titre getTitreEnCours() {
+		return titreEnCours;
+	}
+
+	public void setTitreEnCours(Titre titreEnCours) {
+		this.titreEnCours = titreEnCours;
 	}
 
 	public List<Utilisateur> getConnectes() {

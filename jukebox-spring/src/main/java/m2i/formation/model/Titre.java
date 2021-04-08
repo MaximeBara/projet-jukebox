@@ -12,17 +12,23 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "TITRE")
 public class Titre {
 	@Id
 	@GeneratedValue
+	@JsonView(IViews.IViewBasic.class)
 	private Long id;
-	@Column(name = "nom", length = 20)
+	@Column(name = "nom", length = 100)
+	@JsonView(IViews.IViewBasic.class)
 	private String nom;
-	@Column(name = "artiste", length = 20)
+	@Column(name = "artiste", length = 100)
+	@JsonView(IViews.IViewBasic.class)
 	private String artiste;
-	@Column(name = "lien", length = 255)
+	@Column(name = "lien", length = 255, unique=true)
+	@JsonView(IViews.IViewBasic.class)
 	private String lien;
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -32,6 +38,11 @@ public class Titre {
 	public Titre() {
 	}
 
+	public Titre(String nom, String lien) {
+		this.nom = nom;
+		this.lien = lien;
+	}
+	
 	public Titre(String nom, String artiste, String lien) {
 		this.nom = nom;
 		this.artiste = artiste;
@@ -44,6 +55,7 @@ public class Titre {
 		this.artiste = artiste;
 		this.lien = lien;
 	}
+	
 
 	public Long getId() {
 		return id;
@@ -87,8 +99,7 @@ public class Titre {
 
 	@Override
 	public String toString() {
-		return "Titre [id=" + id + ", nom=" + nom + ", artiste=" + artiste + ", lien=" + lien + ", playlists="
-				+ playlists + "]";
+		return "Titre [id=" + id + ", nom=" + nom + ", artiste=" + artiste + ", lien=" + lien + "]";
 	}
 
 }
