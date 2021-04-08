@@ -124,13 +124,7 @@ public class EnchereController {
 	@PostMapping("")
 	@JsonView(IViews.IViewEnchere.class)
 	public Enchere create(@RequestBody Enchere enchere) {
-		System.out.println(enchere);
-
-		
 		enchere = enchereDao.save(enchere);
-		
-		System.out.println(enchere);
-
 		return enchere;
 	}
 
